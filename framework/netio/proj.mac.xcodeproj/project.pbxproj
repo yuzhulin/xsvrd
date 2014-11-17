@@ -23,7 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1D969B341A18F5AF00A68A75 /* proj.mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = proj.mac; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D969B341A18F5AF00A68A75 /* netio */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = netio; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DD480781A18F61A008EE50D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -49,7 +49,7 @@
 		1D969B351A18F5AF00A68A75 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D969B341A18F5AF00A68A75 /* proj.mac */,
+				1D969B341A18F5AF00A68A75 /* netio */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,7 +80,7 @@
 			);
 			name = proj.mac;
 			productName = proj.mac;
-			productReference = 1D969B341A18F5AF00A68A75 /* proj.mac */;
+			productReference = 1D969B341A18F5AF00A68A75 /* netio */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -203,14 +203,16 @@
 		1D969B3C1A18F5AF00A68A75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				CONFIGURATION_BUILD_DIR = ../../run/netio/bin;
+				PRODUCT_NAME = netio;
 			};
 			name = Debug;
 		};
 		1D969B3D1A18F5AF00A68A75 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				CONFIGURATION_BUILD_DIR = ../../run/netio/bin;
+				PRODUCT_NAME = netio;
 			};
 			name = Release;
 		};

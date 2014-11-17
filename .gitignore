@@ -1,7 +1,6 @@
 *.sdf
 *.tlog
 *.obj
-*.exe
 *.ilk
 *.lastbuildstate
 *.log
@@ -10,3 +9,6 @@
 *.suo
 *.opensdf
 *.user
+*.exe
+
+run/netio/bin/netio
