@@ -21,4 +21,5 @@ void ParseCommand(int32 argc, char** argv)
 			<< "](gcc" << __GNUC__ << '.' << __GNUC_MINOR__
 				<< ")" << 8 * sizeof(long) << "bit" << std::endl;
 	}
+	exit(0);
 }
