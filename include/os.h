@@ -20,4 +20,4 @@ typedef std::uint32_t	uint32;
 
 
 
-#endif
+#endif // _MINISVRD_INCLUDE_OS_H_
