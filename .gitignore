@@ -10,5 +10,6 @@
 *.opensdf
 *.user
 *.exe
+*.o
 
 run/netio/bin/netio
