@@ -1,9 +1,21 @@
 #include <iostream>
 #include "../../include/os.h"
 
-int main(int argc, const char * argv[])
+
+void ParseCommand(int32 argc, char** argv);
+
+int32 main(int32 argc, char** argv)
 {
-    std::clog << "hello minisvrd!" << std::endl;
+	ParseCommand(argc, argv);
+
+
 	std::cin.get();
     return 0;
+}
+
+void ParseCommand(int32 argc, char** argv)
+{
+	/*if ((argc > 1) && (strcasecmp))
+	{
+	}*/
 }
