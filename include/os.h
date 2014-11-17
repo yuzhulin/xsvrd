@@ -1,5 +1,5 @@
-#ifndef _MINISVRD_INCLUDE_OS_H_
-#define _MINISVRD_INCLUDE_OS_H_
+#ifndef _XSVRD_INCLUDE_OS_H_
+#define _XSVRD_INCLUDE_OS_H_
 
 #include <cstdint>
 
@@ -35,5 +35,4 @@ typedef std::uint32_t	uint32;
 
 
 
-
-#endif // _MINISVRD_INCLUDE_OS_H_
+#endif // _XSVRD_INCLUDE_OS_H_
