@@ -15,8 +15,7 @@ void ParseCommand(int32 argc, char** argv)
 {
 	// you can use option "-v" to check the build version
 	////////////////////////////////////////////////////////////////
-	if ((argc > 1) && (!strcasecmp(argv[1], "-v")))
-	{
+	if ((argc > 1) && (!strcasecmp(argv[1], "-v"))) {
 		std::clog << "build in [" << __DATE__ << ' ' << __TIME__
 			<< "](gcc" << __GNUC__ << '.' << __GNUC_MINOR__
 				<< ")" << 8 * sizeof(long) << "bit" << std::endl;
