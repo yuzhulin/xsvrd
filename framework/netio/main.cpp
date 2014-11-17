@@ -1,11 +1,15 @@
 #include <iostream>
 #include "../../include/os.h"
 
+int32 g_nRunOneInstance = 1;
+
 void ParseCommand(int32 argc, char** argv);
+bool RunOneInstance();
 
 int32 main(int32 argc, char** argv)
 {
 	ParseCommand(argc, argv);
+	RunOneInstance();
 
 	std::cin.get();
     return 0;
@@ -21,4 +25,17 @@ void ParseCommand(int32 argc, char** argv)
 				<< ")" << 8 * sizeof(long) << "bit" << std::endl;
 		exit(0);
 	}
+}
+
+bool RunOneInstance()
+{
+	if (!g_nRunOneInstance)
+	{
+		return true;
+	}
+	// TODO: add logic
+	/////////////////////////////////////////////////
+
+
+	/////////////////////////////////////////////////
 }
