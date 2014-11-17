@@ -1,1 +1,1 @@
-./netio config=../config/netio.cfg
+./netio conf=../conf/netio.conf

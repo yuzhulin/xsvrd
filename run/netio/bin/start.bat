@@ -1,1 +1,1 @@
-netio.exe config=../config/netio.cfg
+netio.exe conf=../config/netio.conf

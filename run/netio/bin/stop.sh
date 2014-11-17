@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NETIO="netio config=../config/netio.cfg"
+NETIO="netio conf=../conf/netio.conf"
 
 kill -usr2 $(pidof $NETFRAME)
 
