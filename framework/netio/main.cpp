@@ -11,6 +11,15 @@ int32 main(int32 argc, char** argv)
 	ParseCommand(argc, argv);
 	RunOneInstance();
 
+
+
+
+
+
+
+
+
+
 	std::cin.get();
     return 0;
 }
