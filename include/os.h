@@ -10,6 +10,8 @@ typedef std::uint8_t	uint8;
 typedef std::uint16_t	uint16;
 typedef std::uint32_t	uint32;
 
+// windows
+////////////////////////////////////////////////////
 #ifdef _WIN32
 #define strcasecmp		strcmp
 
@@ -18,7 +20,20 @@ typedef std::uint32_t	uint32;
 
 #endif
 
+// linux
+////////////////////////////////////////////////////
+#ifdef __gnu_linux__
+
+#endif
+
+
+// maxosx
+////////////////////////////////////////////////////
 #ifdef __APPLE__
 #endif
+
+
+
+
 
 #endif // _MINISVRD_INCLUDE_OS_H_
