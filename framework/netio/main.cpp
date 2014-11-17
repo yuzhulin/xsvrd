@@ -20,6 +20,6 @@ void ParseCommand(int32 argc, char** argv)
 		std::clog << "build in [" << __DATE__ << ' ' << __TIME__
 			<< "](gcc" << __GNUC__ << '.' << __GNUC_MINOR__
 				<< ")" << 8 * sizeof(long) << "bit" << std::endl;
+		exit(0);
 	}
-	exit(0);
 }
