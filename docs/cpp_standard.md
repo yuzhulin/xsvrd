@@ -1,5 +1,5 @@
 1. 命名约定
-    * [通用](#####CommonName)
+    * [通用](#CommonName)
     * [变量](#wiki-ParaName)
 
 
@@ -20,7 +20,7 @@
 
 
 
-#####CommonName
+#CommonName
 
 
 
