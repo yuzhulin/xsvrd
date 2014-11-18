@@ -6,7 +6,7 @@ You can't use the version, because the code is just for test!
 ### Improvements
 - Determined the directory structure :  
 ```
-       minisvrd/  
+        xsvrd/  
           |_____ framework/
           |           |______ netio/ 
           |           |______ svrd/
