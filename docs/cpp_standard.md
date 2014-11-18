@@ -1,5 +1,5 @@
 1. 命名约定
-    * [ParaName](wiki-ParaName)
+    * [变量](ParaName)
 
 
 
