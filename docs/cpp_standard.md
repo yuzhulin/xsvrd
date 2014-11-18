@@ -1,6 +1,6 @@
 1. 命名约定
-    * [通用](#CommonName)
-    * [变量](#ParaName)
+    * [通用](#wiki-CommonName)
+    * [变量](#wiki-ParaName)
 
 
 
@@ -17,6 +17,9 @@
 #####xxxx
 #####xxxx
 #####xxxx
+
+
+
 #####CommonName
 
 
