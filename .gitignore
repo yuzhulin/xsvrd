@@ -1,4 +1,3 @@
-*.dll
 *.sdf
 *.tlog
 *.obj
@@ -12,7 +11,7 @@
 *.user
 *.exe
 *.o
-
+*.dll
 
 
 run/netio/bin/netio
