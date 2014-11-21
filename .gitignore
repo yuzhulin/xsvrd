@@ -12,4 +12,6 @@
 *.exe
 *.o
 
+/x64
+
 run/netio/bin/netio
