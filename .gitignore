@@ -12,6 +12,7 @@
 *.exe
 *.o
 *.dll
-
+*.exp
+*.lib
 
 run/netio/bin/netio
