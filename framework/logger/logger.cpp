@@ -1,5 +1,5 @@
 #include "os.h"
-#include "logfile.h"
+#include "logger.h"
 
 #ifndef  _WIN32
 #ifndef MAX_PATH

@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>logfiledll</ProjectName>
+    <ProjectName>loggerdll</ProjectName>
     <ProjectGuid>{30598119-6E53-4F39-B992-57D52134DA65}</ProjectGuid>
-    <RootNamespace>logfiledll</RootNamespace>
+    <RootNamespace>loggerdll</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -100,7 +100,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Debug/logfile.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug/logger.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
@@ -110,7 +110,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\Debug/logfile.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Debug/logger.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
       <ObjectFileName>.\Debug/</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
@@ -127,17 +127,17 @@
       <OutputFile>../../dll/logger.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>logfiledll.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>loggerdll.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>../../../../pdb/logfiled.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>../../../../pdb/loggerd.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Debug/logfile.lib</ImportLibrary>
+      <ImportLibrary>.\Debug/logger.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Debug/logfile.bsc</OutputFile>
+      <OutputFile>.\Debug/logger.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command />
@@ -149,7 +149,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>X64</TargetEnvironment>
-      <TypeLibraryName>.\Debug/logfile.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug/logger.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
@@ -159,7 +159,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\x64/Debug/logfile.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\x64/Debug/logger.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\x64/Debug/</AssemblerListingLocation>
       <ObjectFileName>.\x64/Debug/</ObjectFileName>
       <ProgramDataBaseFileName>.\x64/Debug/</ProgramDataBaseFileName>
@@ -173,20 +173,20 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;WS2_32.lib;based.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\dll\logfile.dll</OutputFile>
+      <OutputFile>..\..\dll\logger.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>logfiledll.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>loggerdll.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>./x64/Debug/logfiled.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>./x64/Debug/loggerd.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\x64/Debug/logfile.lib</ImportLibrary>
+      <ImportLibrary>.\x64/Debug/logger.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\x64/Debug/logfile.bsc</OutputFile>
+      <OutputFile>.\x64/Debug/logger.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command>
@@ -199,7 +199,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Release/logfile.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Release/logger.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
@@ -212,7 +212,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>.\Release/logfile.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Release/logger.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
       <ObjectFileName>.\Release/</ObjectFileName>
       <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
@@ -225,21 +225,21 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;WS2_32.lib;base.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../../../dll/logfile.dll</OutputFile>
+      <OutputFile>../../../../dll/logger.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../../../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>..\src\logfiledll.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>..\src\loggerdll.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>../../../../pdb/logfile.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>../../../../pdb/logger.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Release/logfile.lib</ImportLibrary>
+      <ImportLibrary>.\Release/logger.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release/logfile.bsc</OutputFile>
+      <OutputFile>.\Release/logger.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command />
@@ -251,7 +251,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>X64</TargetEnvironment>
-      <TypeLibraryName>.\Release/logfile.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Release/logger.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
@@ -264,7 +264,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>.\Release/logfile.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Release/logger.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
       <ObjectFileName>.\Release/</ObjectFileName>
       <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
@@ -277,21 +277,21 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;WS2_32.lib;base.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../../../dll/logfile.dll</OutputFile>
+      <OutputFile>../../../../dll/logger.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../../../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>..\src\logfiledll.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>..\src\loggerdll.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>../../../../pdb/logfile.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>../../../../pdb/logger.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Release/logfile.lib</ImportLibrary>
+      <ImportLibrary>.\Release/logger.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release/logfile.bsc</OutputFile>
+      <OutputFile>.\Release/logger.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command />
@@ -299,15 +299,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\src\makefile" />
-    <None Include="logfiledll.def" />
+    <None Include="loggerdll.def" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\games\include\interface\ilogfile.h" />
-    <ClInclude Include="logfile.h" />
+    <ClInclude Include="logger.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="logfile.cpp" />
-    <ClCompile Include="logfiledll.cpp" />
+    <ClCompile Include="logger.cpp" />
+    <ClCompile Include="loggerdll.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
