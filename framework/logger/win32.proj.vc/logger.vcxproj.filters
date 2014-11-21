@@ -2,13 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <None Include="..\src\makefile" />
-    <None Include="loggerdll.def" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="logger.h" />
+    <ClCompile Include="..\logger.cpp" />
+    <ClCompile Include="..\loggerdll.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="logger.cpp" />
-    <ClCompile Include="loggerdll.cpp" />
+    <ClInclude Include="..\logger.h" />
   </ItemGroup>
 </Project>
