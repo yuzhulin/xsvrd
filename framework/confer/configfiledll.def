@@ -1,0 +1,8 @@
+; configfiledll.def : Declares the module parameters for the DLL.
+
+LIBRARY      "ConfigFile"
+DESCRIPTION  'ConfigFile Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+	CreateConfigFile		@1 		PRIVATE
