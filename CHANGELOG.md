@@ -10,7 +10,8 @@ You can't use the version, because the code is just for test!
           |_____ framework/
           |           |______ netio/ 
           |           |______ svrd/
-          |           |______ log/
+          |           |______ logger/
+          |           |______ confer/
           |
           |_____ include/
           |_____ lib/
