@@ -19,6 +19,7 @@ $(BIN) : $(OBJ)
 configfile.o : configfile.cpp configfile.h
 	$(CPP)  -c -o $@ $(CFLAGS) configfile.cpp
 
+
 clean:
 	rm -f $(BIN) $(OBJ)
 
