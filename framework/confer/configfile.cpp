@@ -45,7 +45,7 @@
 ***********************************************************/
 #include "iconfigfile.h"
 #include "configfile.h"
-#ifdef WIN32
+#ifdef _WIN32
 #include <windows.h>
 #include <stdio.h>
 #else
@@ -495,7 +495,7 @@ unsigned int CConfigFile::SetItemValue( const char *pszSectionName,
 {
     char szBuf[100];
 
-#ifdef WIN32
+#ifdef _WIN32
     ltoa(lKeyValue, szBuf, 10);
 #else
     sprintf(szBuf, "%d", lKeyValue);
@@ -568,7 +568,7 @@ unsigned int CConfigFile::SetItemValue(const char *pszSectionName,
     }
 
     /* 构造新内容的字符串 */
-#ifdef WIN32
+#ifdef _WIN32
     len = strlen(pszKeyName) + strlen(pszKeyValue) + 5;
 #else
 	len = strlen(pszKeyName) + strlen(pszKeyValue) + 4;
@@ -602,7 +602,7 @@ unsigned int CConfigFile::SetItemValue(const char *pszSectionName,
 	memset(pszBuf, 0, len + 1);
 	memset(pszContent, 0, len + 1);
 	memset(pszShadow, 0, len + 1);
-#ifdef WIN32
+#ifdef _WIN32
     sprintf(pszBuf, "%s = %s\r\n",pszKeyName, pszKeyValue);
 #else
     sprintf(pszBuf, "%s = %s\n",pszKeyName, pszKeyValue);

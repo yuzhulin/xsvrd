@@ -1,4 +1,4 @@
-#ifdef WIN32
+#ifdef _WIN32
 //windows
 #if _MSC_VER > 1000
 #pragma once

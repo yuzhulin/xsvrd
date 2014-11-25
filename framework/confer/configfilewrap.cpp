@@ -1,12 +1,9 @@
-#ifdef WIN32
+#ifdef _WIN32
 #include <windows.h>
 #endif
 #include "configfilewrap.h"
 #include "configfile.h"
 #include "iconfigfile.h"
-
-
-
 
 CConfigfileWrap::CConfigfileWrap()
 {
@@ -18,7 +15,7 @@ CConfigfileWrap::~CConfigfileWrap()
 
 bool OpenFile(const char *pszFilename);
 
-    virtual bool GetItemValueShort( const char *pszSectionName, 
+virtual bool GetItemValueShort( const char *pszSectionName, 
                         const char *pszKeyName, 
                         short &shReturnedValue,
 						short shDefaultValue);    

@@ -1,5 +1,5 @@
 /************************************************************
-  Copyright ©,  2002-2003,
+  Copyright ?  2002-2003,
   FileName:     ConfigFile.h
   Author:       ¸ß·å
   Version:      1.0

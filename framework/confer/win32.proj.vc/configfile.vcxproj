@@ -18,6 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\configfile.cpp" />
+    <ClCompile Include="..\configfiledll.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\configfile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\configfiledll.def" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>configfiledll</ProjectName>
     <ProjectGuid>{4995CD88-09DA-4482-93BB-EA3CDAAFE462}</ProjectGuid>
@@ -191,7 +201,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../../games/include/interface;../../../games/include/base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\include\base;..\..\..\include\interface;..\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CONFIGFILEDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -210,9 +220,9 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>./Debug/configfile.dll</OutputFile>
+      <OutputFile>..\..\..\dll\confer.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ModuleDefinitionFile>..\src\configfiledll.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>..\configfiledll.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/configfile.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -225,11 +235,8 @@
       <OutputFile>.\Debug/configfile.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)\configfile\prj\Debug\configfile.dll $(SolutionDir)..\games\run\dbsvrd\dll\
-xcopy $(SolutionDir)\configfile\prj\Debug\configfile.dll $(SolutionDir)..\games\run\roommngsvrd\dll\
-xcopy $(SolutionDir)\configfile\prj\Debug\configfile.dll $(SolutionDir)..\games\run\statsvrd\dll\
-xcopy $(SolutionDir)\configfile\prj\Debug\configfile.dll $(SolutionDir)..\games\run\gamesvrd\dll\
-</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -281,18 +288,6 @@ xcopy $(SolutionDir)\configfile\prj\Debug\configfile.dll $(SolutionDir)..\games\
       </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\src\configfile.cpp" />
-    <ClCompile Include="..\src\configfiledll.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\src\configfiledll.def" />
-    <None Include="..\src\makefile" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\src\configfile.h" />
-    <ClInclude Include="..\..\..\..\include\interface\iconfigfile.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
