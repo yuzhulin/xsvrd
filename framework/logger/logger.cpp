@@ -96,7 +96,7 @@ CLogFile::CLogFile()
 	pthread_mutex_init( &m_stMutex, NULL );
 
 	max_file_size_ = 16 * 1024 * 1024;
-	m_nMaxFileNum = 10;
+	max_file_num_ = 10;
 }
 
 CLogFile::~CLogFile()
@@ -168,7 +168,7 @@ void CLogFile::SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum)
         return;
     }
 	max_file_size_ = nMaxSize;
-	m_nMaxFileNum = nMaxFileNum;
+	max_file_num_ = nMaxFileNum;
 }
 
 void CLogFile::SetLogName(const char* pLogName)
@@ -302,7 +302,7 @@ void CLogFile::GetBakFileName(const char* pFileName, char szBakFileName[MAX_PATH
 {
 	time_t tmOld = 0xFFFFFFFF;
 	memset(szBakFileName, 0, MAX_PATH);
-	for( unsigned int i = 0; i < m_nMaxFileNum; i++ )
+	for( unsigned int i = 0; i < max_file_num_; i++ )
 	{
 		time_t tmTemp = 0;
 		char szTempName[MAX_PATH];

@@ -103,7 +103,7 @@ private:
 	char            m_szLogToFileName[MAX_PATH];
 
 	uint32 max_file_size_;
-	unsigned int    m_nMaxFileNum;
+	uint32 max_file_num_;
 };
 
 LOGFILE_NAMESPACE_END
