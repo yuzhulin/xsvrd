@@ -95,7 +95,7 @@ CLogFile::CLogFile()
 	m_nTraceNum = 0;
 	pthread_mutex_init( &m_stMutex, NULL );
 
-	m_nMaxFileSize = 16 * 1024 * 1024;
+	max_file_size_ = 16 * 1024 * 1024;
 	m_nMaxFileNum = 10;
 }
 
@@ -167,7 +167,7 @@ void CLogFile::SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum)
     {
         return;
     }
-	m_nMaxFileSize = nMaxSize;
+	max_file_size_ = nMaxSize;
 	m_nMaxFileNum = nMaxFileNum;
 }
 
@@ -343,7 +343,7 @@ void CLogFile::BakLogFile(const char* pFileName)
 	{
 		return;
 	}
-	if( buf.st_size < (int)m_nMaxFileSize )
+	if( buf.st_size < (int)max_file_size_ )
 	{
 		return;
 	}
