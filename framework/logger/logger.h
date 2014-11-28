@@ -12,6 +12,8 @@
 
 #include "../../include/interface/ilogger.h"
 
+#include "logger_interface.h"
+
 LOGFILE_NAMESPACE_BEGIN
 
 #ifdef WIN32
@@ -24,6 +26,7 @@ LOGFILE_NAMESPACE_BEGIN
 
 
 #define MAX_BIN_LEN             (32 * 1024)
+
 
 class CLogFile : public ILogFile
 {
@@ -105,6 +108,19 @@ private:
 	uint32 max_file_size_;
 	uint32 max_file_num_;
 };
+
+
+// add by: xushvai@gmail.com
+////////////////////////////////////////////////////////////////////////////////
+class Logger : public LoggerInterface {
+public:
+	Logger();
+	virtual~Logger();
+
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 LOGFILE_NAMESPACE_END
 
