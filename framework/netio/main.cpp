@@ -1,14 +1,35 @@
 #include <iostream>
 #include "../../include/os.h"
 
+#include "../../include/interface/ilogger.h"
+
+
 int32 g_nRunOneInstance = 1;
 
 void ParseCommand(int32 argc, char** argv);
 bool RunOneInstance();
 
+
+
 int32 main(int32 argc, char** argv)
 {
 	ParseCommand(argc, argv);
+	
+	// load confer dll
+	///////////////////////////////////////////
+	HMODULE pDllHandle = LoadLibrary("../modules/mod_logger.dll");
+	if (pDllHandle)
+	{
+		char szFunctionName[100] = "CreateLogFile";
+		CreateLogFileProc pfCrateLogFile = NULL;
+		pfCrateLogFile = (CreateLogFileProc)(GetProcAddress(pDllHandle, szFunctionName));
+	}
+	
+	
+	///////////////////////////////////////////
+	
+	
+	
 	RunOneInstance();
 
 
