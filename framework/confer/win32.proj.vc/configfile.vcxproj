@@ -220,7 +220,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\..\dll\confer.dll</OutputFile>
+      <OutputFile>..\..\..\dll\mod_confer.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>..\configfiledll.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
