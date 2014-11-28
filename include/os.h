@@ -40,7 +40,7 @@ typedef struct {
 } ___GUID___;
 
 
-#ifndef WIN32
+#ifndef _WIN32
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
