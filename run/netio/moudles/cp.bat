@@ -1,2 +1,2 @@
-copy ..\..\..\dll\mod_confer.dll .\
-copy ..\..\..\dll\mod_logger.dll .\
+copy ..\..\..\dll\mod_confer.dll .\mod_confer
+copy ..\..\..\dll\mod_logger.dll .\mod_logger
