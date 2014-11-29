@@ -123,7 +123,7 @@
       <Culture>0x0804</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;WS2_32.lib;base.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;WS2_32.lib;libbase.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../../libs/liblog.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\..\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

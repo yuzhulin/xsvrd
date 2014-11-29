@@ -109,7 +109,7 @@
     </ResourceCompile>
     <Lib>
       <AdditionalDependencies>atlsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../../lib/base.lib</OutputFile>
+      <OutputFile>../../../libs/libbase.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
     <Bscmake>
