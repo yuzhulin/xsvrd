@@ -1,0 +1,1 @@
+contains dynamic and static lib
