@@ -11,47 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\codequeue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\lock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\objmng.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\queue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\shm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\sockstream.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\stringmng.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\tcpconn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\tcpsocket.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\thread.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\tlib_cfg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\tlib_log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\src\makefile" />
   </ItemGroup>
   <ItemGroup>
@@ -112,5 +71,20 @@
     <ClInclude Include="..\..\..\include\base\win_linux.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\base.cc" />
+    <ClCompile Include="..\codequeue.cc" />
+    <ClCompile Include="..\lock.cc" />
+    <ClCompile Include="..\objmng.cc" />
+    <ClCompile Include="..\queue.cc" />
+    <ClCompile Include="..\shm.cc" />
+    <ClCompile Include="..\sockstream.cc" />
+    <ClCompile Include="..\stringmng.cc" />
+    <ClCompile Include="..\tcpconn.cc" />
+    <ClCompile Include="..\tcpsocket.cc" />
+    <ClCompile Include="..\thread.cc" />
+    <ClCompile Include="..\tlib_cfg.cc" />
+    <ClCompile Include="..\tlib_log.cc" />
   </ItemGroup>
 </Project>

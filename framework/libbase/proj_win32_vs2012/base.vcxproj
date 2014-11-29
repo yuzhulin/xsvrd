@@ -229,21 +229,6 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\base.cpp" />
-    <ClCompile Include="..\src\codequeue.cpp" />
-    <ClCompile Include="..\src\lock.cpp" />
-    <ClCompile Include="..\src\objmng.cpp" />
-    <ClCompile Include="..\src\queue.cpp" />
-    <ClCompile Include="..\src\shm.cpp" />
-    <ClCompile Include="..\src\sockstream.cpp" />
-    <ClCompile Include="..\src\stringmng.cpp" />
-    <ClCompile Include="..\src\tcpconn.cpp" />
-    <ClCompile Include="..\src\tcpsocket.cpp" />
-    <ClCompile Include="..\src\thread.cpp" />
-    <ClCompile Include="..\src\tlib_cfg.cpp" />
-    <ClCompile Include="..\src\tlib_log.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\src\makefile" />
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +251,21 @@
     <ClInclude Include="..\..\..\include\base\tlib_cfg.h" />
     <ClInclude Include="..\..\..\include\base\tlib_log.h" />
     <ClInclude Include="..\..\..\include\base\win_linux.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\base.cc" />
+    <ClCompile Include="..\codequeue.cc" />
+    <ClCompile Include="..\lock.cc" />
+    <ClCompile Include="..\objmng.cc" />
+    <ClCompile Include="..\queue.cc" />
+    <ClCompile Include="..\shm.cc" />
+    <ClCompile Include="..\sockstream.cc" />
+    <ClCompile Include="..\stringmng.cc" />
+    <ClCompile Include="..\tcpconn.cc" />
+    <ClCompile Include="..\tcpsocket.cc" />
+    <ClCompile Include="..\thread.cc" />
+    <ClCompile Include="..\tlib_cfg.cc" />
+    <ClCompile Include="..\tlib_log.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
