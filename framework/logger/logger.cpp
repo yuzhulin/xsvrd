@@ -1,6 +1,8 @@
 #include "os.h"
 #include "logger.h"
 
+#include <iostream>
+
 #ifndef  _WIN32
 #ifndef MAX_PATH
 #define MAX_PATH 260
@@ -867,6 +869,11 @@ Logger::Logger()
 Logger::~Logger()
 {
 
+}
+
+void Logger::SetLogPath(const char* path)
+{
+	std::clog << "SetLogPath" << std::endl;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -298,6 +298,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\loggerdll.def" />
     <None Include="..\src\makefile" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
-#ifndef __LOGFILE_H__
-#define __LOGFILE_H__
+#ifndef __LOGGER_H__
+#define __LOGGER_H__
 
 #include <sys/stat.h>
 #include <string.h>
@@ -117,6 +117,8 @@ public:
 	Logger();
 	virtual~Logger();
 
+
+	virtual void SetLogPath(const char* path) = 0;
 };
 
 
