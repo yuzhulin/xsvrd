@@ -14,5 +14,6 @@
 *.dll
 *.exp
 *.lib
+*DS_Store
 
 run/netio/bin/netio
