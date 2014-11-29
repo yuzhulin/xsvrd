@@ -1,7 +1,7 @@
 #include <iostream>
-#include "../../include/os.h"
+#include "os.h"
 
-#include "../../include/interface/ilogger.h"
+#include "ilogger.h"
 
 
 int32 g_nRunOneInstance = 1;
