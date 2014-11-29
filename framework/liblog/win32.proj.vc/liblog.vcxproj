@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>loggerdll</ProjectName>
+    <ProjectName>liblog</ProjectName>
     <ProjectGuid>{30598119-6E53-4F39-B992-57D52134DA65}</ProjectGuid>
-    <RootNamespace>loggerdll</RootNamespace>
+    <RootNamespace>liblogdll</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -100,7 +100,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Debug/logger.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug/liblog.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
@@ -110,7 +110,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\Debug/logger.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Debug/liblog.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
       <ObjectFileName>.\Debug/</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
@@ -127,17 +127,17 @@
       <OutputFile>../../../libs/liblog.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\..\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>..\loggerdll.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>..\liblog.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>../../../../pdb/loggerd.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>../../../../pdb/liblogd.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Debug/logger.lib</ImportLibrary>
+      <ImportLibrary>.\Debug/liblog.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Debug/logger.bsc</OutputFile>
+      <OutputFile>.\Debug/liblog.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command />
@@ -149,7 +149,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>X64</TargetEnvironment>
-      <TypeLibraryName>.\Debug/logger.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug/liblog.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
@@ -159,7 +159,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\x64/Debug/logger.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\x64/Debug/liblog.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\x64/Debug/</AssemblerListingLocation>
       <ObjectFileName>.\x64/Debug/</ObjectFileName>
       <ProgramDataBaseFileName>.\x64/Debug/</ProgramDataBaseFileName>
@@ -173,20 +173,20 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;WS2_32.lib;based.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\dll\logger.dll</OutputFile>
+      <OutputFile>..\..\dll\liblog.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>loggerdll.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>liblogdll.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>./x64/Debug/loggerd.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>./x64/Debug/liblogd.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\x64/Debug/logger.lib</ImportLibrary>
+      <ImportLibrary>.\x64/Debug/liblog.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\x64/Debug/logger.bsc</OutputFile>
+      <OutputFile>.\x64/Debug/liblog.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command>
@@ -199,7 +199,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Release/logger.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Release/liblog.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
@@ -212,7 +212,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>.\Release/logger.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Release/liblog.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
       <ObjectFileName>.\Release/</ObjectFileName>
       <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
@@ -225,21 +225,21 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;WS2_32.lib;base.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../../../dll/logger.dll</OutputFile>
+      <OutputFile>../../../../dll/liblog.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../../../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>..\src\loggerdll.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>..\src\liblogdll.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>../../../../pdb/logger.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>../../../../pdb/liblog.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Release/logger.lib</ImportLibrary>
+      <ImportLibrary>.\Release/liblog.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release/logger.bsc</OutputFile>
+      <OutputFile>.\Release/liblog.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command />
@@ -251,7 +251,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>X64</TargetEnvironment>
-      <TypeLibraryName>.\Release/logger.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Release/liblog.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
@@ -264,7 +264,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>.\Release/logger.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Release/liblog.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
       <ObjectFileName>.\Release/</ObjectFileName>
       <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
@@ -277,33 +277,33 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;WS2_32.lib;base.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../../../dll/logger.dll</OutputFile>
+      <OutputFile>../../../../dll/liblog.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../../../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>..\src\loggerdll.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>..\src\liblogdll.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>../../../../pdb/logger.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>../../../../pdb/liblog.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Release/logger.lib</ImportLibrary>
+      <ImportLibrary>.\Release/liblog.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release/logger.bsc</OutputFile>
+      <OutputFile>.\Release/liblog.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command />
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\loggerdll.def" />
+    <None Include="..\liblog.def" />
     <None Include="..\src\makefile" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\liblog.cpp" />
     <ClCompile Include="..\logger.cpp" />
-    <ClCompile Include="..\loggerdll.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\logger.h" />
