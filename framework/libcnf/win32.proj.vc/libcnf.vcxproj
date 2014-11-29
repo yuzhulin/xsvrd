@@ -19,17 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\configfile.cpp" />
-    <ClCompile Include="..\configfiledll.cpp" />
+    <ClCompile Include="..\configurer.cc" />
+    <ClCompile Include="..\libcnf.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\configfile.h" />
+    <ClInclude Include="..\configurer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\configfiledll.def" />
+    <None Include="..\libcnf.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>configfiledll</ProjectName>
+    <ProjectName>libcnf</ProjectName>
     <ProjectGuid>{4995CD88-09DA-4482-93BB-EA3CDAAFE462}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -106,20 +106,20 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Release/configfile.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Release/libcnf.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>../../../../include/interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CONFIGFILEDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;libcnfDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>.\Release/configfile.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Release/libcnf.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
       <ObjectFileName>.\Release/</ObjectFileName>
       <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
@@ -131,18 +131,18 @@
       <Culture>0x0804</Culture>
     </ResourceCompile>
     <Link>
-      <OutputFile>../../../../dll/configfile.dll</OutputFile>
+      <OutputFile>../../../../dll/libcnf.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ModuleDefinitionFile>..\src\configfiledll.def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>.\Release/configfile.pdb</ProgramDatabaseFile>
+      <ModuleDefinitionFile>..\src\libcnfdll.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>.\Release/libcnf.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Release/configfile.lib</ImportLibrary>
+      <ImportLibrary>.\Release/libcnf.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release/configfile.bsc</OutputFile>
+      <OutputFile>.\Release/libcnf.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -151,20 +151,20 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>X64</TargetEnvironment>
-      <TypeLibraryName>.\Release/configfile.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Release/libcnf.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>../../../../include/interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CONFIGFILEDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;libcnfDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>.\Release/configfile.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Release/libcnf.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
       <ObjectFileName>.\Release/</ObjectFileName>
       <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
@@ -176,18 +176,18 @@
       <Culture>0x0804</Culture>
     </ResourceCompile>
     <Link>
-      <OutputFile>../../../../dll/configfile.dll</OutputFile>
+      <OutputFile>../../../../dll/libcnf.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ModuleDefinitionFile>..\src\configfiledll.def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>.\Release/configfile.pdb</ProgramDatabaseFile>
+      <ModuleDefinitionFile>..\src\libcnfdll.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>.\Release/libcnf.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Release/configfile.lib</ImportLibrary>
+      <ImportLibrary>.\Release/libcnf.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release/configfile.bsc</OutputFile>
+      <OutputFile>.\Release/libcnf.bsc</OutputFile>
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -196,17 +196,17 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Debug/configfile.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug/libcnf.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\include\base;..\..\..\include\interface;..\</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CONFIGFILEDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;libcnfDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\Debug/configfile.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>.\Debug/libcnf.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
       <ObjectFileName>.\Debug/</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
@@ -220,19 +220,19 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\..\dll\mod_confer.dll</OutputFile>
+      <OutputFile>..\..\..\libs\libcnf.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ModuleDefinitionFile>..\configfiledll.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>..\libcnf.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\Debug/configfile.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\Debug/libcnf.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Debug/configfile.lib</ImportLibrary>
+      <ImportLibrary>.\Debug/libcnf.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Debug/configfile.bsc</OutputFile>
+      <OutputFile>.\Debug/libcnf.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command>
@@ -245,17 +245,17 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>X64</TargetEnvironment>
-      <TypeLibraryName>.\Debug/configfile.tlb</TypeLibraryName>
+      <TypeLibraryName>.\Debug/libcnf.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../include/interface;../../../include/base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CONFIGFILEDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;libcnfDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>./x64/Debug/configfile.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>./x64/Debug/libcnf.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>.\x64\Debug\</AssemblerListingLocation>
       <ObjectFileName>.\x64\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\x64\Debug\</ProgramDataBaseFileName>
@@ -269,19 +269,19 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>../../../dll/configfile.dll</OutputFile>
+      <OutputFile>../../../dll/libcnf.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ModuleDefinitionFile>..\src\configfiledll.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>..\src\libcnfdll.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>./x64/Debug/configfile.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>./x64/Debug/libcnf.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>./x64/Debug/configfile.lib</ImportLibrary>
+      <ImportLibrary>./x64/Debug/libcnf.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\x64/Debug/configfile.bsc</OutputFile>
+      <OutputFile>.\x64/Debug/libcnf.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
       <Command>

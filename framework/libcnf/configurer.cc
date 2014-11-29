@@ -44,7 +44,7 @@
     23.CConfigFile::GetItemValueÊý×Ö
 ***********************************************************/
 #include "iconfigfile.h"
-#include "configfile.h"
+#include "configurer.h"
 #ifdef _WIN32
 #include <windows.h>
 #include <stdio.h>
