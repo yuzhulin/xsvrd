@@ -302,11 +302,11 @@
     <None Include="..\src\makefile" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\liblog.cpp" />
-    <ClCompile Include="..\logger.cpp" />
+    <ClInclude Include="..\logger.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\logger.h" />
+    <ClCompile Include="..\liblog.cc" />
+    <ClCompile Include="..\logger.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
