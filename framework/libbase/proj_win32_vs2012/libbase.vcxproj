@@ -232,27 +232,6 @@
     <None Include="..\src\makefile" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\base\base.h" />
-    <ClInclude Include="..\..\..\include\base\codequeue.h" />
-    <ClInclude Include="..\..\..\include\base\common.h" />
-    <ClInclude Include="..\..\..\include\base\flag.h" />
-    <ClInclude Include="..\..\..\include\base\hashtab.h" />
-    <ClInclude Include="..\..\..\include\base\lock.h" />
-    <ClInclude Include="..\..\..\include\base\objmng.h" />
-    <ClInclude Include="..\..\..\include\base\queue.h" />
-    <ClInclude Include="..\..\..\include\base\runoneinstance.h" />
-    <ClInclude Include="..\..\..\include\base\set.h" />
-    <ClInclude Include="..\..\..\include\base\shm.h" />
-    <ClInclude Include="..\..\..\include\base\sockstream.h" />
-    <ClInclude Include="..\..\..\include\base\stringmng.h" />
-    <ClInclude Include="..\..\..\include\base\tcpconn.h" />
-    <ClInclude Include="..\..\..\include\base\tcpsocket.h" />
-    <ClInclude Include="..\..\..\include\base\thread.h" />
-    <ClInclude Include="..\..\..\include\base\tlib_cfg.h" />
-    <ClInclude Include="..\..\..\include\base\tlib_log.h" />
-    <ClInclude Include="..\..\..\include\base\win_linux.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\base.cc" />
     <ClCompile Include="..\codequeue.cc" />
     <ClCompile Include="..\lock.cc" />
