@@ -7,8 +7,8 @@
 // Define the DynamicLibLoader class, this class is applied to
 // load dynamic lib e.g. Win32 - *.dll, mac - *.dylib, Linux - *.so.
 
-#ifndef __DYNAMICLIBLOADER__
-#define __DYNAMICLIBLOADER__
+#ifndef __DYNAMICLIBLOADER_H__
+#define __DYNAMICLIBLOADER_H__
 
 #include "os.h"
 
