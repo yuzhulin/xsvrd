@@ -208,19 +208,11 @@ static int pthread_self()
 
 #endif
 
-// linux
-////////////////////////////////////////////////////
-#ifdef __gnu_linux__
+
+#if (defined(_WIN32))
+typedef void* HMODULE
+#elif (defined(__gnu_linux__))
+#elif (defined(__APPLE__))
+
 
 #endif
-
-
-// maxosx
-////////////////////////////////////////////////////
-#ifdef __APPLE__
-#endif
-
-
-
-
-#endif // _XSVRD_INCLUDE_OS_H_

@@ -10,12 +10,16 @@
 #ifndef __DYNAMICLIBLOADER__
 #define __DYNAMICLIBLOADER__
 
+#include "os.h"
+
 class DynamicLibLoader {
 public:
 	DynamicLibLoader();
 	virtual~DynamicLibLoader();
 
+	HMODULE Load();
 
+	void Free();
 };
 
 #endif
