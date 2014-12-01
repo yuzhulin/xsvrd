@@ -63,9 +63,11 @@
   ```
   // 计算给出的两个整数的和 
   //
-  // para a : 被加数
-  // para b : 加数
-  // retval : 返回计算结果
+  // Parameters
+  //   a - 被加数
+  //   b - 加数
+  // Return
+  //   返回计算结果
   int Sum(int a, int b);
   ```
 
