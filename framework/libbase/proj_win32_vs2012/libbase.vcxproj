@@ -234,6 +234,7 @@
   <ItemGroup>
     <ClCompile Include="..\base.cc" />
     <ClCompile Include="..\codequeue.cc" />
+    <ClCompile Include="..\dynamiclibloader.cc" />
     <ClCompile Include="..\lock.cc" />
     <ClCompile Include="..\objmng.cc" />
     <ClCompile Include="..\queue.cc" />

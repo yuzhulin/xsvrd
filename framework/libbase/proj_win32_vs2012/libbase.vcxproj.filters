@@ -17,5 +17,6 @@
     <ClCompile Include="..\thread.cc" />
     <ClCompile Include="..\tlib_cfg.cc" />
     <ClCompile Include="..\tlib_log.cc" />
+    <ClCompile Include="..\dynamiclibloader.cc" />
   </ItemGroup>
 </Project>
