@@ -1,3 +1,4 @@
+import os
 import platform
 import shutil
 
@@ -9,5 +10,12 @@ elif "Linux" == cursystem:
 elif "Darwin" == cursystem:
 	postfix = ".dylib"
 
-shutil.copy2("../../../libs/libcnf" + postfix, "./")
-shutil.copy2("../../../libs/liblog" + postfix, "./")
+libcnf = "../../../libs/libcnf" + postfix
+liblog = "../../../libs/liblog" + postfix
+
+# check file exist
+if os.path.isfile(libcnf):
+	shutil.copy2(libcnf, "./")
+
+if os.path.isfile(liblog):
+	shutil.copy2(liblog, "./")

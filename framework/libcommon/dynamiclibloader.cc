@@ -38,9 +38,14 @@ Func DynamicLibLoader::GetExportFuncPtr()
 void* DynamicLibLoader::GetExportFuncAddress(const char* func_name)
 {
 #if (defined(_WIN32))
-	return GetProcAddress(library_handle_, func_name);
+	void* func_address = GetProcAddress(library_handle_, func_name);
+	if (!func_address) {
+		std::clog << "GetProcAddress failed, error code("
+			<< GetLastError() << ")" << std::endl;
+	}
 #elif (defined(__gnu_linux__))
 #endif
+	return func_address;
 }
 
 HMODULE DynamicLibLoader::Load()
@@ -48,7 +53,8 @@ HMODULE DynamicLibLoader::Load()
 #if (defined(_WIN32))
 	library_handle_ = ::LoadLibrary(filename_);
 	if (!library_handle_) {
-		std::clog << GetLastError();
+		std::clog << "LoadLibrary failed, error code("
+			<< GetLastError() << ")" << std::endl;
 	}
 #elif (defined(__gnu_linux__))
 #endif
