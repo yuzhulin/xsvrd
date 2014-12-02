@@ -118,7 +118,7 @@ public:
 	virtual~Logger();
 
 
-	virtual void SetLogPath(const char* path) = 0;
+	virtual void SetLogPath(const char* path);
 };
 
 

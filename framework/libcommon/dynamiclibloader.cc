@@ -6,6 +6,8 @@
 
 #include "dynamiclibloader.h"
 
+#include <iostream>
+
 DynamicLibLoader::DynamicLibLoader()
 	: filename_(NULL), library_handle_(NULL), export_function_ptr_(NULL)
 {
@@ -45,6 +47,9 @@ HMODULE DynamicLibLoader::Load()
 {
 #if (defined(_WIN32))
 	library_handle_ = ::LoadLibrary(filename_);
+	if (!library_handle_) {
+		std::clog << GetLastError();
+	}
 #elif (defined(__gnu_linux__))
 #endif
 	return library_handle_;

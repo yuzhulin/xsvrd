@@ -66,6 +66,11 @@ extern "C"
 		return new CLogFile;
 	#endif
 	}
+
+	void* CreateObj()
+	{
+		return new Logger;
+	}
 };
 
 LOGFILE_NAMESPACE_BEGIN

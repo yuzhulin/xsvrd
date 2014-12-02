@@ -2,6 +2,8 @@
 #include "os.h"
 
 #include "ilogger.h"
+#include "logger_interface.h"
+#include "dynamiclibloader.h"
 
 
 int32 g_nRunOneInstance = 1;
@@ -17,14 +19,23 @@ int32 main(int32 argc, char** argv)
 	
 	// load confer dll
 	///////////////////////////////////////////
-	HMODULE pDllHandle = LoadLibrary("../modules/mod_logger.dll");
+	/*HMODULE pDllHandle = LoadLibrary("../modules/mod_logger.dll");
 	if (pDllHandle)
 	{
 		char szFunctionName[100] = "CreateLogFile";
 		CreateLogFileProc pfCrateLogFile = NULL;
 		pfCrateLogFile = (CreateLogFileProc)(GetProcAddress(pDllHandle, szFunctionName));
+	}*/
+
+	DynamicLibLoader liblogloader;
+	liblogloader.Init("../lib/liblog.dll");
+	Func CreateObjFuncPtr = liblogloader.GetExportFuncPtr();
+	if (CreateObjFuncPtr) {
+		LoggerInterface* logger_interface = (LoggerInterface*)CreateObjFuncPtr();
+		if (logger_interface) {
+			logger_interface->SetLogPath(NULL);
+		}
 	}
-	
 	
 	///////////////////////////////////////////
 	
