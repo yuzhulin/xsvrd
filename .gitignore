@@ -16,4 +16,7 @@
 *.lib
 *DS_Store
 
+*.swp
+*.a
+
 run/netio/bin/netio
