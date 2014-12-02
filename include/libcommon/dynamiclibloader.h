@@ -45,6 +45,7 @@ private:
 private:
 	const char* filename_;
 	HMODULE library_handle_;
+	Func export_function_ptr_;
 };
 
 #endif
