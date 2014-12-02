@@ -1,10 +1,8 @@
-// License: GPL
+// Implementation for DynamicLibLoader class.
 //
 // Author: xus
 // E-Mail: xushvai@gmail.com
-// 
-// Overview:
-// Implementation for DynamicLibLoader class.
+// License: GPL
 
 #include "dynamiclibloader.h"
 
