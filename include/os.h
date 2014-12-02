@@ -210,9 +210,10 @@ static int pthread_self()
 
 
 #if (defined(_WIN32))
-typedef void* HMODULE
 #elif (defined(__gnu_linux__))
+typedef void* HMODULE
 #elif (defined(__APPLE__))
+#endif
 
 
 #endif
