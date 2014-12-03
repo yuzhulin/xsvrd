@@ -1,7 +1,7 @@
 #ifndef _OBJMNG_H_
 #define _OBJMNG_H_
 
-#include "../os.h"
+#include "os.h"
 #include <stdio.h>
 
 #define MAXDSINFOITEM 4
