@@ -42,9 +42,9 @@ $(INTERFACELIB): $(SVROBJS)
 base.o: base.cc $(BUILD_DIR)/include/libcommon/base.h
 	rm -f $@
 	$(CPP) $(C_ARGS) -c -o $@ base.cc
-dynamiclibloader.o: dynamiclibloader.cc $(BUILD_DIR)/include/libcommon/base.h
+dynamiclibloader.o: dynamiclibloader.cc $(BUILD_DIR)/include/libcommon/dynamiclibloader.h
 	rm -f $@
-	$(CPP) $(C_ARGS) -c -o $@ base.cc
+	$(CPP) $(C_ARGS) -c -o $@ dynamiclibloader.cc
 codequeue.o: codequeue.cc $(BUILD_DIR)/include/libcommon/codequeue.h
 	rm -f $@
 	$(CPP) $(C_ARGS) -c -o $@ codequeue.cc
