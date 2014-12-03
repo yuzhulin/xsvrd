@@ -51,10 +51,10 @@ private:
 	// Get the address of export function.
 	//
 	// Parameters
-	//   func_name - function export name.
+	//   symbol - function export name.
 	// Return
 	//   void* - the address of the export function, return NULL if get failed.
-	void* GetExportFuncAddress(const char* func_name);
+	void* GetExportFuncAddress(const char* symbol);
 
 private:
 	const char* filename_;      // target dynamic lib file pathname
