@@ -43,19 +43,16 @@
 - 注释文字一律使用自然语言，一句话完成之后要加英文句号
 
 ##### <a name="comment.file"></a>文件
-- 每个文件都要包含版权声明，许可证版本(Apache2.0,BSD,GPL,BSD)，原作者信息，文件内容描述
+- 文件注释依次包含，文件内容描述，作者，邮箱，许可证版本(Apache2.0,BSD,GPL,BSD)
 - 对于已经纳入版本库管理的项目，没必要再在文件注释中列出创建，修改等关键时间
 - 严禁在头文件和实现文件之间进行简单的拷贝操作
 
   ```  
-  // Copyright 2014 Google Inc. 
-  // License: GPL
+  // Description for the file content.
   //
   // Author: xus
   // E-Mail: xushvai@gmail.com
-  // 
-  // Overview:
-  // Description for the file content.
+  // License: GPL
   ```
 ##### <a name="comment.func"></a>函数
 - 注释中要对函数的参数，返回值进行说明
@@ -67,7 +64,7 @@
   //   a - 被加数
   //   b - 加数
   // Return
-  //   返回计算结果
+  //   int - 返回计算结果
   int Sum(int a, int b);
   ```
 
