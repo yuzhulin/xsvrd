@@ -2,7 +2,6 @@
 //
 // Author: xus
 // E-Mail: xushvai@gmail.com
-// License: GPL
 
 #include "dynamiclibloader.h"
 

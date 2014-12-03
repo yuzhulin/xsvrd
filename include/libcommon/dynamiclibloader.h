@@ -3,7 +3,6 @@
 //
 // Author: xus
 // E-Mail: xushvai@gmail.com
-// License: GPL
 
 #ifndef __DYNAMICLIBLOADER_H__
 #define __DYNAMICLIBLOADER_H__
