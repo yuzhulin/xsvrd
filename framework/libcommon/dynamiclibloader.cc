@@ -5,8 +5,6 @@
 
 #include "dynamiclibloader.h"
 
-#include <iostream>
-
 DynamicLibLoader::DynamicLibLoader()
 	: filename_(NULL), library_handle_(NULL), export_function_ptr_(NULL)
 {

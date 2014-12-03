@@ -2,9 +2,9 @@
 #ifndef _ILOGFILE_H_
 #define _ILOGFILE_H_
 
+#include "os_refactor.h"
 
-
-#ifndef WIN32
+#ifndef _WIN32
 #define LOGFILE_NAMESPACE_BEGIN namespace mylogfile{
 #define LOGFILE_NAMESPACE_END   }
 #define USING_LOGFILE_NAMESPACE using namespace mylogfile;
@@ -24,24 +24,13 @@
 // LOGFILE_EXPORT functions as being imported from a DLL, whereas this DLL sees symbols
 // defined with this macro as being exported.
 
-#define LOGFILE_API
 
 #endif
 
-#ifndef WIN32
-
+#ifndef _WIN32
 #include <stdio.h>
 #include <dlfcn.h>
 #include <string.h>
-
-#ifndef TRUE
-#define TRUE 1
-#endif
-
-#ifndef FALSE
-#define FALSE 0
-#endif
-
 #else
 
 #include <windows.h>
@@ -116,7 +105,7 @@ public:
 	virtual	void LogToFileByDay(const char* pszLogFile, const char* msg, ...) = 0;
 };
 
-#ifdef WIN32
+#ifdef _WIN32
 #define DLL_EXPORT __declspec(dllexport)
 #else
 #define DLL_EXPORT
@@ -128,16 +117,14 @@ extern "C"
 }
 
 typedef ILogFile* (*CreateLogFileProc)();
-#ifndef WIN32
-typedef void* HMODULE;
-#endif
+
 
 static ILogFile* CreateLogFilePtr(char szDllFile[MAX_PATH], HMODULE &hModule)
 {
 	char szFunctionName[100] = "CreateLogFile";
 	CreateLogFileProc pfCreateLogFile;
 
-#ifndef WIN32
+#ifndef _WIN32
 	void *pDllHandle = dlopen(szDllFile, RTLD_NOW);
 	char *pcError = dlerror();
 	if( pcError )
@@ -176,7 +163,7 @@ static ILogFile* CreateLogFilePtr(char szDllFile[MAX_PATH], HMODULE &hModule)
 	return (*pfCreateLogFile)();
 }
 
-class LOGFILE_API CLogWrap
+class CLogWrap
 {
 public:
 	CLogWrap()
@@ -191,7 +178,7 @@ public:
 		InitDll(szDllFile);
 	}
 
-#ifndef WIN32
+#ifndef _WIN32
 	void InitDll(char* pszDllFile = "../dll/logfile.so")
 #else
 	void InitDll(char* pszDllFile = "../dll/logfile.dll")
@@ -213,7 +200,7 @@ public:
 		m_pLogFile = NULL;
 
 		//–∂‘ÿdll
-#ifdef WIN32
+#ifdef _WIN32
 		if( m_hDllHandle )
 		{
 			FreeLibrary(m_hDllHandle);

@@ -7,13 +7,9 @@
 #ifndef __DYNAMICLIBLOADER_H__
 #define __DYNAMICLIBLOADER_H__
 
-#include "win_linux.h"
+#include "os_refactor.h"
 
 typedef void* (*Func)();
-
-#if (defined(__gnu_linux__))
-typedef void* HMODULE;
-#endif
 
 class DynamicLibLoader {
 public:
