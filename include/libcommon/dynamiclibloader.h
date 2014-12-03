@@ -11,7 +11,7 @@
 
 typedef void* (*Func)();
 
-#if (defined(__gun_linux__))
+#if (defined(__gnu_linux__))
 typedef void* HMODULE;
 #endif
 
