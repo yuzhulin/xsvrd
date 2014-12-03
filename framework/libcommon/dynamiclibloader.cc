@@ -44,6 +44,7 @@ void* DynamicLibLoader::GetExportFuncAddress(const char* func_name)
 			<< GetLastError() << ")" << std::endl;
 	}
 #elif (defined(__gnu_linux__))
+	
 #endif
 	return func_address;
 }
@@ -57,6 +58,7 @@ HMODULE DynamicLibLoader::Load()
 			<< GetLastError() << ")" << std::endl;
 	}
 #elif (defined(__gnu_linux__))
+	library_handle_ = dlopen(filename_, RTLD_NOW);
 #endif
 	return library_handle_;
 }
