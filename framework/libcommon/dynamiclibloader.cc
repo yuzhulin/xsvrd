@@ -44,7 +44,10 @@ void* DynamicLibLoader::GetExportFuncAddress(const char* symbol)
 			<< GetLastError() << ")" << std::endl;
 	}
 #elif (defined(__gnu_linux__))
-	
+	func_address = dlsym(library_handle_, symbol);
+	if (!func_address) {
+		std::cerr << "dlsym failed, " << dlerror() << std::endl;
+	}
 #endif
 	return func_address;
 }
