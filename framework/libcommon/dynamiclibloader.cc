@@ -36,8 +36,9 @@ void* DynamicLibLoader::CreateObjByExportFunction()
 
 void* DynamicLibLoader::GetExportFuncAddress(const char* func_name)
 {
+	void* func_address = NULL;
 #if (defined(_WIN32))
-	void* func_address = GetProcAddress(library_handle_, func_name);
+	func_address = GetProcAddress(library_handle_, func_name);
 	if (!func_address) {
 		std::clog << "GetProcAddress failed, error code("
 			<< GetLastError() << ")" << std::endl;
