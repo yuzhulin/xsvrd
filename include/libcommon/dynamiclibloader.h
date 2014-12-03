@@ -11,6 +11,10 @@
 
 typedef void* (*Func)();
 
+#if (defined(__gun_linux__))
+typedef void* HMODULE;
+#endif
+
 class DynamicLibLoader {
 public:
 	DynamicLibLoader();

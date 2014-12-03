@@ -64,6 +64,6 @@ void DynamicLibLoader::Free()
 {
 #if (defined(_WIN32))
 	::FreeLibrary(library_handle_);
-#elif
+#elif (defined(__gnu_linux__))
 #endif
 }
