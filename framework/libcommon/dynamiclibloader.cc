@@ -40,7 +40,7 @@ void* DynamicLibLoader::GetExportFuncAddress(const char* func_name)
 #if (defined(_WIN32))
 	func_address = GetProcAddress(library_handle_, func_name);
 	if (!func_address) {
-		std::clog << "GetProcAddress failed, error code("
+		std::cerr << "GetProcAddress failed, error code("
 			<< GetLastError() << ")" << std::endl;
 	}
 #elif (defined(__gnu_linux__))
@@ -53,7 +53,7 @@ HMODULE DynamicLibLoader::Load()
 #if (defined(_WIN32))
 	library_handle_ = ::LoadLibrary(filename_);
 	if (!library_handle_) {
-		std::clog << "LoadLibrary failed, error code("
+		std::cerr << "LoadLibrary failed, error code("
 			<< GetLastError() << ")" << std::endl;
 	}
 #elif (defined(__gnu_linux__))
