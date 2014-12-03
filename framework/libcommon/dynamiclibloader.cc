@@ -59,6 +59,9 @@ HMODULE DynamicLibLoader::Load()
 	}
 #elif (defined(__gnu_linux__))
 	library_handle_ = dlopen(filename_, RTLD_NOW);
+	if (!library_handle_) {
+		std::cerr << "dlopen failed, " << dlerror() << std::endl;
+	}
 #endif
 	return library_handle_;
 }
