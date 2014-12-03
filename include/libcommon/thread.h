@@ -2,7 +2,7 @@
 #define _THREAD_H_
 
 
-#include "os.h"
+#include "win_linux.h"
 #ifndef WIN32
 #include <pthread.h>
 #endif

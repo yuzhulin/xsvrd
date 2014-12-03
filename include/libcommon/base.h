@@ -6,7 +6,7 @@
 #include <time.h>
 #endif
 
-#include "os.h"
+#include "win_linux.h"
 #include "objmng.h"
 #include "common.h"
 

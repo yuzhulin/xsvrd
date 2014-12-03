@@ -6,7 +6,7 @@
 #include <sys/shm.h>
 #endif
 
-#include "os.h"
+#include "win_linux.h"
 
 #define YEARSEC 31536000
 

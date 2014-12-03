@@ -1,7 +1,7 @@
 #ifndef _CLOCK_H_
 #define _CLOCK_H_
 
-#include "os.h"
+#include "win_linux.h"
 
 
 class CLock
