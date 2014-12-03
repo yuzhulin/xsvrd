@@ -105,8 +105,8 @@ private:
 	char            m_szInfoLogName[MAX_PATH];
 	char            m_szLogToFileName[MAX_PATH];
 
-	uint32 max_file_size_;
-	uint32 max_file_num_;
+	unsigned int max_file_size_;
+	unsigned int max_file_num_;
 };
 
 
