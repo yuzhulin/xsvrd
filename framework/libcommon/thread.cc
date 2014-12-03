@@ -1,6 +1,6 @@
 #include "thread.h"
 #include "tlib_log.h"
-#include "os.h"
+#include "win_linux.h"
 #include "base.h"
 #include "ilogger.h"
 #include "iconfigfile.h"

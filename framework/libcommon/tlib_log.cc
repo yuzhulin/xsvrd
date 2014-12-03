@@ -1,5 +1,5 @@
 #include "base.h"
-#include "os.h"
+#include "win_linux.h"
 #include "tlib_log.h"
 #ifndef WIN32
 #include <unistd.h>

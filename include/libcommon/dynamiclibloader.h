@@ -7,7 +7,7 @@
 #ifndef __DYNAMICLIBLOADER_H__
 #define __DYNAMICLIBLOADER_H__
 
-#include "os.h"
+#include "win_linux.h"
 
 typedef void* (*Func)();
 

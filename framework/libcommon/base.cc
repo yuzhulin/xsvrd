@@ -45,7 +45,7 @@
 
 #include "base.h"
 #include "shm.h"
-#include "os.h"
+#include "win_linux.h"
 #include "runoneinstance.h"
 
 #define LOG printf
