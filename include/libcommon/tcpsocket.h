@@ -2,7 +2,7 @@
 #define _TCPSOCKET_H_
 
 #include "base.h"
-#include "os.h"
+#include "win_linux.h"
 #include "codequeue.h"
 
 #ifdef _DEBUG
