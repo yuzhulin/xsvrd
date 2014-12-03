@@ -28,7 +28,7 @@ C_ARGS = -I. -I$(BUILD_DIR)/include -I$(BUILD_DIR)/include/libcommon -I$(BUILD_D
 
 # You might have to change this if your c compiler is not cc
 CC = cc
-CPP = g++
+CPP = g++ -std=c++0x
 
 
 
