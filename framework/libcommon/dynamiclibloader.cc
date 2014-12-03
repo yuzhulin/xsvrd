@@ -22,7 +22,7 @@ void DynamicLibLoader::Init(const char* filename)
 	filename_ = filename;
 }
 
-Func DynamicLibLoader::GetExportFuncPtr()
+void* DynamicLibLoader::CreateObjByExportFunction()
 {
 	if (!export_function_ptr_) {
 		if (Load()) {
@@ -31,7 +31,7 @@ Func DynamicLibLoader::GetExportFuncPtr()
 			Free();
 		}
 	}
-	return export_function_ptr_;
+	return export_function_ptr_();
 }
 
 void* DynamicLibLoader::GetExportFuncAddress(const char* func_name)

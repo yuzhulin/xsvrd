@@ -29,14 +29,10 @@ int32 main(int32 argc, char** argv)
 
 	DynamicLibLoader liblogloader;
 	liblogloader.Init("../lib/liblog.dll");
-	Func CreateObjFuncPtr = liblogloader.GetExportFuncPtr();
-	if (CreateObjFuncPtr) {
-		LoggerInterface* logger_interface = (LoggerInterface*)CreateObjFuncPtr();
-		if (logger_interface) {
-			logger_interface->SetLogPath(NULL);
-		}
+	LoggerInterface* logger_interface = (LoggerInterface*)liblogloader.CreateObjByExportFunction();
+	if (logger_interface) {
+		logger_interface->SetLogPath(NULL);
 	}
-	
 	///////////////////////////////////////////
 	
 	

@@ -15,10 +15,21 @@ class DynamicLibLoader {
 public:
 	DynamicLibLoader();
 	virtual~DynamicLibLoader();
-
+	
+	// Just set target dynamic file pathname.
+	//
+	// Parameters
+	//   filename - pathname of the file(e.g."../lib/libtest.dll")
+	// Return
+	//   void - return nothing.
 	void Init(const char* filename);
 
-	Func GetExportFuncPtr();
+	// The target dynamic lib must export a function which 
+	// just use for create a obj defined in the lib.
+	//
+	// Return
+	//   void* - a void pointer to the object.
+	void* CreateObjByExportFunction();
 
 private:
 	// Load dynamic lib.
@@ -30,7 +41,7 @@ private:
 	// Unload dynamic lib.
 	//
 	// Return
-	//   void
+	//   void - return nothing.
 	void Free();
 	
 	// Get the address of export function.
@@ -42,7 +53,7 @@ private:
 	void* GetExportFuncAddress(const char* func_name);
 
 private:
-	const char* filename_;
+	const char* filename_;      // target dynamic lib file pathname
 	HMODULE library_handle_;
 	Func export_function_ptr_;
 };
