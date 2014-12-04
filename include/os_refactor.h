@@ -33,7 +33,7 @@ typedef uint32_t		uint32;
 typedef int32_t			int32;
 
 #if defined(__gnu_linux__)
-typde void* HMODULE;
+typdef void* HMODULE;
 #endif
 
 
