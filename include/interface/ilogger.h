@@ -10,9 +10,6 @@
 #define USING_LOGFILE_NAMESPACE using namespace mylogfile;
 
 #define LOGFILE_API
-#ifndef MAX_PATH
-#define MAX_PATH 260
-#endif
 #else
 #define LOGFILE_NAMESPACE_BEGIN
 #define LOGFILE_NAMESPACE_END
