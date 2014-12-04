@@ -42,8 +42,6 @@
 #endif
 
 #define MAX_TRACENUM       20
-
-
 enum KGLOG_PRIORITY
 {
 	KGLOG_DEBUG	    =   1,  // debug-level messages
@@ -83,8 +81,8 @@ public:
 
 	virtual void WriteLogFile(int nPriority, const char* msg, ...) = 0;
 
-	virtual	void DbgLog(const char* msg, ...) = 0;        /*记录普通日志*/
-	virtual	void WarnLog(const char* msg, ...) = 0;     /*记录错误日志*/
+	virtual	void DbgLog(const char* msg, ...) = 0;   /*记录普通日志*/
+	virtual	void WarnLog(const char* msg, ...) = 0;  /*记录错误日志*/
 	virtual	void ErrLog(const char* msg, ...) = 0;   /*记录致命日志*/
 	virtual	void InfoLog(const char* msg, ...) = 0; /*指定文件名打印日志*/
 
@@ -117,8 +115,6 @@ extern "C"
 }
 
 typedef ILogFile* (*CreateLogFileProc)();
-
-
 static ILogFile* CreateLogFilePtr(char szDllFile[MAX_PATH], HMODULE &hModule)
 {
 	char szFunctionName[100] = "CreateLogFile";
@@ -162,75 +158,5 @@ static ILogFile* CreateLogFilePtr(char szDllFile[MAX_PATH], HMODULE &hModule)
 	hModule = pDllHandle;
 	return (*pfCreateLogFile)();
 }
-
-class CLogWrap
-{
-public:
-	CLogWrap()
-	{
-		m_hDllHandle = NULL;
-		m_pLogFile = NULL;
-	}
-	CLogWrap(char szDllFile[MAX_PATH])
-	{
-		m_pLogFile = NULL;
-		m_hDllHandle = NULL;
-		InitDll(szDllFile);
-	}
-
-#ifndef _WIN32
-	void InitDll(char* pszDllFile = "../dll/logfile.so")
-#else
-	void InitDll(char* pszDllFile = "../dll/logfile.dll")
-#endif
-	{
-		if( m_pLogFile == NULL )
-		{
-			memset(m_szDllName, 0, sizeof(m_szDllName));
-			strncpy(m_szDllName, pszDllFile, sizeof(m_szDllName) - 1);
-			m_pLogFile = CreateLogFilePtr(pszDllFile, m_hDllHandle);
-		}
-	}
-
-	~CLogWrap()
-	{
-#ifndef NO_FREEDLL
-		delete m_pLogFile;
-#endif
-		m_pLogFile = NULL;
-
-		//卸载dll
-#ifdef _WIN32
-		if( m_hDllHandle )
-		{
-			FreeLibrary(m_hDllHandle);
-			m_hDllHandle = NULL;
-		}
-#else
-		if( m_hDllHandle )
-		{
-			dlclose(m_hDllHandle);
-			m_hDllHandle = NULL;
-		}
-#endif
-	}
-
-	ILogFile* GetLogFile()
-	{
-		return m_pLogFile;
-	}
-
-	ILogFile* operator ->()
-	{
-		return m_pLogFile;
-	}
-
-
-private:
-	ILogFile* m_pLogFile;
-	char m_szDllName[MAX_PATH];
-	HMODULE m_hDllHandle;
-};
-
 
 #endif

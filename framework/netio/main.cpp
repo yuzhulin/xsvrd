@@ -1,6 +1,3 @@
-//#include "ilogger.h"
-//#include "dynamiclibloader.h"
-
 #include "os_refactor.h"
 #include "dynamiclibloader.h"
 #include "logger_interface.h"
