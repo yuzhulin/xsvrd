@@ -9,8 +9,10 @@
 #if defined(_WIN32)
 #include <windows.h>
 #elif defined(__gnu_linux__)
-#include <dlfcn.h>  // for dynamic linking file
+#include <dlfcn.h>   // for dynamic linking file
+#include <string.h>  // for strncpy
 #endif
+
 
 // const 
 ///////////////////////////////////////////////////////////
