@@ -24,16 +24,6 @@ int32 main(int32 argc, char** argv)
 	
 	// RunOneInstance();
 
-
-
-
-
-
-
-
-
-
-
 	std::cin.get();
     return 0;
 }
