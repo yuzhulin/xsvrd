@@ -6,8 +6,9 @@
 #include "dynamiclibloader.h"
 
 DynamicLibLoader::DynamicLibLoader()
-	: filename_(NULL), library_handle_(NULL), export_function_ptr_(NULL)
+	: library_handle_(NULL), export_function_ptr_(NULL)
 {
+	memset(filename_, 0, sizeof(filename_));
 }
 
 DynamicLibLoader::~DynamicLibLoader()
@@ -24,7 +25,7 @@ void DynamicLibLoader::Init(const char* filename, const char* extend)
 	if (extend) {
 		strcat(fullfilename, extend);
 	}	
-	filename_ = fullfilename;
+	strncpy(filename_, fullfilename, sizeof(filename_) - 1);
 }
 
 void* DynamicLibLoader::CreateObjByExportFunction()
@@ -36,7 +37,11 @@ void* DynamicLibLoader::CreateObjByExportFunction()
 			Free();
 		}
 	}
-	return export_function_ptr_;
+	void* object = NULL;
+	if (export_function_ptr_) { // call function export from current lib
+		object = export_function_ptr_();
+	}
+	return object;
 }
 
 void* DynamicLibLoader::GetExportFuncAddress(const char* symbol)

@@ -56,7 +56,7 @@ private:
 	void* GetExportFuncAddress(const char* symbol);
 
 private:
-	const char* filename_;      // target dynamic lib file pathname
+	char filename_[MAX_PATH];      // target dynamic lib file pathname
 	HMODULE library_handle_;
 	Func export_function_ptr_;
 };
