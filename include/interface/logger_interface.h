@@ -16,6 +16,8 @@ public:
 	virtual void SetLogPath(const char* log_file_path) = 0;
 
 	virtual	void WriteDebugLog(const char* content, ...) = 0;
+
+	virtual void WriteNormalLog(const char* content, va_list& args, char* append_string) = 0;
 };
 
 #endif

@@ -886,6 +886,14 @@ void Logger::SetLogPath(const char* path)
 	std::clog << path << std::endl;
 }
 
+void Logger::WriteNormalLog(const char* content, va_list& args, char* append_string)
+{
+	//if (!debug_log_switch_) {
+	//	return;
+	//}
+	// WriteToLogFile(m_szNormalLogName, msg, args, pStrAdd);
+}
+
 void Logger::WriteDebugLog(const char* content, ...)
 {
 

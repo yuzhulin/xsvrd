@@ -122,6 +122,8 @@ public:
 
 	virtual	void WriteDebugLog(const char* content, ...);
 
+	virtual void WriteNormalLog(const char* content, va_list& args, char* append_string);
+
 private:
 	int8 debug_log_switch_;    // 1:on 0: off
 };
