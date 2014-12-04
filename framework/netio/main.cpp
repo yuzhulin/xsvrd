@@ -22,8 +22,6 @@ int32 main(int32 argc, char** argv)
 		g_loggerinterface->SetLogPath(NULL);
 	}
 	
-
-	
 	// RunOneInstance();
 
 
