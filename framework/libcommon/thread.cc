@@ -221,7 +221,8 @@ void CThread::ReadThreadLogCfg()
 
 void CThread::InitLogFile()
 {
-	if( m_pLogWrap == NULL )
+	// TODO: comment
+	/*if( m_pLogWrap == NULL )
 	{
 		m_pLogWrap = new CLogWrap(m_stThrCfg.m_szLogFileDllName);
 		m_pThreadLogFile = m_pLogWrap->GetLogFile();
@@ -238,7 +239,7 @@ void CThread::InitLogFile()
 		m_pThreadLogFile->SetThreadWarnLogFlag(m_thrLogCfg.m_nWarnLog);
 		m_pThreadLogFile->SetThreadInfoLogFlag(m_thrLogCfg.m_nInfoLog);
 		m_pThreadLogFile->SetShowTimeFormat(m_thrLogCfg.m_nShowMs);
-	}
+	}*/
 }
 
 void CThread::ReloadThreadLogCfg()

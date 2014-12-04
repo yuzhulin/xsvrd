@@ -1,7 +1,7 @@
 // Define the DynamicLibLoader class, this class is applied to
 // load dynamic lib e.g.: Win32 - *.dll, mac - *.dylib, Linux - *.so.
 //
-// Author: xus
+// Author: xushuai
 // E-Mail: xushvai@gmail.com
 
 #ifndef __DYNAMICLIBLOADER_H__
