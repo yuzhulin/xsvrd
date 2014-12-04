@@ -20,6 +20,10 @@
 #define FALSE					0
 #endif
 
+#ifndef MAX_PATH
+#define MAX_PATH				260
+#endif
+
 // dynamic linking file suffix
 #if defined(_WIN32)
 #define DLF_EXTEND_NAME				".dll"
