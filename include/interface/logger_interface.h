@@ -1,4 +1,4 @@
-// define the interface for class Logger.
+// define the interface for Logger class.
 //
 // Author: xushuai
 // E-Mail: xushvai@gmail.com
@@ -14,6 +14,8 @@ public:
 	virtual~LoggerInterface(){};
 
 	virtual void SetLogPath(const char* log_file_path) = 0;
+
+	virtual	void WriteDebugLog(const char* content, ...) = 0;
 };
 
 #endif
