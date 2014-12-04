@@ -15,9 +15,16 @@ DynamicLibLoader::~DynamicLibLoader()
 
 }
 
-void DynamicLibLoader::Init(const char* filename)
+void DynamicLibLoader::Init(const char* filename, const char* extend)
 {
-	filename_ = filename;
+	char fullfilename[MAX_PATH];
+	if (filename) {
+		strncpy(fullfilename, filename, sizeof(fullfilename) - 1);
+	}
+	if (extend) {
+		strcat(fullfilename, extend);
+	}	
+	filename_ = fullfilename;
 }
 
 void* DynamicLibLoader::CreateObjByExportFunction()
@@ -29,7 +36,7 @@ void* DynamicLibLoader::CreateObjByExportFunction()
 			Free();
 		}
 	}
-	return export_function_ptr_();
+	return export_function_ptr_;
 }
 
 void* DynamicLibLoader::GetExportFuncAddress(const char* symbol)
@@ -69,10 +76,12 @@ HMODULE DynamicLibLoader::Load()
 
 void DynamicLibLoader::Free()
 {
+	if (library_handle_) {
 #if (defined(_WIN32))
 	::FreeLibrary(library_handle_);
 #elif (defined(__gnu_linux__))
 	dlclose(library_handle_);
 #endif
+	}
 	library_handle_ = NULL;
 }

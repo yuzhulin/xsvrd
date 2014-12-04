@@ -16,13 +16,16 @@ public:
 	DynamicLibLoader();
 	virtual~DynamicLibLoader();
 	
-	// Just set target dynamic file pathname.
+	// Just set target dynamic file pathname and extend
+	// name, you should set filename to "../lib/libtest"
+	// and set extend to ".dll" if you want load "../lib/libtest.dll" 
 	//
 	// Parameters
-	//   filename - pathname of the file(e.g."../lib/libtest.dll")
+	//   filename - pathname of the file(e.g.: "../lib/libtest")
+	//   extend   - the file's extend name(e.g.: ".dll")
 	// Return
 	//   void - return nothing.
-	void Init(const char* filename);
+	void Init(const char* filename, const char* extend);
 
 	// The target dynamic lib must export a function which 
 	// just use for create a obj defined in the lib.

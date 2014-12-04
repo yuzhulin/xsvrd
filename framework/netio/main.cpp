@@ -16,7 +16,7 @@ int32 main(int32 argc, char** argv)
 {
 	// ParseCommand(argc, argv);
 	DynamicLibLoader liblogloader;
-	liblogloader.Init("../lib/liblog.dll");
+	liblogloader.Init("../lib/libl", DLF_EXTEND_NAME);
 	g_loggerinterface = (LoggerInterface*)liblogloader.CreateObjByExportFunction();
 	if (g_loggerinterface) {
 		g_loggerinterface->SetLogPath(NULL);

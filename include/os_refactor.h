@@ -22,9 +22,9 @@
 
 // dynamic linking file suffix
 #if defined(_WIN32)
-#define DLF_SUFFIX				".dll"
+#define DLF_EXTEND_NAME				".dll"
 #elif defined(__gnu_linux__)
-#define DLF_SUFFIX				".so"
+#define DLF_EXTEND_NAME				".so"
 #endif
 
 // type
