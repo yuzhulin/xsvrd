@@ -30,15 +30,17 @@
 
 // dynamic linking file suffix
 #if defined(_WIN32)
-#define DLF_EXTEND_NAME				".dll"
+#define DLF_EXTEND_NAME			".dll"
 #elif defined(__gnu_linux__)
-#define DLF_EXTEND_NAME				".so"
+#define DLF_EXTEND_NAME			".so"
 #endif
 
 // type
 ///////////////////////////////////////////////////////////
-typedef uint32_t		uint32;
-typedef int32_t			int32;
+typedef uint32_t				uint32;
+typedef int32_t					int32;
+typedef uint8_t					uint8;
+typedef int8_t					int8;
 
 #if defined(__gnu_linux__)
 typedef void* HMODULE;

@@ -119,6 +119,11 @@ public:
 
 
 	virtual void SetLogPath(const char* path);
+
+	virtual	void WriteDebugLog(const char* content, ...);
+
+private:
+	int8 debug_log_switch_;    // 1:on 0: off
 };
 
 

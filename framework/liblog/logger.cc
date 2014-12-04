@@ -871,6 +871,7 @@ void CLogFile::SetBakLogPath(const char *pBakLogPath)
 // add by: xushvai@gmail.com
 ////////////////////////////////////////////////////////////////////////////////
 Logger::Logger()
+	: debug_log_switch_(0)
 {
 
 }
@@ -883,6 +884,11 @@ Logger::~Logger()
 void Logger::SetLogPath(const char* path)
 {
 	std::clog << path << std::endl;
+}
+
+void Logger::WriteDebugLog(const char* content, ...)
+{
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
