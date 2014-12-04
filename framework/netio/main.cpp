@@ -9,20 +9,32 @@ LoggerInterface* g_loggerinterface = NULL;
 void ParseCommand(int32 argc, char** argv);
 bool RunOneInstance();
 
+int32 InitLoggerInterface();
+
 int32 main(int32 argc, char** argv)
 {
 	// ParseCommand(argc, argv);
-	DynamicLibLoader liblogloader;
-	liblogloader.Init("../lib/liblog", DLF_EXTEND_NAME);
-	g_loggerinterface = (LoggerInterface*)liblogloader.CreateObjByExportFunction();
-	if (g_loggerinterface) {
-		g_loggerinterface->SetLogPath(NULL);
-	}
-	
+
+	InitLoggerInterface();
+
 	// RunOneInstance();
 
 	std::cin.get();
     return 0;
+}
+
+int32 InitLoggerInterface()
+{
+	DynamicLibLoader liblogloader;
+	liblogloader.Init("../lib/liblog", DLF_EXTEND_NAME);
+	g_loggerinterface = (LoggerInterface*)liblogloader.CreateObjByExportFunction();
+	if (!g_loggerinterface) {
+		return -1;
+	}
+	char outputlogpath[MAX_PATH];
+	strncpy(outputlogpath, "../log", sizeof(outputlogpath) - 1);
+	g_loggerinterface->SetLogPath(outputlogpath);
+	return 0;
 }
 
 void ParseCommand(int32 argc, char** argv)

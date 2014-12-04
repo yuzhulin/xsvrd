@@ -882,7 +882,7 @@ Logger::~Logger()
 
 void Logger::SetLogPath(const char* path)
 {
-	std::clog << "SetLogPath" << std::endl;
+	std::clog << path << std::endl;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
