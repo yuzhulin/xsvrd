@@ -8,6 +8,8 @@
 
 #if defined(_WIN32)
 #include <windows.h>
+#elif defined(__gnu_linux__)
+#include <dlfcn.h>  // for dynamic linking file
 #endif
 
 // const 
