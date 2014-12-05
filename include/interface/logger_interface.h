@@ -19,6 +19,9 @@ public:
 	virtual	void WriteWarnLog(const char* content, ...) = 0;
 
 	virtual void WriteNormalLog(const char* content, va_list& args, char* append_string) = 0;
+
+	virtual void WriteToLogFile(const char* file_name, const char* content,
+		va_list& variable_argument_list, char* append_string = NULL) = 0;
 };
 
 #endif

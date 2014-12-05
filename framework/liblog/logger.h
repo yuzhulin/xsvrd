@@ -124,8 +124,15 @@ public:
 
 	virtual void WriteNormalLog(const char* content, va_list& args, char* append_string);
 
+	virtual void WriteToLogFile(const char* file_name, const char* content,
+		va_list& variable_argument_list, char* append_string = NULL);
+
 private:
-	int8 debug_log_switch_;    // 1:on 0: off
+	int8 warn_log_switch_;                   // 1:on 0:off
+	int8 normal_log_switch_;                 // 1:on 0:off
+
+	char warn_log_name_[MAX_PATH];
+	char default_output_path_[MAX_PATH];  // logs will be saved in the 'log' directory under this path.
 };
 
 

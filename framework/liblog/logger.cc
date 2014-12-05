@@ -871,9 +871,11 @@ void CLogFile::SetBakLogPath(const char *pBakLogPath)
 // add by: xushvai@gmail.com
 ////////////////////////////////////////////////////////////////////////////////
 Logger::Logger()
-	: debug_log_switch_(0)
+	: warn_log_switch_(0),
+	  normal_log_switch_(0)
 {
-
+	memset(warn_log_name_, 0, sizeof(warn_log_name_));
+	memset(default_output_path_, 0, sizeof(default_output_path_));
 }
 
 Logger::~Logger()
@@ -888,15 +890,66 @@ void Logger::SetLogPath(const char* path)
 
 void Logger::WriteNormalLog(const char* content, va_list& args, char* append_string)
 {
-	//if (!debug_log_switch_) {
-	//	return;
-	//}
+	if (!normal_log_switch_) {
+		return;
+	}
 	// WriteToLogFile(m_szNormalLogName, msg, args, pStrAdd);
 }
 
 void Logger::WriteWarnLog(const char* content, ...)
 {
 
+	std::clog << "sfdsf" << std::endl;
+
+	if (!warn_log_switch_) {
+		return;
+	}
+	//SetCurrentTime();
+
+	va_list variable_argument_list;
+	va_start(variable_argument_list, content);
+	WriteNormalLog(content, variable_argument_list, (char*)"#warn#");
+	va_end(variable_argument_list);
+
+	va_start(variable_argument_list, content);
+	WriteToLogFile(warn_log_name_, content, variable_argument_list);
+	va_end(variable_argument_list);
+}
+
+void Logger::WriteToLogFile(const char* file_name,
+	const char* content, va_list& variable_argument_list, char* append_string)
+{
+	//write之前先考虑备份，备份机制统一考虑。
+	//Lock();
+	char log_file[MAX_PATH];
+	sprintf(log_file, "%s%s", default_output_path_, file_name);
+
+	//BakLogFile(pFileName);
+
+	/*FILE *pFile = fopen(log_file, "a+");
+	if (NULL == pFile)
+	{
+		char szTempLogFile[MAX_PATH];
+		strncpy(szTempLogFile, szLogFile, sizeof(szTempLogFile) - 1);
+		char *pTemp = strrchr(szTempLogFile, '/');
+		if( pTemp == NULL )
+		{
+			//Unlock();
+			return;
+		}
+		*pTemp = 0;
+		if ( access(szTempLogFile, 0) != 0)
+		{
+			CreatePath(szTempLogFile);
+		}
+		pFile = fopen(szLogFile, "a+");
+	}
+	if (pFile)
+	{
+		//WriteLog(pFile, msg, args, pAddStr);
+		fclose(pFile);
+	}*/
+	//Unlock();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
