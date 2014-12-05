@@ -120,7 +120,7 @@ public:
 
 	virtual void SetLogPath(const char* path);
 
-	virtual	void WriteDebugLog(const char* content, ...);
+	virtual	void WriteWarnLog(const char* content, ...);
 
 	virtual void WriteNormalLog(const char* content, va_list& args, char* append_string);
 

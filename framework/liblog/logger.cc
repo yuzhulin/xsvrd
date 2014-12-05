@@ -894,7 +894,7 @@ void Logger::WriteNormalLog(const char* content, va_list& args, char* append_str
 	// WriteToLogFile(m_szNormalLogName, msg, args, pStrAdd);
 }
 
-void Logger::WriteDebugLog(const char* content, ...)
+void Logger::WriteWarnLog(const char* content, ...)
 {
 
 }
