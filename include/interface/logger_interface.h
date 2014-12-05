@@ -8,6 +8,7 @@
 
 #include "os_refactor.h"
 
+// Log contains 3 types: normal, warn, error
 class LoggerInterface {
 public:
 	LoggerInterface(){};
