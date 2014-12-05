@@ -137,7 +137,9 @@ private:
 	int8 error_log_switch_;               // 1:on 0:off
 	int8 normal_log_switch_;              // 1:on 0:off						
 
-	char warn_log_name_[MAX_PATH];
+	char warn_log_name_[MAX_NAME];
+	char error_log_name_[MAX_NAME];
+	char normal_log_name_[MAX_NAME];
 	char default_output_path_[MAX_PATH];  // logs will be saved in the 'log' directory under this path.
 };
 

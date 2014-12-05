@@ -907,7 +907,7 @@ void Logger::WriteNormalLog(const char* format, va_list& args, char* append_stri
 	if (!normal_log_switch_) {
 		return;
 	}
-	// WriteToLogFile(m_szNormalLogName, msg, args, pStrAdd);
+	//WriteToLogFile(normal_log_name_, format, )
 }
 
 void Logger::WriteWarnLog(const char* format, ...)

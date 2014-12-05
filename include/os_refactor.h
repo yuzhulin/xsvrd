@@ -28,6 +28,10 @@
 #define MAX_PATH				260
 #endif
 
+#ifndef MAX_NAME				
+#define MAX_NAME				260
+#endif
+
 #ifndef SWITCH_ON
 #define SWITCH_ON				1
 #endif
