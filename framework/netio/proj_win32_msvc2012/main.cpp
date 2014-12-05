@@ -39,7 +39,7 @@ int32 InitLoggerInterface()
 	g_loggerinterface->SetWarnLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetErrorLogSwitch(SWITCH_ON);
 
-	g_loggerinterface->WriteWarnLog("%s", 123);
+	g_loggerinterface->WriteWarnLog("%d", 123);
 
 	return 0;
 }
