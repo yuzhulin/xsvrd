@@ -125,11 +125,11 @@ public:
 
 	virtual void SetLogPath(const char* path);
 
-	virtual	void WriteWarnLog(const char* content, ...);
+	virtual	void WriteWarnLog(const char* format, ...);
 
-	virtual void WriteNormalLog(const char* content, va_list& args, char* append_string);
+	virtual void WriteNormalLog(const char* format, va_list& args, char* append_string);
 
-	virtual void WriteToLogFile(const char* file_name, const char* content,
+	virtual void WriteToLogFile(const char* file_name, const char* format,
 		va_list& variable_argument_list, char* append_string = NULL);
 
 private:

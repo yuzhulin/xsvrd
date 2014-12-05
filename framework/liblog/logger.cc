@@ -902,7 +902,7 @@ void Logger::SetNormalLogSwitch(int8 on_off)
 	normal_log_switch_ = on_off;
 }
 
-void Logger::WriteNormalLog(const char* content, va_list& args, char* append_string)
+void Logger::WriteNormalLog(const char* format, va_list& args, char* append_string)
 {
 	if (!normal_log_switch_) {
 		return;
@@ -910,7 +910,7 @@ void Logger::WriteNormalLog(const char* content, va_list& args, char* append_str
 	// WriteToLogFile(m_szNormalLogName, msg, args, pStrAdd);
 }
 
-void Logger::WriteWarnLog(const char* content, ...)
+void Logger::WriteWarnLog(const char* format, ...)
 {
 	if (!warn_log_switch_) {
 		return;
@@ -918,17 +918,17 @@ void Logger::WriteWarnLog(const char* content, ...)
 	//SetCurrentTime();
 
 	va_list variable_argument_list;
-	va_start(variable_argument_list, content);
-	WriteNormalLog(content, variable_argument_list, (char*)"#warn#");
+	va_start(variable_argument_list, format);
+	WriteNormalLog(format, variable_argument_list, (char*)"#warn#");
 	va_end(variable_argument_list);
 
-	va_start(variable_argument_list, content);
-	WriteToLogFile(warn_log_name_, content, variable_argument_list);
+	va_start(variable_argument_list, format);
+	WriteToLogFile(warn_log_name_, format, variable_argument_list);
 	va_end(variable_argument_list);
 }
 
 void Logger::WriteToLogFile(const char* file_name,
-	const char* content, va_list& variable_argument_list, char* append_string)
+	const char* format, va_list& variable_argument_list, char* append_string)
 {
 	//write之前先考虑备份，备份机制统一考虑。
 	//Lock();
