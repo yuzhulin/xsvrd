@@ -28,6 +28,16 @@
 #define MAX_PATH				260
 #endif
 
+#ifndef SWITCH_ON
+#define SWITCH_ON				1
+#endif
+
+#ifndef SWITCH_OFF
+#define SWITCH_OFF				0
+#endif
+
+
+
 // dynamic linking file suffix
 #if defined(_WIN32)
 #define DLF_EXTEND_NAME			".dll"

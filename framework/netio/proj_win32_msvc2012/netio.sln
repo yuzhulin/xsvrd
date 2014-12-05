@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netio", "netio.vcxproj", "{E17970D1-BA68-4F37-A903-53ACCF6D28C6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "liblog", "..\..\liblog\proj_win32_msvc2012\liblog.vcxproj", "{30598119-6E53-4F39-B992-57D52134DA65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -17,6 +19,14 @@ Global
 		{E17970D1-BA68-4F37-A903-53ACCF6D28C6}.Release|Win32.ActiveCfg = Release|Win32
 		{E17970D1-BA68-4F37-A903-53ACCF6D28C6}.Release|Win32.Build.0 = Release|Win32
 		{E17970D1-BA68-4F37-A903-53ACCF6D28C6}.Release|x64.ActiveCfg = Release|Win32
+		{30598119-6E53-4F39-B992-57D52134DA65}.Debug|Win32.ActiveCfg = Debug|Win32
+		{30598119-6E53-4F39-B992-57D52134DA65}.Debug|Win32.Build.0 = Debug|Win32
+		{30598119-6E53-4F39-B992-57D52134DA65}.Debug|x64.ActiveCfg = Debug|x64
+		{30598119-6E53-4F39-B992-57D52134DA65}.Debug|x64.Build.0 = Debug|x64
+		{30598119-6E53-4F39-B992-57D52134DA65}.Release|Win32.ActiveCfg = Release|Win32
+		{30598119-6E53-4F39-B992-57D52134DA65}.Release|Win32.Build.0 = Release|Win32
+		{30598119-6E53-4F39-B992-57D52134DA65}.Release|x64.ActiveCfg = Release|x64
+		{30598119-6E53-4F39-B992-57D52134DA65}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

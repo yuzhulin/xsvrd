@@ -871,8 +871,7 @@ void CLogFile::SetBakLogPath(const char *pBakLogPath)
 // add by: xushvai@gmail.com
 ////////////////////////////////////////////////////////////////////////////////
 Logger::Logger()
-	: warn_log_switch_(0),
-	  normal_log_switch_(0)
+	: warn_log_switch_(0), error_log_switch_(0), normal_log_switch_(0)
 {
 	memset(warn_log_name_, 0, sizeof(warn_log_name_));
 	memset(default_output_path_, 0, sizeof(default_output_path_));
@@ -888,6 +887,21 @@ void Logger::SetLogPath(const char* path)
 	std::clog << path << std::endl;
 }
 
+void Logger::SetWarnLogSwitch(int8 on_off)
+{
+	warn_log_switch_ = on_off;
+}
+
+void Logger::SetErrorLogSwitch(int8 on_off)
+{
+	error_log_switch_ = on_off;
+}
+
+void Logger::SetNormalLogSwitch(int8 on_off)
+{
+	normal_log_switch_ = on_off;
+}
+
 void Logger::WriteNormalLog(const char* content, va_list& args, char* append_string)
 {
 	if (!normal_log_switch_) {
@@ -898,9 +912,6 @@ void Logger::WriteNormalLog(const char* content, va_list& args, char* append_str
 
 void Logger::WriteWarnLog(const char* content, ...)
 {
-
-	std::clog << "sfdsf" << std::endl;
-
 	if (!warn_log_switch_) {
 		return;
 	}

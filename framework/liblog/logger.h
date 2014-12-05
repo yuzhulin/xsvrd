@@ -117,6 +117,11 @@ public:
 	Logger();
 	virtual~Logger();
 
+	virtual void SetWarnLogSwitch(int8 on_off);
+
+	virtual void SetErrorLogSwitch(int8 on_off);
+
+	virtual void SetNormalLogSwitch(int8 on_off);
 
 	virtual void SetLogPath(const char* path);
 
@@ -128,8 +133,9 @@ public:
 		va_list& variable_argument_list, char* append_string = NULL);
 
 private:
-	int8 warn_log_switch_;                   // 1:on 0:off
-	int8 normal_log_switch_;                 // 1:on 0:off
+	int8 warn_log_switch_;                // 1:on 0:off
+	int8 error_log_switch_;               // 1:on 0:off
+	int8 normal_log_switch_;              // 1:on 0:off						
 
 	char warn_log_name_[MAX_PATH];
 	char default_output_path_[MAX_PATH];  // logs will be saved in the 'log' directory under this path.
