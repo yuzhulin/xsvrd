@@ -930,6 +930,7 @@ void Logger::WriteWarnLog(const char* format, ...)
 void Logger::WriteToLogFile(const char* file_name,
 	const char* format, va_list& variable_argument_list, char* append_string)
 {
+
 	//write之前先考虑备份，备份机制统一考虑。
 	//Lock();
 	char log_file[MAX_PATH];
