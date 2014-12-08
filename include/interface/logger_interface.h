@@ -20,6 +20,8 @@ public:
 
 	virtual void SetNormalLogSwitch(int8 on_off) = 0;
 
+	virtual void SetNormalLogName(const char* name) = 0;
+
 	virtual void SetLogPath(const char* log_file_path) = 0;
 
 	virtual	void WriteWarnLog(const char* content, ...) = 0;

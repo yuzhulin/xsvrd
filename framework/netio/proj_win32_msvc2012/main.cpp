@@ -38,7 +38,7 @@ int32 InitLoggerInterface()
 	g_loggerinterface->SetNormalLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetWarnLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetErrorLogSwitch(SWITCH_ON);
-
+	g_loggerinterface->SetNormalLogName("normal.log");
 	g_loggerinterface->WriteWarnLog("%d", 123);
 
 	return 0;

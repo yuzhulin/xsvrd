@@ -123,6 +123,8 @@ public:
 
 	virtual void SetNormalLogSwitch(int8 on_off);
 
+	virtual void SetNormalLogName(const char* name);
+
 	virtual void SetLogPath(const char* path);
 
 	virtual	void WriteWarnLog(const char* format, ...);

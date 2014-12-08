@@ -885,7 +885,8 @@ Logger::~Logger()
 
 void Logger::SetLogPath(const char* path)
 {
-	std::clog << path << std::endl;
+	strncpy(default_output_path_,
+		path, sizeof(default_output_path_) - 1);
 }
 
 void Logger::SetWarnLogSwitch(int8 on_off)
@@ -903,12 +904,18 @@ void Logger::SetNormalLogSwitch(int8 on_off)
 	normal_log_switch_ = on_off;
 }
 
+void Logger::SetNormalLogName(const char* name)
+{
+	strncpy(normal_log_name_,
+		name, sizeof(normal_log_name_) - 1);
+}
+
 void Logger::WriteNormalLog(const char* format, va_list& args, char* append_string)
 {
 	if (!normal_log_switch_) {
 		return;
 	}
-	//WriteToLogFile(normal_log_name_, format, )
+	WriteToLogFile(normal_log_name_, format, args, append_string);
 }
 
 void Logger::WriteWarnLog(const char* format, ...)
@@ -935,7 +942,7 @@ void Logger::WriteToLogFile(const char* file_name,
 	//write之前先考虑备份，备份机制统一考虑。
 	//Lock();
 	char log_file[MAX_PATH];
-	sprintf(log_file, "%s%s", default_output_path_, file_name);
+	sprintf(log_file, "%s/%s", default_output_path_, file_name);
 
 	//BakLogFile(pFileName);
 
