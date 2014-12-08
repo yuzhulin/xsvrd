@@ -117,6 +117,8 @@ public:
 	Logger();
 	virtual~Logger();
 
+	virtual void SetInfoLogSwitch(int8 on_off);
+
 	virtual void SetWarnLogSwitch(int8 on_off);
 
 	virtual void SetErrorLogSwitch(int8 on_off);
@@ -135,6 +137,8 @@ public:
 
 	virtual void WriteContent(FILE* file_ptr, const char* format, va_list& args, char* append_string);
 
+	virtual void WriteInfoLog(const char* format, ...);
+
 	virtual	void WriteWarnLog(const char* format, ...);
 
 	virtual void WriteNormalLog(const char* format, va_list& args, char* append_string);
@@ -146,6 +150,7 @@ private:
 	void SetCurTime();
 
 private:
+	int8 info_log_switch_;				  // 1:on 0:off
 	int8 warn_log_switch_;                // 1:on 0:off
 	int8 error_log_switch_;               // 1:on 0:off
 	int8 normal_log_switch_;              // 1:on 0:off

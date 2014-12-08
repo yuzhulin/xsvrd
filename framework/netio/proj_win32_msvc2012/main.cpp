@@ -28,13 +28,13 @@ int32 InitLoggerInterface()
 	DynamicLibLoader liblogloader;
 	liblogloader.Init("../lib/liblog", DLF_EXTEND_NAME);
 	g_loggerinterface = (LoggerInterface*)liblogloader.CreateObjByExportFunction();
-
 	if (!g_loggerinterface) {
 		return -1;
 	}
 	char outputlogpath[MAX_PATH];
 	strncpy(outputlogpath, "../log", sizeof(outputlogpath) - 1);
 	g_loggerinterface->SetLogPath(outputlogpath);
+	g_loggerinterface->SetInfoLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetNormalLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetWarnLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetErrorLogSwitch(SWITCH_ON);
@@ -42,8 +42,8 @@ int32 InitLoggerInterface()
 	
 	g_loggerinterface->SetNormalLogName("normal.log");
 
-
-	g_loggerinterface->WriteWarnLog("%d", 123);
+	g_loggerinterface->WriteInfoLog("%s\n", "info");
+	g_loggerinterface->WriteWarnLog("%s\n", "warn");
 
 	return 0;
 }

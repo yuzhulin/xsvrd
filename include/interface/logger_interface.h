@@ -24,6 +24,8 @@ public:
 	LoggerInterface(){};
 	virtual~LoggerInterface(){};
 
+	virtual void SetInfoLogSwitch(int8 on_off) = 0;
+
 	virtual void SetWarnLogSwitch(int8 on_off) = 0;
 
 	virtual void SetErrorLogSwitch(int8 on_off) = 0;
@@ -41,6 +43,8 @@ public:
 	virtual void Unlock() = 0;
 
 	virtual void WriteContent(FILE* file_ptr, const char* msg, va_list& args, char* append_string) = 0;
+
+	virtual void WriteInfoLog(const char* format, ...) = 0;
 
 	virtual	void WriteWarnLog(const char* content, ...) = 0;
 
