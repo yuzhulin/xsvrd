@@ -947,22 +947,24 @@ void Logger::WriteWarnLog(const char* format, ...)
 void Logger::WriteToLogFile(const char* file_name,
 	const char* format, va_list& variable_argument_list, char* append_string)
 {
-
 	//write之前先考虑备份，备份机制统一考虑。
-	//Lock();
+	Lock();
 	char log_file[MAX_PATH];
 	sprintf(log_file, "%s/%s", default_output_path_, file_name);
 
 	//BakLogFile(pFileName);
 
-	FILE* file_ptr = fopen("../log/test.log", "a+");
-	if (!file_ptr) {
-
+	FILE* file_ptr = fopen(log_file, "a+");
+	if (!file_ptr) { // open file failed, do some check.      
+		if (!strrchr(log_file, '/')) { // path format error.
+			Unlock();
+			return;
+		}
+		if (access(log_file, F_OK)) { // return is not 0, file is not exist.
+			CreatePath(log_file);
+		}
 	}
-
 	fclose(file_ptr);
-
-
 	/*FILE *pFile = fopen(log_file, "a+");
 	if (NULL == pFile)
 	{

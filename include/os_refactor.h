@@ -40,7 +40,19 @@
 #define SWITCH_OFF				0
 #endif
 
-
+// F_OK,X_OK,W_OK,R_OK is defined in unistd.h, used for access function.
+#ifndef F_OK
+#define F_OK					0
+#endif
+#ifndef X_OK
+#define X_OK					1
+#endif
+#ifndef W_OK
+#define W_OK					2
+#endif
+#ifndef R_OK
+#define R_OK					4
+#endif
 
 // dynamic linking file suffix
 #if defined(_WIN32)
