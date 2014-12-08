@@ -28,6 +28,8 @@ public:
 
 	virtual void Unlock() = 0;
 
+	virtual void WriteContent(FILE* file_ptr, const char* msg, va_list& args, char* append_string) = 0;
+
 	virtual	void WriteWarnLog(const char* content, ...) = 0;
 
 	virtual void WriteNormalLog(const char* content, va_list& args, char* append_string) = 0;

@@ -131,6 +131,8 @@ public:
 
 	virtual void Unlock();
 
+	virtual void WriteContent(FILE* file_ptr, const char* format, va_list& args, char* append_string);
+
 	virtual	void WriteWarnLog(const char* format, ...);
 
 	virtual void WriteNormalLog(const char* format, va_list& args, char* append_string);

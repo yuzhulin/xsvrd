@@ -919,6 +919,11 @@ void Logger::SetNormalLogName(const char* name)
 		name, sizeof(normal_log_name_) - 1);
 }
 
+void Logger::WriteContent(FILE* file_ptr, const char* fromat, va_list& args, char* append_string)
+{
+
+}
+
 void Logger::WriteNormalLog(const char* format, va_list& args, char* append_string)
 {
 	if (!normal_log_switch_) {
@@ -955,7 +960,10 @@ void Logger::WriteToLogFile(const char* file_name,
 	//BakLogFile(pFileName);
 
 	FILE* file_ptr = fopen(log_file, "a+");
-	if (!file_ptr) { // open file failed, do some check.
+	if (!file_ptr) {
+		// open file failed
+		// 1. check if the path is error.
+		// 2. path ok, create the path, then create the file.
 		char temp_log_file[MAX_PATH];
 		strncpy(temp_log_file, log_file, sizeof(temp_log_file) - 1);
 		char* last_match_character_ptr = strrchr(temp_log_file, '/');
@@ -967,32 +975,14 @@ void Logger::WriteToLogFile(const char* file_name,
 		if (access(temp_log_file, F_OK)) { // return is not 0, path is not exist.
 			CreatePath(temp_log_file);
 		}
+		file_ptr = fopen(log_file, "a+");
 	}
-	fclose(file_ptr);
-	/*FILE *pFile = fopen(log_file, "a+");
-	if (NULL == pFile)
-	{
-		char szTempLogFile[MAX_PATH];
-		strncpy(szTempLogFile, szLogFile, sizeof(szTempLogFile) - 1);
-		char *pTemp = strrchr(szTempLogFile, '/');
-		if( pTemp == NULL )
-		{
-			//Unlock();
-			return;
-		}
-		*pTemp = 0;
-		if ( access(szTempLogFile, 0) != 0)
-		{
-			CreatePath(szTempLogFile);
-		}
-		pFile = fopen(szLogFile, "a+");
+	if (file_ptr) {
+		WriteContent(file_ptr, format, variable_argument_list, append_string);
+		fclose(file_ptr);
+		file_ptr = NULL;
 	}
-	if (pFile)
-	{
-		//WriteLog(pFile, msg, args, pAddStr);
-		fclose(pFile);
-	}*/
-	//Unlock();
+	Unlock();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
