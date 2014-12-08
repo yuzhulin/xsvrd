@@ -143,6 +143,9 @@ public:
 		va_list& variable_argument_list, char* append_string = NULL);
 
 private:
+	void SetCurTime();
+
+private:
 	int8 warn_log_switch_;                // 1:on 0:off
 	int8 error_log_switch_;               // 1:on 0:off
 	int8 normal_log_switch_;              // 1:on 0:off

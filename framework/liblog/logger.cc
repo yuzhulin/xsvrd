@@ -925,6 +925,34 @@ void Logger::SetNormalLogName(const char* name)
 		name, sizeof(normal_log_name_) - 1);
 }
 
+void Logger::SetCurTime()
+{
+	struct tm* tm_ptr = NULL;
+	if (show_millisecond_switch_) {
+		struct timeval timeval_now;
+#ifndef _WIN32
+		gettimeofday(&timeval_now, NULL);
+#else
+		SYSTEMTIME system_time;
+		GetLocalTime(&system_time);
+		timeval_now.tv_sec  = (long)time(NULL);
+		timeval_now.tv_usec = system_time.wMilliseconds * 1000;
+#endif
+		time_t time_t_now = timeval_now.tv_sec;
+		cur_time_.millisecond = timeval_now.tv_usec / 1000;
+		tm_ptr = localtime(&time_t_now);
+	} else {
+		time_t time_t_now = time(NULL);
+		tm_ptr = localtime(&time_t_now);
+	}
+	cur_time_.year   = tm_ptr->tm_year + 1900;
+	cur_time_.month  = tm_ptr->tm_mon + 1;
+	cur_time_.day    = tm_ptr->tm_mday;
+	cur_time_.hour   = tm_ptr->tm_hour;
+	cur_time_.minute = tm_ptr->tm_min;
+	cur_time_.second = tm_ptr->tm_sec;
+}
+
 void Logger::WriteContent(FILE* file_ptr, const char* format, va_list& args, char* append_string)
 {
 	if (show_millisecond_switch_) { // show millisecond.
@@ -964,8 +992,7 @@ void Logger::WriteWarnLog(const char* format, ...)
 	if (!warn_log_switch_) {
 		return;
 	}
-	//SetCurrentTime();
-
+	SetCurTime();
 	va_list variable_argument_list;
 	va_start(variable_argument_list, format);
 	WriteNormalLog(format, variable_argument_list, (char*)"#warn#");
