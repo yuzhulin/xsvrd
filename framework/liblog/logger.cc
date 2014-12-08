@@ -955,13 +955,17 @@ void Logger::WriteToLogFile(const char* file_name,
 	//BakLogFile(pFileName);
 
 	FILE* file_ptr = fopen(log_file, "a+");
-	if (!file_ptr) { // open file failed, do some check.      
-		if (!strrchr(log_file, '/')) { // path format error.
+	if (!file_ptr) { // open file failed, do some check.
+		char temp_log_file[MAX_PATH];
+		strncpy(temp_log_file, log_file, sizeof(temp_log_file) - 1);
+		char* last_match_character_ptr = strrchr(temp_log_file, '/');
+		if (!last_match_character_ptr) { // path format error.
 			Unlock();
 			return;
 		}
-		if (access(log_file, F_OK)) { // return is not 0, file is not exist.
-			CreatePath(log_file);
+		*last_match_character_ptr = 0; // just save path.
+		if (access(temp_log_file, F_OK)) { // return is not 0, path is not exist.
+			CreatePath(temp_log_file);
 		}
 	}
 	fclose(file_ptr);
