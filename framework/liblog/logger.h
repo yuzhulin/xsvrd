@@ -123,6 +123,8 @@ public:
 
 	virtual void SetNormalLogSwitch(int8 on_off);
 
+	virtual void SetShowMillisecondSwitch(int8 on_off);
+
 	virtual void SetNormalLogName(const char* name);
 
 	virtual void SetLogPath(const char* path);
@@ -143,7 +145,9 @@ public:
 private:
 	int8 warn_log_switch_;                // 1:on 0:off
 	int8 error_log_switch_;               // 1:on 0:off
-	int8 normal_log_switch_;              // 1:on 0:off						
+	int8 normal_log_switch_;              // 1:on 0:off
+	
+	int8 show_millisecond_switch_;        // 1:on 0:off
 
 	char warn_log_name_[MAX_NAME];
 	char error_log_name_[MAX_NAME];

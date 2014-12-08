@@ -8,6 +8,16 @@
 
 #include "os_refactor.h"
 
+struct LogTime {
+	uint32 year;           // 0000-9999
+	uint32 month;          // 00-12
+	uint32 day;            // 01-31
+	uint32 hour;           // 00-23
+	uint32 minute;         // 00-59
+	uint32 second;         // 00-59
+	uint32 millisecond;    // 000-999
+};
+
 // Log contains 3 types: normal, warn, error
 class LoggerInterface {
 public:
@@ -19,6 +29,8 @@ public:
 	virtual void SetErrorLogSwitch(int8 on_off) = 0;
 
 	virtual void SetNormalLogSwitch(int8 on_off) = 0;
+
+	virtual void SetShowMillisecondSwitch(int8 on_off) = 0;
 
 	virtual void SetNormalLogName(const char* name) = 0;
 

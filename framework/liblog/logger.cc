@@ -913,6 +913,11 @@ void Logger::SetNormalLogSwitch(int8 on_off)
 	normal_log_switch_ = on_off;
 }
 
+void Logger::SetShowMillisecondSwitch(int8 on_off)
+{
+	show_millisecond_switch_ = on_off;
+}
+
 void Logger::SetNormalLogName(const char* name)
 {
 	strncpy(normal_log_name_,
@@ -921,7 +926,9 @@ void Logger::SetNormalLogName(const char* name)
 
 void Logger::WriteContent(FILE* file_ptr, const char* fromat, va_list& args, char* append_string)
 {
+	if (show_millisecond_switch_) {
 
+	}
 }
 
 void Logger::WriteNormalLog(const char* format, va_list& args, char* append_string)
