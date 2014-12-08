@@ -927,7 +927,7 @@ void Logger::SetNormalLogName(const char* name)
 
 void Logger::WriteContent(FILE* file_ptr, const char* format, va_list& args, char* append_string)
 {
-	if (show_millisecond_switch_) {
+	if (show_millisecond_switch_) { // show millisecond.
 		fprintf(file_ptr, "[%.4u-%.2u-%.2u_%.2u:%.2u:%.2u:%.3u] ",
 			cur_time_.year,
 			cur_time_.month,
@@ -936,7 +936,7 @@ void Logger::WriteContent(FILE* file_ptr, const char* format, va_list& args, cha
 			cur_time_.minute,
 			cur_time_.second,
 			cur_time_.millisecond);
-	} else {
+	} else {                        // do not show millisecond.
 		fprintf(file_ptr, "[%.4u-%.2u-%.2u_%.2u:%.2u:%.2u] ",
 			cur_time_.year,
 			cur_time_.month,
