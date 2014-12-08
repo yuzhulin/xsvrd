@@ -874,6 +874,7 @@ void CLogFile::SetBakLogPath(const char *pBakLogPath)
 Logger::Logger()
 	: warn_log_switch_(0), error_log_switch_(0), normal_log_switch_(0)
 {
+	memset(&cur_time_, 0, sizeof(cur_time_));
 	memset(warn_log_name_, 0, sizeof(warn_log_name_));
 	memset(default_output_path_, 0, sizeof(default_output_path_));
 }
@@ -924,11 +925,30 @@ void Logger::SetNormalLogName(const char* name)
 		name, sizeof(normal_log_name_) - 1);
 }
 
-void Logger::WriteContent(FILE* file_ptr, const char* fromat, va_list& args, char* append_string)
+void Logger::WriteContent(FILE* file_ptr, const char* format, va_list& args, char* append_string)
 {
 	if (show_millisecond_switch_) {
-
+		fprintf(file_ptr, "[%.4u-%.2u-%.2u_%.2u:%.2u:%.2u:%.3u] ",
+			cur_time_.year,
+			cur_time_.month,
+			cur_time_.day,
+			cur_time_.hour,
+			cur_time_.minute,
+			cur_time_.second,
+			cur_time_.millisecond);
+	} else {
+		fprintf(file_ptr, "[%.4u-%.2u-%.2u_%.2u:%.2u:%.2u] ",
+			cur_time_.year,
+			cur_time_.month,
+			cur_time_.day,
+			cur_time_.hour,
+			cur_time_.minute,
+			cur_time_.second);
 	}
+	if (append_string) {
+		fprintf(file_ptr, "%s ", append_string);
+	}
+	vfprintf(file_ptr, format, args);
 }
 
 void Logger::WriteNormalLog(const char* format, va_list& args, char* append_string)

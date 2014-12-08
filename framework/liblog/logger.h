@@ -146,8 +146,9 @@ private:
 	int8 warn_log_switch_;                // 1:on 0:off
 	int8 error_log_switch_;               // 1:on 0:off
 	int8 normal_log_switch_;              // 1:on 0:off
-	
 	int8 show_millisecond_switch_;        // 1:on 0:off
+
+	LogTime cur_time_;
 
 	char warn_log_name_[MAX_NAME];
 	char error_log_name_[MAX_NAME];
