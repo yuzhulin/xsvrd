@@ -883,6 +883,15 @@ Logger::~Logger()
 
 }
 
+void Logger::Lock()
+{
+}
+
+void Logger::Unlock()
+{
+
+}
+
 void Logger::SetLogPath(const char* path)
 {
 	strncpy(default_output_path_,
@@ -945,6 +954,14 @@ void Logger::WriteToLogFile(const char* file_name,
 	sprintf(log_file, "%s/%s", default_output_path_, file_name);
 
 	//BakLogFile(pFileName);
+
+	FILE* file_ptr = fopen("../log/test.log", "a+");
+	if (!file_ptr) {
+
+	}
+
+	fclose(file_ptr);
+
 
 	/*FILE *pFile = fopen(log_file, "a+");
 	if (NULL == pFile)

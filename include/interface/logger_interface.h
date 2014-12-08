@@ -24,6 +24,10 @@ public:
 
 	virtual void SetLogPath(const char* log_file_path) = 0;
 
+	virtual void Lock() = 0;
+
+	virtual void Unlock() = 0;
+
 	virtual	void WriteWarnLog(const char* content, ...) = 0;
 
 	virtual void WriteNormalLog(const char* content, va_list& args, char* append_string) = 0;

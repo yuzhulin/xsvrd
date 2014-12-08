@@ -127,6 +127,10 @@ public:
 
 	virtual void SetLogPath(const char* path);
 
+	virtual void Lock();
+
+	virtual void Unlock();
+
 	virtual	void WriteWarnLog(const char* format, ...);
 
 	virtual void WriteNormalLog(const char* format, va_list& args, char* append_string);
