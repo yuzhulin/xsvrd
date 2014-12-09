@@ -1,9 +1,6 @@
 #include "win_linux.h"
 #include "logger.h"
 
-#include <iostream>
-
-
 #ifdef _WIN32
 #include "base.h"
 #else
