@@ -29,7 +29,6 @@ public:
 	virtual	void WarnLog(const char* msg, ...);     /*记录错误日志*/
 	virtual	void ErrLog(const char* msg, ...);   /*记录致命日志*/
 	virtual void BinLog(const char* pszFileName, char *pBuffer,  unsigned int iLength);
-	virtual	void InfoLog(const char* msg, ...); /*指定文件名打印日志*/
 	virtual void DbgBinLog(char *pBuffer,  unsigned int iLength);        /*记录binlog到普通日志*/
 	virtual	void LogToFile(const char* pszLogFile, const char* msg, ...);
 	virtual	void LogToFileByDay(const char* pszLogFile, const char* msg, ...);

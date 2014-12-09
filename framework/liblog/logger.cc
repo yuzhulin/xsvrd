@@ -681,24 +681,6 @@ void CLogFile::DbgBinLog(char *pBuffer, unsigned int iLength)
 }
 
 
-void CLogFile::InfoLog(const char* msg, ...)
-{
-	if(0 == m_iInfoLogFlag) /*如果InfoLog标志没有打开，则返回*/
-	{
-		return;
-	}
-	if( 0 == m_szInfoLogName[0] )
-	{
-		return;
-	}
-	SetCurrentTime();
-
-	va_list args;
-	va_start(args, msg);
-	WriteToLogFile(m_szInfoLogName, msg, args);
-	va_end (args);
-}
-
 void CLogFile::LogToFile(const char* pszLogFile, const char* msg, ...)
 {
 	if( msg == NULL || pszLogFile == NULL )
