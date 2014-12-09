@@ -31,16 +31,10 @@ int32 InitLoggerInterface()
 	if (!g_loggerinterface) {
 		return -1;
 	}
-	char outputlogpath[MAX_PATH];
-	strncpy(outputlogpath, "../log", sizeof(outputlogpath) - 1);
-	g_loggerinterface->SetLogPath(outputlogpath);
-	
 	SET_INTERFACE_INSTANCE_PTR(g_loggerinterface);
-
 	WRITE_INFO_LOG("this is a test.\n");
 	WRITE_DEBUG_LOG("this is a debug.\n");
 	WRITE_LOG_TO_FILE("../sss.log", "%d", 23123);
-
 	return 0;
 }
 

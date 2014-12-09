@@ -93,6 +93,7 @@ private:
 #define DEFAULT_WARN_LOG_FILE_NAME		"warn.log"
 #define DEFAULT_DEBUG_LOG_FILE_NAME		"debug.log"
 #define DEFAULT_ERROR_LOG_FILE_NAME		"error.log"
+#define DEFAULT_LOG_PATH				"../log"
 
 class Logger : public LoggerInterface {
 public:

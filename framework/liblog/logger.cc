@@ -792,6 +792,10 @@ void Logger::Init()
 		DEFAULT_ERROR_LOG_FILE_NAME, sizeof(error_log_name_) - 1);
 	strncpy(debug_log_name_,
 		DEFAULT_DEBUG_LOG_FILE_NAME, sizeof(debug_log_name_) - 1);
+
+	// set default log path.
+	strncpy(default_output_path_,
+		DEFAULT_LOG_PATH, sizeof(default_output_path_) - 1);
 }
 
 void Logger::Lock()
