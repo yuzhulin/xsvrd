@@ -5,6 +5,7 @@
 ///////////////////////////////////////////////////////////
 #include <stdint.h>
 #include <iostream>
+#include <sys/stat.h> // for struct stat
 
 #if defined(_WIN32)
 #include <windows.h>
