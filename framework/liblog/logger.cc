@@ -809,8 +809,14 @@ void Logger::Unlock()
 
 void Logger::SetLogPath(const char* path)
 {
-	strncpy(default_output_path_,
-		path, sizeof(default_output_path_) - 1);
+	if (path) {
+		strncpy(default_output_path_,
+			path, sizeof(default_output_path_) - 1);
+	} else {
+		strncpy(default_output_path_,
+			DEFAULT_LOG_PATH,
+				sizeof(default_output_path_) - 1);
+	}
 }
 
 void Logger::SetInfoLogSwitch(int8 on_off)
@@ -852,20 +858,38 @@ void Logger::SetInfoLogName(const char* name)
 
 void Logger::SetWarnLogName(const char* name)
 {
-	strncpy(warn_log_name_,
-		name, sizeof(warn_log_name_) - 1);
+	if (name) {
+		strncpy(warn_log_name_,
+			name, sizeof(warn_log_name_) - 1);
+	} else {
+		strncpy(warn_log_name_,
+			DEFAULT_WARN_LOG_FILE_NAME,
+				sizeof(warn_log_name_) - 1);
+	}
 }
 
 void Logger::SetErrorLogName(const char* name)
 {
-	strncpy(error_log_name_,
-		name, sizeof(error_log_name_) - 1);
+	if (name) {
+		strncpy(error_log_name_,
+			name, sizeof(error_log_name_) - 1);
+	} else {
+		strncpy(error_log_name_,
+			DEFAULT_ERROR_LOG_FILE_NAME,
+				sizeof(error_log_name_) - 1);
+	}
 }
 
 void Logger::SetDebugLogName(const char* name)
 {
-	strncpy(debug_log_name_,
-		name, sizeof(debug_log_name_) - 1);
+	if (name) {
+		strncpy(debug_log_name_,
+			name, sizeof(debug_log_name_) - 1);
+	} else {
+		strncpy(debug_log_name_,
+			DEFAULT_DEBUG_LOG_FILE_NAME,
+				sizeof(debug_log_name_) - 1);
+	}
 }
 
 void Logger::SetCurTime()
