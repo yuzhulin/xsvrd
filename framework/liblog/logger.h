@@ -1,16 +1,7 @@
 #ifndef __LOGGER_H__
 #define __LOGGER_H__
 
-#include <string.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <time.h>
-#include <stdarg.h>
-
 #include "../../include/interface/ilogger.h"
-
 #include "logger_interface.h"
 
 LOGFILE_NAMESPACE_BEGIN

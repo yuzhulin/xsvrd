@@ -1007,14 +1007,6 @@ void Logger::WriteContent(FILE* file_ptr, const char* format, va_list& args, cha
 	vfprintf(file_ptr, format, args);
 }
 
-void Logger::WriteNormalLog(const char* format, va_list& args, char* append_string)
-{
-	if (!normal_log_switch_) {
-		return;
-	}
-	WriteToLogFile(normal_log_name_, format, args, append_string);
-}
-
 void Logger::WriteInfoLog(const char* format, ...)
 {
 	if (!info_log_switch_) {
@@ -1061,6 +1053,14 @@ void Logger::WriteErrorLog(const char* format, ...)
 	va_start(variable_argument_list, format);
 	WriteToLogFile(error_log_name_, format, variable_argument_list);
 	va_end(variable_argument_list);
+}
+
+void Logger::WriteNormalLog(const char* format, va_list& args, char* append_string)
+{
+	if (!normal_log_switch_) {
+		return;
+	}
+	WriteToLogFile(normal_log_name_, format, args, append_string);
 }
 
 void Logger::WriteToLogFile(const char* file_name,
