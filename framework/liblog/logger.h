@@ -99,8 +99,6 @@ public:
 
 	virtual void SetErrorLogSwitch(int8 on_off);
 
-	virtual void SetNormalLogSwitch(int8 on_off);
-
 	virtual void SetShowMillisecondSwitch(int8 on_off);
 
 	virtual void SetInfoLogName(const char* name);
@@ -137,7 +135,6 @@ private:
 	int8 info_log_switch_;				  // if print info log(1:on 0:off)
 	int8 warn_log_switch_;                // 1:on 0:off
 	int8 error_log_switch_;               // 1:on 0:off
-	int8 normal_log_switch_;              // 1:on 0:off
 	int8 show_millisecond_switch_;        // 1:on 0:off
 
 	LogTime cur_time_;

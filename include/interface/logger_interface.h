@@ -42,8 +42,6 @@ public:
 
 	virtual void SetErrorLogSwitch(int8 on_off) = 0;
 
-	virtual void SetNormalLogSwitch(int8 on_off) = 0;
-
 	virtual void SetShowMillisecondSwitch(int8 on_off) = 0;
 
 	virtual void SetInfoLogName(const char* name) = 0;

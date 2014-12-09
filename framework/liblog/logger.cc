@@ -764,8 +764,7 @@ void CLogFile::SetBakLogPath(const char *pBakLogPath)
 Logger::Logger()
 	: info_log_switch_(0), 
 	warn_log_switch_(0),
-	error_log_switch_(0),
-	normal_log_switch_(0)
+	error_log_switch_(0)
 {
 	memset(&cur_time_, 0, sizeof(cur_time_));
 	memset(info_log_name_, 0, sizeof(info_log_name_));
@@ -808,11 +807,6 @@ void Logger::SetWarnLogSwitch(int8 on_off)
 void Logger::SetErrorLogSwitch(int8 on_off)
 {
 	error_log_switch_ = on_off;
-}
-
-void Logger::SetNormalLogSwitch(int8 on_off)
-{
-	normal_log_switch_ = on_off;
 }
 
 void Logger::SetShowMillisecondSwitch(int8 on_off)
@@ -948,9 +942,6 @@ void Logger::WriteErrorLog(const char* format, ...)
 
 void Logger::WriteNormalLog(const char* format, va_list& args, char* append_string)
 {
-	if (!normal_log_switch_) {
-		return;
-	}
 	WriteToLogFile(normal_log_name_, format, args, append_string);
 }
 
