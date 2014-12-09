@@ -39,7 +39,7 @@ int32 InitLoggerInterface()
 	g_loggerinterface->SetWarnLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetErrorLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetShowMillisecondSwitch(SWITCH_ON);
-	g_loggerinterface->SetInfoLogName("info.log");
+	// g_loggerinterface->SetInfoLogName("info.log");
 	g_loggerinterface->SetWarnLogName("warn.log");
 	g_loggerinterface->SetDebugLogName("debug.log");
 	g_loggerinterface->SetErrorLogName("error.log");

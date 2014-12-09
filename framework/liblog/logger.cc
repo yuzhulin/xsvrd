@@ -822,8 +822,14 @@ void Logger::SetShowMillisecondSwitch(int8 on_off)
 
 void Logger::SetInfoLogName(const char* name)
 {
-	strncpy(info_log_name_,
-		name, sizeof(info_log_name_) - 1);
+	if (name) {
+		strncpy(info_log_name_,
+			name, sizeof(info_log_name_) - 1);
+	} else {
+		strncpy(info_log_name_,
+			DEFAULT_INFO_LOG_FILE_NAME,
+				sizeof(info_log_name_) - 1);
+	}
 }
 
 void Logger::SetWarnLogName(const char* name)

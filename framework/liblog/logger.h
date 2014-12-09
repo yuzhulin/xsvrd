@@ -88,6 +88,12 @@ private:
 
 // add by: xushvai@gmail.com
 ////////////////////////////////////////////////////////////////////////////////
+
+#define DEFAULT_INFO_LOG_FILE_NAME		"info.log"
+#define DEFAULT_WARN_LOG_FILE_NAME		"warn.log"
+#define DEFAULT_DEBUG_LOG_FILE_NAME		"debug.log"
+#define DEFAULT_ERROR_LOG_FILE_NAME		"error.log"
+
 class Logger : public LoggerInterface {
 public:
 	Logger();
