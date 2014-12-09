@@ -99,6 +99,8 @@ public:
 	Logger();
 	virtual~Logger();
 
+	virtual void Init();
+
 	virtual void SetInfoLogSwitch(int8 on_off);
 
 	virtual void SetWarnLogSwitch(int8 on_off);

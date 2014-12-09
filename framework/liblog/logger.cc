@@ -762,10 +762,10 @@ void CLogFile::SetBakLogPath(const char *pBakLogPath)
 // add by: xushvai@gmail.com
 ////////////////////////////////////////////////////////////////////////////////
 Logger::Logger()
-	: info_log_switch_(0), 
-	warn_log_switch_(0),
-	error_log_switch_(0),
-	debug_log_switch_(0)
+	: info_log_switch_(SWITCH_ON), 
+	warn_log_switch_(SWITCH_ON),
+	error_log_switch_(SWITCH_ON),
+	debug_log_switch_(SWITCH_ON)
 {
 	memset(&cur_time_, 0, sizeof(cur_time_));
 	memset(info_log_name_, 0, sizeof(info_log_name_));
@@ -773,11 +773,25 @@ Logger::Logger()
 	memset(debug_log_name_, 0, sizeof(debug_log_name_));
 	memset(error_log_name_, 0, sizeof(error_log_name_));
 	memset(default_output_path_, 0, sizeof(default_output_path_));
+	Init();
 }
 
 Logger::~Logger()
 {
 
+}
+
+void Logger::Init()
+{
+	// set default log file name.
+	strncpy(info_log_name_,
+		DEFAULT_INFO_LOG_FILE_NAME, sizeof(info_log_name_) - 1);
+	strncpy(warn_log_name_,
+		DEFAULT_WARN_LOG_FILE_NAME, sizeof(warn_log_name_) - 1);
+	strncpy(error_log_name_,
+		DEFAULT_ERROR_LOG_FILE_NAME, sizeof(error_log_name_) - 1);
+	strncpy(debug_log_name_,
+		DEFAULT_DEBUG_LOG_FILE_NAME, sizeof(debug_log_name_) - 1);
 }
 
 void Logger::Lock()

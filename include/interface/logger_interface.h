@@ -44,6 +44,8 @@ public:
 	LoggerInterface(){};
 	virtual~LoggerInterface(){};
 
+	virtual void Init() = 0;
+
 	virtual void SetInfoLogSwitch(int8 on_off) = 0;
 
 	virtual void SetWarnLogSwitch(int8 on_off) = 0;
