@@ -16,17 +16,7 @@
 
 LOGFILE_NAMESPACE_BEGIN
 
-#ifdef WIN32
-#define TRUE 1
-#define FALSE 0
-#else
-#define TRUE 1
-#define FALSE 0
-#endif
-
-
 #define MAX_BIN_LEN             (32 * 1024)
-
 
 class CLogFile : public ILogFile
 {
