@@ -770,6 +770,7 @@ Logger::Logger()
 	memset(&cur_time_, 0, sizeof(cur_time_));
 	memset(info_log_name_, 0, sizeof(info_log_name_));
 	memset(warn_log_name_, 0, sizeof(warn_log_name_));
+	memset(debug_log_name_, 0, sizeof(debug_log_name_));
 	memset(error_log_name_, 0, sizeof(error_log_name_));
 	memset(default_output_path_, 0, sizeof(default_output_path_));
 }
@@ -835,6 +836,12 @@ void Logger::SetErrorLogName(const char* name)
 {
 	strncpy(error_log_name_,
 		name, sizeof(error_log_name_) - 1);
+}
+
+void Logger::SetDebugLogName(const char* name)
+{
+	strncpy(debug_log_name_,
+		name, sizeof(debug_log_name_) - 1);
 }
 
 void Logger::SetCurTime()

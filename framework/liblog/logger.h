@@ -109,6 +109,8 @@ public:
 
 	virtual void SetErrorLogName(const char* name);
 
+	virtual void SetDebugLogName(const char* name);
+
 	virtual void SetLogPath(const char* path);
 
 	virtual void Lock();
@@ -143,6 +145,7 @@ private:
 	char info_log_name_[MAX_NAME];
 	char warn_log_name_[MAX_NAME];
 	char error_log_name_[MAX_NAME];
+	char debug_log_name_[MAX_NAME];
 	char normal_log_name_[MAX_NAME];
 	char default_output_path_[MAX_PATH];  // logs will be saved in the 'log' directory under this path.
 };
