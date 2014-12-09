@@ -764,7 +764,8 @@ void CLogFile::SetBakLogPath(const char *pBakLogPath)
 Logger::Logger()
 	: info_log_switch_(0), 
 	warn_log_switch_(0),
-	error_log_switch_(0)
+	error_log_switch_(0),
+	debug_log_switch_(0)
 {
 	memset(&cur_time_, 0, sizeof(cur_time_));
 	memset(info_log_name_, 0, sizeof(info_log_name_));
@@ -807,6 +808,11 @@ void Logger::SetWarnLogSwitch(int8 on_off)
 void Logger::SetErrorLogSwitch(int8 on_off)
 {
 	error_log_switch_ = on_off;
+}
+
+void Logger::SetDebugLogSwitch(int8 on_off)
+{
+	debug_log_switch_ = on_off;
 }
 
 void Logger::SetShowMillisecondSwitch(int8 on_off)
@@ -899,12 +905,26 @@ void Logger::WriteInfoLog(const char* format, ...)
 	}
 	SetCurTime();
 	va_list variable_argument_list;
+
 	va_start(variable_argument_list, format);
-	WriteNormalLog(format, variable_argument_list, (char*)"#info#");
+	WriteToLogFile(debug_log_name_,
+		format, variable_argument_list, (char*)"#info#");
 	va_end(variable_argument_list);
 
 	va_start(variable_argument_list, format);
 	WriteToLogFile(info_log_name_, format, variable_argument_list);
+	va_end(variable_argument_list);
+}
+
+void Logger::WriteDebugLog(const char* format, ...)
+{
+	if (!debug_log_switch_) {
+		return;
+	}
+	SetCurTime();
+	va_list variable_argument_list;
+	va_start(variable_argument_list, format);
+	WriteToLogFile(debug_log_name_, format, variable_argument_list);
 	va_end(variable_argument_list);
 }
 
@@ -915,8 +935,10 @@ void Logger::WriteWarnLog(const char* format, ...)
 	}
 	SetCurTime();
 	va_list variable_argument_list;
+
 	va_start(variable_argument_list, format);
-	WriteNormalLog(format, variable_argument_list, (char*)"#warn#");
+	WriteToLogFile(debug_log_name_,
+		format, variable_argument_list, (char*)"#warn#");
 	va_end(variable_argument_list);
 
 	va_start(variable_argument_list, format);
@@ -932,17 +954,13 @@ void Logger::WriteErrorLog(const char* format, ...)
 	SetCurTime();
 	va_list variable_argument_list;
 	va_start(variable_argument_list, format);
-	WriteNormalLog(format, variable_argument_list, (char*)"#error#");
+	WriteToLogFile(debug_log_name_,
+		format, variable_argument_list, (char*)"#error#");
 	va_end(variable_argument_list);
 
 	va_start(variable_argument_list, format);
 	WriteToLogFile(error_log_name_, format, variable_argument_list);
 	va_end(variable_argument_list);
-}
-
-void Logger::WriteNormalLog(const char* format, va_list& args, char* append_string)
-{
-	WriteToLogFile(normal_log_name_, format, args, append_string);
 }
 
 void Logger::WriteToLogFile(const char* file_name,

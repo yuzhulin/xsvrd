@@ -99,6 +99,8 @@ public:
 
 	virtual void SetErrorLogSwitch(int8 on_off);
 
+	virtual void SetDebugLogSwitch(int8 on_off);
+
 	virtual void SetShowMillisecondSwitch(int8 on_off);
 
 	virtual void SetInfoLogName(const char* name);
@@ -119,11 +121,11 @@ public:
 
 	virtual void WriteInfoLog(const char* format, ...);
 
+	virtual void WriteDebugLog(const char* format, ...);
+
 	virtual	void WriteWarnLog(const char* format, ...);
 
 	virtual void WriteErrorLog(const char* format, ...);
-
-	virtual void WriteNormalLog(const char* format, va_list& args, char* append_string);
 
 	virtual void WriteToLogFile(const char* file_name, const char* format,
 		va_list& variable_argument_list, char* append_string = NULL);
@@ -135,6 +137,7 @@ private:
 	int8 info_log_switch_;				  // if print info log(1:on 0:off)
 	int8 warn_log_switch_;                // 1:on 0:off
 	int8 error_log_switch_;               // 1:on 0:off
+	int8 debug_log_switch_;               // 1:on 0:off
 	int8 show_millisecond_switch_;        // 1:on 0:off
 
 	LogTime cur_time_;

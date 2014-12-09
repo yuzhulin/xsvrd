@@ -8,18 +8,6 @@
 
 #include "os_refactor.h"
 
-#define SET_INTERFACE_INSTANCE_PTR(INSTANCE_PTR) \
-	do {g_interface_instance_ptr = (INSTANCE_PTR);} while (0)
-
-#define WRITE_INFO_LOG(...) \
-	do {g_interface_instance_ptr->WriteInfoLog(__VA_ARGS__);} while(0)
-
-#define WRITE_WARN_LOG(...) \
-	do {g_interface_instance_ptr->WriteWarnLog(__VA_ARGS__);} while(0)
-
-#define WRITE_ERROR_LOG(...) \
-	do {g_interface_instance_ptr->WriteErrorLog(__VA_ARGS__);} while(0)
-
 struct LogTime {
 	uint32 year;           // 0000-9999
 	uint32 month;          // 00-12
@@ -29,6 +17,23 @@ struct LogTime {
 	uint32 second;         // 00-59
 	uint32 millisecond;    // 000-999
 };
+
+// wrap the logger interface.
+/////////////////////////////////////////////////////////////////////////
+#define SET_INTERFACE_INSTANCE_PTR(INSTANCE_PTR) \
+	do {g_interface_instance_ptr = (INSTANCE_PTR);} while (0)
+
+#define WRITE_DEBUG_LOG(...) \
+	do {g_interface_instance_ptr->WriteDebugLog(__VA_ARGS__);} while(0)
+
+#define WRITE_INFO_LOG(...) \
+	do {g_interface_instance_ptr->WriteInfoLog(__VA_ARGS__);} while(0)
+
+#define WRITE_WARN_LOG(...) \
+	do {g_interface_instance_ptr->WriteWarnLog(__VA_ARGS__);} while(0)
+
+#define WRITE_ERROR_LOG(...) \
+	do {g_interface_instance_ptr->WriteErrorLog(__VA_ARGS__);} while(0)
 
 // Log contains 4 types: normal, warn, error, info
 class LoggerInterface {
@@ -41,6 +46,8 @@ public:
 	virtual void SetWarnLogSwitch(int8 on_off) = 0;
 
 	virtual void SetErrorLogSwitch(int8 on_off) = 0;
+
+	virtual void SetDebugLogSwitch(int8 on_off) = 0;
 
 	virtual void SetShowMillisecondSwitch(int8 on_off) = 0;
 
@@ -62,6 +69,8 @@ public:
 
 	virtual void WriteInfoLog(const char* format, ...) = 0;
 
+	virtual void WriteDebugLog(const char* format, ...) = 0;
+
 	virtual	void WriteWarnLog(const char* format, ...) = 0;
 
 	// Write log to error log file, the error means 
@@ -75,8 +84,6 @@ public:
 	// Return
 	//   void - nothing.
 	virtual void WriteErrorLog(const char* format, ...) = 0;
-
-	virtual void WriteNormalLog(const char* content, va_list& args, char* append_string) = 0;
 
 	virtual void WriteToLogFile(const char* file_name, const char* content,
 		va_list& variable_argument_list, char* append_string = NULL) = 0;

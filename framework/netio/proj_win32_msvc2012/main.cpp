@@ -39,14 +39,15 @@ int32 InitLoggerInterface()
 	g_loggerinterface->SetErrorLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetShowMillisecondSwitch(SWITCH_ON);
 	g_loggerinterface->SetInfoLogName("info.log");
-	g_loggerinterface->SetDebugLogName("debug.log");
 	g_loggerinterface->SetWarnLogName("warn.log");
+	g_loggerinterface->SetDebugLogName("debug.log");
 	g_loggerinterface->SetErrorLogName("error.log");
 
 
 	SET_INTERFACE_INSTANCE_PTR(g_loggerinterface);
 
 	WRITE_INFO_LOG("this is a test.\n");
+	WRITE_DEBUG_LOG("this is a debug.\n");
 
 	return 0;
 }
