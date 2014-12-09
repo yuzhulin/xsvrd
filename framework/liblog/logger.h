@@ -109,8 +109,6 @@ public:
 
 	virtual void SetErrorLogName(const char* name);
 
-	virtual void SetNormalLogName(const char* name);
-
 	virtual void SetLogPath(const char* path);
 
 	virtual void Lock();

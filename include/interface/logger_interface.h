@@ -52,8 +52,6 @@ public:
 
 	virtual void SetErrorLogName(const char* name) = 0;
 
-	virtual void SetNormalLogName(const char* name) = 0;
-
 	virtual void SetLogPath(const char* log_file_path) = 0;
 
 	virtual void Lock() = 0;

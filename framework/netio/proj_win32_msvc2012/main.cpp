@@ -42,7 +42,6 @@ int32 InitLoggerInterface()
 	g_loggerinterface->SetInfoLogName("info.log");
 	g_loggerinterface->SetWarnLogName("warn.log");
 	g_loggerinterface->SetErrorLogName("error.log");
-	g_loggerinterface->SetNormalLogName("normal.log");
 
 
 	SET_INTERFACE_INSTANCE_PTR(g_loggerinterface);

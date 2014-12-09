@@ -837,12 +837,6 @@ void Logger::SetErrorLogName(const char* name)
 		name, sizeof(error_log_name_) - 1);
 }
 
-void Logger::SetNormalLogName(const char* name)
-{
-	strncpy(normal_log_name_,
-		name, sizeof(normal_log_name_) - 1);
-}
-
 void Logger::SetCurTime()
 {
 	struct tm* tm_ptr = NULL;
