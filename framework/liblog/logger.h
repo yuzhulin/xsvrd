@@ -134,7 +134,7 @@ private:
 	void SetCurTime();
 
 private:
-	int8 info_log_switch_;				  // 1:on 0:off
+	int8 info_log_switch_;				  // if print info log(1:on 0:off)
 	int8 warn_log_switch_;                // 1:on 0:off
 	int8 error_log_switch_;               // 1:on 0:off
 	int8 normal_log_switch_;              // 1:on 0:off
