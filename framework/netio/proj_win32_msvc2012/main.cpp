@@ -39,16 +39,15 @@ int32 InitLoggerInterface()
 	g_loggerinterface->SetWarnLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetErrorLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetShowMillisecondSwitch(SWITCH_ON);
-	
 	g_loggerinterface->SetInfoLogName("info.log");
 	g_loggerinterface->SetWarnLogName("warn.log");
 	g_loggerinterface->SetErrorLogName("error.log");
 	g_loggerinterface->SetNormalLogName("normal.log");
 
-	g_loggerinterface->WriteInfoLog("%s\n", "info");
-	g_loggerinterface->WriteWarnLog("%s\n", "warn");
-	g_loggerinterface->WriteErrorLog("%s\n", "error");
 
+	SET_INTERFACE_INSTANCE_PTR(g_loggerinterface);
+
+	WRITE_INFO_LOG("this is a test.\n");
 
 	return 0;
 }

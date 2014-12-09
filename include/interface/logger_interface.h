@@ -8,6 +8,12 @@
 
 #include "os_refactor.h"
 
+#define SET_INTERFACE_INSTANCE_PTR(INSTANCE_PTR) \
+	do {g_interface_instance_ptr = (INSTANCE_PTR);} while (0)
+
+#define WRITE_INFO_LOG(...) \
+	do {g_interface_instance_ptr->WriteInfoLog(__VA_ARGS__);} while(0)
+
 struct LogTime {
 	uint32 year;           // 0000-9999
 	uint32 month;          // 00-12
@@ -52,7 +58,7 @@ public:
 
 	virtual void WriteInfoLog(const char* format, ...) = 0;
 
-	virtual	void WriteWarnLog(const char* content, ...) = 0;
+	virtual	void WriteWarnLog(const char* format, ...) = 0;
 
 	// Write log to error log file, the error means 
 	// fatal problems or serious bugs.
@@ -71,5 +77,7 @@ public:
 	virtual void WriteToLogFile(const char* file_name, const char* content,
 		va_list& variable_argument_list, char* append_string = NULL) = 0;
 };
+
+LoggerInterface* g_interface_instance_ptr = NULL;
 
 #endif
