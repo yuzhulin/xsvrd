@@ -4,13 +4,6 @@
 #include <iostream>
 
 
-
-#ifndef  _WIN32
-#ifndef MAX_PATH
-#define MAX_PATH 260
-#endif
-#endif
-
 #ifdef _WIN32
 #include "base.h"
 #else
