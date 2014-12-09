@@ -54,6 +54,16 @@ public:
 
 	virtual	void WriteWarnLog(const char* content, ...) = 0;
 
+	// Write log to error log file, the error means 
+	// fatal problems or serious bugs.
+	// If the error occur, the program must be closed so
+	// as not to cause a greater impact.
+	//
+	// Parameters
+	//   format - format string.
+	//   ...    - arguments list.
+	// Return
+	//   void - nothing.
 	virtual void WriteErrorLog(const char* format, ...) = 0;
 
 	virtual void WriteNormalLog(const char* content, va_list& args, char* append_string) = 0;

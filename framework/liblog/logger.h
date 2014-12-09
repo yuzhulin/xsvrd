@@ -25,9 +25,7 @@ public:
 	virtual void SetShowTimeFormat(int ishowms);
 
 	virtual void WriteLogFile(int nPriority, const char* msg, ...);
-	virtual	void DbgLog(const char* msg, ...);        /*记录普通日志*/
-	virtual	void WarnLog(const char* msg, ...);     /*记录错误日志*/
-	virtual	void ErrLog(const char* msg, ...);   /*记录致命日志*/
+
 	virtual void BinLog(const char* pszFileName, char *pBuffer,  unsigned int iLength);
 	virtual void DbgBinLog(char *pBuffer,  unsigned int iLength);        /*记录binlog到普通日志*/
 	virtual	void LogToFile(const char* pszLogFile, const char* msg, ...);
@@ -48,7 +46,6 @@ public:
 private:
 	void  Lock();
 	void  Unlock();
-	void  SetCurrentTime();
 	void  WriteNormalLog(const char* msg, va_list& args, char* pStrAdd = NULL);
 	void  WriteToLogFile(const char* szFileName, const char* msg, va_list& args, char* pStrAdd = NULL);
 	void  WriteLog(FILE* pFile, const char *msg, va_list& args, char* pAddStr = NULL);

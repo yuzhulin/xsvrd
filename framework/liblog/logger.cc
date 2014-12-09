@@ -255,39 +255,6 @@ void CLogFile::Unlock()
 	}
 }
 
-void CLogFile::SetCurrentTime()
-{
-	struct tm *tmpTime = NULL;
-
-	if( m_iShowMs )
-	{
-		struct timeval tmNow;
-#ifndef WIN32
-		gettimeofday(&tmNow, NULL);
-#else
-		SYSTEMTIME sysTime;
-		GetLocalTime(&sysTime);
-		tmNow.tv_sec  = (long)time(NULL);
-		tmNow.tv_usec = sysTime.wMilliseconds*1000;
-#endif
-		time_t tNow = tmNow.tv_sec;
-		m_curTime.ulMSecond = tmNow.tv_usec/1000;
-		tmpTime = localtime(&tNow);
-	}
-	else
-	{
-		time_t tNow = time(NULL);
-		tmpTime = localtime(&tNow);
-	}
-
-	m_curTime.ulYear   = tmpTime->tm_year + 1900;
-	m_curTime.ulMonth  = tmpTime->tm_mon  + 1;
-	m_curTime.ulDay    = tmpTime->tm_mday;
-	m_curTime.ulHour   = tmpTime->tm_hour;
-	m_curTime.ulMinute = tmpTime->tm_min;
-	m_curTime.ulSecond = tmpTime->tm_sec;
-}
-
 void CLogFile::BackupFile(const char* pSrcFile, const char* pDstFile)
 {
 	if( access(pSrcFile, 0) != -1 )
@@ -471,7 +438,7 @@ void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
 	default:
 		return;
 	}
-	SetCurrentTime();
+	//SetCurrentTime();
 
 	//write之前先考虑备份，备份机制统一考虑。
 	Lock();
@@ -509,60 +476,13 @@ void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
 
 }
 
-void CLogFile::DbgLog(const char* msg, ...)
-{
-	if(0 == m_iDbgLogFlag) /*如果无需记录则返回*/
-	{
-		return;
-	}
-
-	SetCurrentTime();
-	va_list   args;
-	va_start(args, msg);
-	WriteNormalLog(msg, args);
-	va_end (args);
-}
-
-void CLogFile::WarnLog(const char* msg, ...)
-{
-	if(0 == m_iWarnLogFlag) /*如果WarnLog标志没有打开，则返回*/
-	{
-		return;
-	}
-	SetCurrentTime();
-
-	va_list   args;
-
-	va_start(args, msg);
-	WriteNormalLog(msg, args, (char*)"#warn#");
-	va_end(args);
-
-	va_start(args, msg);
-	WriteToLogFile(m_szWarnLogName, msg, args);
-	va_end(args);
-}
-
-void CLogFile::ErrLog(const char* msg, ...)
-{
-	SetCurrentTime();
-	va_list args;
-
-	va_start(args, msg);
-	WriteNormalLog(msg, args, (char*)"#error#");
-	va_end(args);
-
-	va_start(args, msg);
-	WriteToLogFile(m_szErrLogName, msg, args);
-	va_end(args);
-}
-
 void CLogFile::BinLog(const char* pszFileName, char *pBuffer, unsigned int iLength) 
 {
 	if(0 == m_iBinLogFlag) /*如果BinLog标志没有打开，则返回*/
 	{
 		return;
 	}
-	SetCurrentTime();
+	//SetCurrentTime();
 
 	if( pszFileName == NULL  || pBuffer == NULL )
 	{
@@ -626,7 +546,7 @@ void CLogFile::DbgBinLog(char *pBuffer, unsigned int iLength)
 	{
 		return;
 	}
-	SetCurrentTime();
+	//SetCurrentTime();
 
 	if( pBuffer == NULL )
 	{
@@ -688,7 +608,7 @@ void CLogFile::LogToFile(const char* pszLogFile, const char* msg, ...)
 		return;
 	}
 
-	SetCurrentTime();
+	//SetCurrentTime();
 	va_list args;
 	va_start(args, msg);
 	WriteToLogFile(pszLogFile, msg, args);
@@ -702,7 +622,7 @@ void CLogFile::LogToFileByDay(const char* pszLogFile, const char* msg, ...)
 		return;
 	}
 
-	SetCurrentTime();
+	//SetCurrentTime();
 	int nRet = snprintf(
 		m_szLogToFileName, sizeof(m_szLogToFileName) - 1, "%04u-%02u-%02u/%s",
 		m_curTime.ulYear, m_curTime.ulMonth, m_curTime.ulDay, pszLogFile
@@ -738,7 +658,7 @@ void CLogFile::TraceLog(unsigned int pszName, const char* msg, ...)
 		return;
 	}
 
-	SetCurrentTime();
+//	SetCurrentTime();
 	va_list args;
 	va_start(args, msg);
 	char szLogFile[MAX_PATH];
@@ -755,7 +675,7 @@ void CLogFile::ThreadLog(int nThreadIndex, int nLogPriorty, const char* msg, ...
 	{
 		return;
 	}
-	SetCurrentTime();
+	//SetCurrentTime();
 	char szFileName[MAX_PATH] = {0};
 	snprintf(szFileName, sizeof(szFileName) - 1, "thread_%d.log", nThreadIndex);
 	switch(nLogPriorty)
@@ -790,7 +710,7 @@ void CLogFile::ThreadLogToFile(const char* pszLogFile, int nLogPriorty, const ch
 	{
 		return;
 	}
-	SetCurrentTime();
+	//SetCurrentTime();
 
 	switch(nLogPriorty)
 	{

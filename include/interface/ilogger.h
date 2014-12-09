@@ -78,10 +78,6 @@ public:
 
 	virtual void WriteLogFile(int nPriority, const char* msg, ...) = 0;
 
-	virtual	void DbgLog(const char* msg, ...) = 0;   /*记录普通日志*/
-	virtual	void WarnLog(const char* msg, ...) = 0;  /*记录错误日志*/
-	virtual	void ErrLog(const char* msg, ...) = 0;   /*记录致命日志*/
-
 	virtual void BinLog(const char* pszFileName, char *pBuffer,  unsigned int iLength) = 0;
 	virtual void DbgBinLog(char *pBuffer,  unsigned int iLength) = 0;        /*记录binlog到普通日志*/
 	virtual	void LogToFile(const char* pszLogFile, const char* msg, ...) = 0;
