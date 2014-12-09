@@ -14,6 +14,12 @@
 #define WRITE_INFO_LOG(...) \
 	do {g_interface_instance_ptr->WriteInfoLog(__VA_ARGS__);} while(0)
 
+#define WRITE_WARN_LOG(...) \
+	do {g_interface_instance_ptr->WriteWarnLog(__VA_ARGS__);} while(0)
+
+#define WRITE_ERROR_LOG(...) \
+	do {g_interface_instance_ptr->WriteErrorLog(__VA_ARGS__);} while(0)
+
 struct LogTime {
 	uint32 year;           // 0000-9999
 	uint32 month;          // 00-12
