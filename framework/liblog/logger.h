@@ -123,6 +123,8 @@ public:
 
 	virtual void WriteErrorLog(const char* format, ...);
 
+	virtual void WriteLogToFile(const char* file_name, const char* format, ...);
+
 	virtual void WriteToLogFile(const char* file_name, const char* format,
 		va_list& variable_argument_list, char* append_string = NULL);
 

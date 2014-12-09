@@ -34,6 +34,7 @@ int32 InitLoggerInterface()
 	char outputlogpath[MAX_PATH];
 	strncpy(outputlogpath, "../log", sizeof(outputlogpath) - 1);
 	g_loggerinterface->SetLogPath(outputlogpath);
+	g_loggerinterface->SetDebugLogSwitch(SWITCH_OFF);
 	g_loggerinterface->SetInfoLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetWarnLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetErrorLogSwitch(SWITCH_ON);
@@ -48,6 +49,7 @@ int32 InitLoggerInterface()
 
 	WRITE_INFO_LOG("this is a test.\n");
 	WRITE_DEBUG_LOG("this is a debug.\n");
+	WRITE_LOG_TO_FILE("../sss.log", "%d", 23123);
 
 	return 0;
 }

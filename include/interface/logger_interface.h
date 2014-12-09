@@ -35,7 +35,10 @@ struct LogTime {
 #define WRITE_ERROR_LOG(...) \
 	do {g_interface_instance_ptr->WriteErrorLog(__VA_ARGS__);} while(0)
 
-// Log contains 4 types: normal, warn, error, info
+#define WRITE_LOG_TO_FILE(...) \
+	do {g_interface_instance_ptr->WriteLogToFile(__VA_ARGS__);} while(0)
+
+// Log contains 4 types: debug, warn, error, info
 class LoggerInterface {
 public:
 	LoggerInterface(){};
@@ -68,6 +71,8 @@ public:
 	virtual void WriteDebugLog(const char* format, ...) = 0;
 
 	virtual	void WriteWarnLog(const char* format, ...) = 0;
+
+	virtual void WriteLogToFile(const char* file_name, const char* format, ...) = 0;
 
 	// Write log to error log file, the error means 
 	// fatal problems or serious bugs.

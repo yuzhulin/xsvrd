@@ -905,12 +905,12 @@ void Logger::WriteInfoLog(const char* format, ...)
 	}
 	SetCurTime();
 	va_list variable_argument_list;
-
-	va_start(variable_argument_list, format);
-	WriteToLogFile(debug_log_name_,
-		format, variable_argument_list, (char*)"#info#");
-	va_end(variable_argument_list);
-
+	if (!debug_log_name_) {
+		va_start(variable_argument_list, format);
+		WriteToLogFile(debug_log_name_,
+			format, variable_argument_list, (char*)"#info#");
+		va_end(variable_argument_list);
+	}
 	va_start(variable_argument_list, format);
 	WriteToLogFile(info_log_name_, format, variable_argument_list);
 	va_end(variable_argument_list);
@@ -935,12 +935,12 @@ void Logger::WriteWarnLog(const char* format, ...)
 	}
 	SetCurTime();
 	va_list variable_argument_list;
-
-	va_start(variable_argument_list, format);
-	WriteToLogFile(debug_log_name_,
-		format, variable_argument_list, (char*)"#warn#");
-	va_end(variable_argument_list);
-
+	if (!debug_log_name_) {
+		va_start(variable_argument_list, format);
+		WriteToLogFile(debug_log_name_,
+			format, variable_argument_list, (char*)"#warn#");
+		va_end(variable_argument_list);
+	}
 	va_start(variable_argument_list, format);
 	WriteToLogFile(warn_log_name_, format, variable_argument_list);
 	va_end(variable_argument_list);
@@ -953,13 +953,23 @@ void Logger::WriteErrorLog(const char* format, ...)
 	}
 	SetCurTime();
 	va_list variable_argument_list;
-	va_start(variable_argument_list, format);
-	WriteToLogFile(debug_log_name_,
-		format, variable_argument_list, (char*)"#error#");
-	va_end(variable_argument_list);
-
+	if (!debug_log_name_) {
+		va_start(variable_argument_list, format);
+		WriteToLogFile(debug_log_name_,
+			format, variable_argument_list, (char*)"#error#");
+		va_end(variable_argument_list);
+	}
 	va_start(variable_argument_list, format);
 	WriteToLogFile(error_log_name_, format, variable_argument_list);
+	va_end(variable_argument_list);
+}
+
+void Logger::WriteLogToFile(const char* file_name, const char* format, ...)
+{
+	SetCurTime();
+	va_list variable_argument_list;
+	va_start(variable_argument_list, format);
+	WriteToLogFile(file_name, format, variable_argument_list);
 	va_end(variable_argument_list);
 }
 
