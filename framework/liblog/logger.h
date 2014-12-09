@@ -113,10 +113,6 @@ public:
 
 	virtual void SetLogPath(const char* path);
 
-	virtual void Lock();
-
-	virtual void Unlock();
-
 	virtual void WriteContent(FILE* file_ptr, const char* format, va_list& args, char* append_string);
 
 	virtual void WriteInfoLog(const char* format, ...);
@@ -132,6 +128,10 @@ public:
 
 private:
 	void SetCurTime();
+
+	void Lock();
+
+	void Unlock();
 
 private:
 	int8 info_log_switch_;				  // if print info log(1:on 0:off)
