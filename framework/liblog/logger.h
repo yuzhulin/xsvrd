@@ -127,6 +127,12 @@ public:
 
 	virtual void SetShowMillisecondSwitch(int8 on_off);
 
+	virtual void SetInfoLogName(const char* name);
+
+	virtual void SetWarnLogName(const char* name);
+
+	virtual void SetErrorLogName(const char* name);
+
 	virtual void SetNormalLogName(const char* name);
 
 	virtual void SetLogPath(const char* path);
@@ -140,6 +146,8 @@ public:
 	virtual void WriteInfoLog(const char* format, ...);
 
 	virtual	void WriteWarnLog(const char* format, ...);
+
+	virtual void WriteErrorLog(const char* format, ...);
 
 	virtual void WriteNormalLog(const char* format, va_list& args, char* append_string);
 
@@ -158,6 +166,7 @@ private:
 
 	LogTime cur_time_;
 
+	char info_log_name_[MAX_NAME];
 	char warn_log_name_[MAX_NAME];
 	char error_log_name_[MAX_NAME];
 	char normal_log_name_[MAX_NAME];

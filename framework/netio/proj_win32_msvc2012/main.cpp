@@ -34,16 +34,21 @@ int32 InitLoggerInterface()
 	char outputlogpath[MAX_PATH];
 	strncpy(outputlogpath, "../log", sizeof(outputlogpath) - 1);
 	g_loggerinterface->SetLogPath(outputlogpath);
-	g_loggerinterface->SetInfoLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetNormalLogSwitch(SWITCH_ON);
+	g_loggerinterface->SetInfoLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetWarnLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetErrorLogSwitch(SWITCH_ON);
 	g_loggerinterface->SetShowMillisecondSwitch(SWITCH_ON);
 	
+	g_loggerinterface->SetInfoLogName("info.log");
+	g_loggerinterface->SetWarnLogName("warn.log");
+	g_loggerinterface->SetErrorLogName("error.log");
 	g_loggerinterface->SetNormalLogName("normal.log");
 
 	g_loggerinterface->WriteInfoLog("%s\n", "info");
 	g_loggerinterface->WriteWarnLog("%s\n", "warn");
+	g_loggerinterface->WriteErrorLog("%s\n", "error");
+
 
 	return 0;
 }

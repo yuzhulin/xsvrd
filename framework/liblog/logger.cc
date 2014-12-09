@@ -878,7 +878,9 @@ Logger::Logger()
 	normal_log_switch_(0)
 {
 	memset(&cur_time_, 0, sizeof(cur_time_));
+	memset(info_log_name_, 0, sizeof(info_log_name_));
 	memset(warn_log_name_, 0, sizeof(warn_log_name_));
+	memset(error_log_name_, 0, sizeof(error_log_name_));
 	memset(default_output_path_, 0, sizeof(default_output_path_));
 }
 
@@ -925,6 +927,24 @@ void Logger::SetNormalLogSwitch(int8 on_off)
 void Logger::SetShowMillisecondSwitch(int8 on_off)
 {
 	show_millisecond_switch_ = on_off;
+}
+
+void Logger::SetInfoLogName(const char* name)
+{
+	strncpy(info_log_name_,
+		name, sizeof(info_log_name_) - 1);
+}
+
+void Logger::SetWarnLogName(const char* name)
+{
+	strncpy(warn_log_name_,
+		name, sizeof(warn_log_name_) - 1);
+}
+
+void Logger::SetErrorLogName(const char* name)
+{
+	strncpy(error_log_name_,
+		name, sizeof(error_log_name_) - 1);
 }
 
 void Logger::SetNormalLogName(const char* name)
@@ -997,7 +1017,7 @@ void Logger::WriteNormalLog(const char* format, va_list& args, char* append_stri
 
 void Logger::WriteInfoLog(const char* format, ...)
 {
-	if (!warn_log_switch_) {
+	if (!info_log_switch_) {
 		return;
 	}
 	SetCurTime();
@@ -1007,7 +1027,7 @@ void Logger::WriteInfoLog(const char* format, ...)
 	va_end(variable_argument_list);
 
 	va_start(variable_argument_list, format);
-	WriteToLogFile(warn_log_name_, format, variable_argument_list);
+	WriteToLogFile(info_log_name_, format, variable_argument_list);
 	va_end(variable_argument_list);
 }
 
@@ -1024,6 +1044,22 @@ void Logger::WriteWarnLog(const char* format, ...)
 
 	va_start(variable_argument_list, format);
 	WriteToLogFile(warn_log_name_, format, variable_argument_list);
+	va_end(variable_argument_list);
+}
+
+void Logger::WriteErrorLog(const char* format, ...)
+{
+	if (!error_log_switch_) {
+		return;
+	}
+	SetCurTime();
+	va_list variable_argument_list;
+	va_start(variable_argument_list, format);
+	WriteNormalLog(format, variable_argument_list, (char*)"#error#");
+	va_end(variable_argument_list);
+
+	va_start(variable_argument_list, format);
+	WriteToLogFile(error_log_name_, format, variable_argument_list);
 	va_end(variable_argument_list);
 }
 
