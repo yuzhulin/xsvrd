@@ -18,7 +18,7 @@ struct LogTime {
 	uint32 millisecond;    // 000-999
 };
 
-// Log contains 3 types: normal, warn, error
+// Log contains 4 types: normal, warn, error, info
 class LoggerInterface {
 public:
 	LoggerInterface(){};
