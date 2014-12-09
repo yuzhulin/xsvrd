@@ -9,6 +9,7 @@
 
 #if defined(_WIN32)
 #include <windows.h>
+#include <io.h> // for access func
 #elif defined(__gnu_linux__)
 #include <dlfcn.h>   // for dynamic linking file
 #include <string.h>  // for strncpy
@@ -73,7 +74,14 @@ typedef int8_t					int8;
 typedef void* HMODULE;
 #endif
 
-
+// ignore compile warn info
+///////////////////////////////////////////////////////////
+#if defined(_WIN32)
+#pragma warning(disable: 4099)
+#pragma warning(disable: 4996)
+#pragma warning(disable: 4311)
+#pragma warning(disable: 4312)
+#endif
 
 
 #endif

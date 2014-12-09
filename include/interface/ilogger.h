@@ -24,20 +24,6 @@
 
 #endif
 
-#ifndef _WIN32
-#include <stdio.h>
-#include <dlfcn.h>
-#include <string.h>
-#else
-
-#include <windows.h>
-#pragma warning(disable: 4099)
-#pragma warning(disable: 4996)
-#pragma warning(disable: 4311)
-#pragma warning(disable: 4312)
-
-#endif
-
 #define MAX_TRACENUM       20
 enum KGLOG_PRIORITY
 {

@@ -3,9 +3,7 @@
 
 #include <iostream>
 
-#if (defined(_WIN32))
-#include <io.h>
-#endif
+
 
 #ifndef  _WIN32
 #ifndef MAX_PATH
