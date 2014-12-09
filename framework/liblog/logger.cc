@@ -905,7 +905,7 @@ void Logger::WriteInfoLog(const char* format, ...)
 	}
 	SetCurTime();
 	va_list variable_argument_list;
-	if (!debug_log_name_) {
+	if (debug_log_name_) {
 		va_start(variable_argument_list, format);
 		WriteToLogFile(debug_log_name_,
 			format, variable_argument_list, (char*)"#info#");
@@ -935,7 +935,7 @@ void Logger::WriteWarnLog(const char* format, ...)
 	}
 	SetCurTime();
 	va_list variable_argument_list;
-	if (!debug_log_name_) {
+	if (debug_log_name_) {
 		va_start(variable_argument_list, format);
 		WriteToLogFile(debug_log_name_,
 			format, variable_argument_list, (char*)"#warn#");
@@ -953,7 +953,7 @@ void Logger::WriteErrorLog(const char* format, ...)
 	}
 	SetCurTime();
 	va_list variable_argument_list;
-	if (!debug_log_name_) {
+	if (debug_log_name_) {
 		va_start(variable_argument_list, format);
 		WriteToLogFile(debug_log_name_,
 			format, variable_argument_list, (char*)"#error#");
