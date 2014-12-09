@@ -588,21 +588,6 @@ void CLogFile::DbgBinLog(char *pBuffer, unsigned int iLength)
 	Unlock();
 }
 
-
-void CLogFile::LogToFile(const char* pszLogFile, const char* msg, ...)
-{
-	if( msg == NULL || pszLogFile == NULL )
-	{
-		return;
-	}
-
-	//SetCurrentTime();
-	va_list args;
-	va_start(args, msg);
-	WriteToLogFile(pszLogFile, msg, args);
-	va_end (args);
-}
-
 void CLogFile::LogToFileByDay(const char* pszLogFile, const char* msg, ...)
 {
 	if( msg == NULL || pszLogFile == NULL )

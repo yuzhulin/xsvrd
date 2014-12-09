@@ -66,7 +66,6 @@ public:
 
 	virtual void BinLog(const char* pszFileName, char *pBuffer,  unsigned int iLength) = 0;
 	virtual void DbgBinLog(char *pBuffer,  unsigned int iLength) = 0;        /*记录binlog到普通日志*/
-	virtual	void LogToFile(const char* pszLogFile, const char* msg, ...) = 0;
 	virtual	void TraceLog(unsigned int pszName, const char* msg, ...) = 0;
 	virtual void SetTraceName(int nUinTraceNum, unsigned int pszNames[MAX_TRACENUM]) = 0;	
 
