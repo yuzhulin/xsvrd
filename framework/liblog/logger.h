@@ -27,7 +27,7 @@ public:
 	virtual void WriteLogFile(int nPriority, const char* msg, ...);
 
 	virtual void BinLog(const char* pszFileName, char *pBuffer,  unsigned int iLength);
-	virtual void DbgBinLog(char *pBuffer,  unsigned int iLength);        /*¼ÇÂ¼binlogµ½ÆÕÍ¨ÈÕÖ¾*/
+	virtual void DbgBinLog(char *pBuffer,  unsigned int iLength);        /*è®°å½•binlogåˆ°æ™®é€šæ—¥å¿—*/
 	virtual	void LogToFileByDay(const char* pszLogFile, const char* msg, ...);
 	virtual	void TraceLog(unsigned int pszName, const char* msg, ...);
 
@@ -40,7 +40,7 @@ public:
 	virtual void ThreadLog(int nThreadIndex, int nPriority, const char* msg, ...);  
 	virtual	void ThreadLogToFile(const char* pszLogFile, int nLogPriorty, const char* msg, ...);
 
-	virtual	void SetBakLogPath(const char *pBakLogPath);   /* ÉèÖÃÈÕÖ¾±¸·İµÄÂ·¾¶£¬¿ÉÑ¡ÏîÄ¬ÈÏÎª£ºÈÕÖ¾Â·¾¶/baklogs/ */
+	virtual	void SetBakLogPath(const char *pBakLogPath);   /* è®¾ç½®æ—¥å¿—å¤‡ä»½çš„è·¯å¾„ï¼Œå¯é€‰é¡¹é»˜è®¤ä¸ºï¼šæ—¥å¿—è·¯å¾„/baklogs/ */
 
 private:
 	void  Lock();
@@ -64,12 +64,12 @@ private:
 	int             m_nTraceNum;
 
 	int             m_iShowMs;
-	int             m_iDbgLogFlag;              /*ÆÕÍ¨ÈÕÖ¾µÄ´òÓ¡±êÖ¾*/
-	int             m_iWarnLogFlag;             /*´íÎóÈÕÖ¾µÄ´òÓ¡±êÖ¾*/
-	int             m_iInfoLogFlag;             /*ĞÅÏ¢ÈÕÖ¾µÄ´òÓ¡±êÖ¾*/
-	int             m_iBinLogFlag;              /*»º³åÇøÈÕÖ¾µÄ´òÓ¡±êÖ¾*/
-	char            m_szLogPath[MAX_PATH];        /*ÈÕÖ¾µÄÂ·¾¶*/
-	char            m_szBakLogPath[MAX_PATH];        /*ÈÕÖ¾±¸·İµÄÂ·¾¶*/
+	int             m_iDbgLogFlag;              /*æ™®é€šæ—¥å¿—çš„æ‰“å°æ ‡å¿—*/
+	int             m_iWarnLogFlag;             /*é”™è¯¯æ—¥å¿—çš„æ‰“å°æ ‡å¿—*/
+	int             m_iInfoLogFlag;             /*ä¿¡æ¯æ—¥å¿—çš„æ‰“å°æ ‡å¿—*/
+	int             m_iBinLogFlag;              /*ç¼“å†²åŒºæ—¥å¿—çš„æ‰“å°æ ‡å¿—*/
+	char            m_szLogPath[MAX_PATH];        /*æ—¥å¿—çš„è·¯å¾„*/
+	char            m_szBakLogPath[MAX_PATH];        /*æ—¥å¿—å¤‡ä»½çš„è·¯å¾„*/
 	char            m_szThreadModuleName[MAX_PATH];     
 	unsigned int    m_szTraceNames[MAX_TRACENUM];
 	char            m_szLogName[MAX_PATH];
@@ -144,7 +144,7 @@ private:
 	void Unlock();
 
 private:
-	int8 info_log_switch_;				  // if print info log(1:on 0:off)
+	int8 info_log_switch_;	              // if print info log(1:on 0:off)
 	int8 warn_log_switch_;                // 1:on 0:off
 	int8 error_log_switch_;               // 1:on 0:off
 	int8 debug_log_switch_;               // 1:on 0:off
