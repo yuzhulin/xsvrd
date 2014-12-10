@@ -5,6 +5,8 @@
 #include "base.h"
 #else
 
+
+
 static void CreatePath(char szLogPath[MAX_PATH])
 {
 	if (0 == szLogPath[0])
