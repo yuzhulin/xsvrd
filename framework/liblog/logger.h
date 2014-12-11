@@ -1,10 +1,10 @@
-#ifndef __LOGGER_H__
+﻿#ifndef __LOGGER_H__
 #define __LOGGER_H__
 
 #include "../../include/interface/ilogger.h"
 #include "logger_interface.h"
 
-LOGFILE_NAMESPACE_BEGIN
+//LOGFILE_NAMESPACE_BEGIN
 
 #define MAX_BIN_LEN             (32 * 1024)
 
@@ -101,6 +101,8 @@ public:
 
 	virtual void Init();
 
+	virtual void SetBinLogSwitch(int8 on_off);
+
 	virtual void SetInfoLogSwitch(int8 on_off);
 
 	virtual void SetWarnLogSwitch(int8 on_off);
@@ -144,6 +146,7 @@ private:
 	void Unlock();
 
 private:
+	int8 bin_log_switch_;                 // 1:on 0:off
 	int8 info_log_switch_;	              // 1:on 0:off
 	int8 warn_log_switch_;                // 1:on 0:off
 	int8 error_log_switch_;               // 1:on 0:off
@@ -163,7 +166,6 @@ private:
 
 ////////////////////////////////////////////////////////////////////////////////
 
-LOGFILE_NAMESPACE_END
+//LOGFILE_NAMESPACE_END
 
 #endif
-

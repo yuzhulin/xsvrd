@@ -752,7 +752,8 @@ Logger::Logger()
 	: info_log_switch_(SWITCH_ON), 
 	warn_log_switch_(SWITCH_ON),
 	error_log_switch_(SWITCH_ON),
-	debug_log_switch_(SWITCH_ON)
+	debug_log_switch_(SWITCH_ON),
+	bin_log_switch_(SWITCH_ON)
 {
 	memset(&cur_time_, 0, sizeof(cur_time_));
 	memset(info_log_name_, 0, sizeof(info_log_name_));
@@ -804,6 +805,11 @@ void Logger::SetLogPath(const char* path)
 			DEFAULT_LOG_PATH,
 				sizeof(default_output_path_) - 1);
 	}
+}
+
+void Logger::SetBinLogSwitch(int8 on_off)
+{
+	bin_log_switch_ = on_off;
 }
 
 void Logger::SetInfoLogSwitch(int8 on_off)
