@@ -817,6 +817,18 @@ void Logger::SetShowMillisecondSwitch(int8 on_off)
 	show_millisecond_switch_ = on_off;
 }
 
+void Logger::SetBinLogName(const char* name)
+{
+	/*if (name) {
+		strncpy(bin_log_name_,
+			name, sizeof(bin_log_name_) - 1);
+	} else {
+		strncpy(bin_log_name_,
+			DEFAULT_BIN_LOG_FILE_NAME,
+			sizeof(bin_log_name_) - 1);
+	}*/
+}
+
 void Logger::SetInfoLogName(const char* name)
 {
 	if (name) {

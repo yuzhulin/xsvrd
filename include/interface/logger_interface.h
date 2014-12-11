@@ -58,6 +58,8 @@ public:
 
 	virtual void SetShowMillisecondSwitch(int8 on_off) = 0;
 
+	virtual void SetBinLogName(const char* name) = 0;
+
 	virtual void SetInfoLogName(const char* name) = 0;
 
 	virtual void SetWarnLogName(const char* name) = 0;

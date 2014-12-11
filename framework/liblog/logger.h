@@ -84,6 +84,7 @@ private:
 // add by: xushvai@gmail.com
 ////////////////////////////////////////////////////////////////////////////////
 
+#define DEFAULT_BIN_LOG_FILE_NAME		"bin.log"
 #define DEFAULT_INFO_LOG_FILE_NAME		"info.log"
 #define DEFAULT_WARN_LOG_FILE_NAME		"warn.log"
 #define DEFAULT_DEBUG_LOG_FILE_NAME		"debug.log"
@@ -108,6 +109,8 @@ public:
 	virtual void SetDebugLogSwitch(int8 on_off);
 
 	virtual void SetShowMillisecondSwitch(int8 on_off);
+
+	virtual void SetBinLogName(const char* name);
 
 	virtual void SetInfoLogName(const char* name);
 
