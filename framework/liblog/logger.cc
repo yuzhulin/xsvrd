@@ -210,11 +210,6 @@ void  CLogFile::SetInfoLogFlag(int iInfoLogFlag)
 	m_iInfoLogFlag = iInfoLogFlag;
 }
 
-void  CLogFile::SetBinLogFlag(int iBinLogFlag)
-{
-	m_iBinLogFlag = iBinLogFlag;
-}
-
 void CLogFile::SetTraceName(int nUinTraceNum, unsigned int pszNames[MAX_TRACENUM])
 {
 	if( nUinTraceNum > MAX_TRACENUM )

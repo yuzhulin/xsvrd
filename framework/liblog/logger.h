@@ -20,7 +20,6 @@ public:
 	virtual void SetDbgLogFlag(int iLogFlag);
 	virtual void SetWarnLogFlag(int iErrLogFlag);
 	virtual void SetInfoLogFlag(int iInfoLogFlag);
-	virtual void SetBinLogFlag(int iBinLogFlag);
 	virtual void SetLockFlag(int bLogFlag);
 	virtual void SetShowTimeFormat(int ishowms);
 

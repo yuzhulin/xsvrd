@@ -58,7 +58,6 @@ public:
 	virtual void SetDbgLogFlag(int iLogFlag) = 0;
 	virtual void SetWarnLogFlag(int iErrLogFlag) = 0;
 	virtual void SetInfoLogFlag(int iInfoLogFlag) = 0;
-	virtual void SetBinLogFlag(int iBinLogFlag) = 0;
 	virtual void SetLockFlag(int bLogFlag) = 0;
 	virtual void SetShowTimeFormat(int ishowms) = 0;
 
