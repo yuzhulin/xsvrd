@@ -17,9 +17,6 @@ public:
 	virtual void SetLogPath(const char *pLogPath);
 	virtual void SetLogName(const char* pLogName);
 	virtual void SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum);
-	virtual void SetDbgLogFlag(int iLogFlag);
-	virtual void SetWarnLogFlag(int iErrLogFlag);
-	virtual void SetInfoLogFlag(int iInfoLogFlag);
 	virtual void SetLockFlag(int bLogFlag);
 	virtual void SetShowTimeFormat(int ishowms);
 

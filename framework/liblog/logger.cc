@@ -195,21 +195,6 @@ void CLogFile::SetLogName(const char* pLogName)
 	snprintf(m_szLogFileName, sizeof(m_szLogFileName) - 1, "%s.log", m_szLogName);
 }
 
-void  CLogFile::SetDbgLogFlag(int iLogFlag)
-{
-	m_iDbgLogFlag = iLogFlag;
-}
-
-void  CLogFile::SetWarnLogFlag(int iErrLogFlag)
-{
-	m_iWarnLogFlag = iErrLogFlag;
-}
-
-void  CLogFile::SetInfoLogFlag(int iInfoLogFlag)
-{
-	m_iInfoLogFlag = iInfoLogFlag;
-}
-
 void CLogFile::SetTraceName(int nUinTraceNum, unsigned int pszNames[MAX_TRACENUM])
 {
 	if( nUinTraceNum > MAX_TRACENUM )
