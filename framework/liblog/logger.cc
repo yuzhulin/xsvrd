@@ -733,7 +733,8 @@ Logger::Logger()
 	warn_log_switch_(SWITCH_ON),
 	error_log_switch_(SWITCH_ON),
 	debug_log_switch_(SWITCH_ON),
-	bin_log_switch_(SWITCH_ON)
+	bin_log_switch_(SWITCH_ON),
+	lock_log_switch_(SWITCH_ON)
 {
 	memset(&cur_time_, 0, sizeof(cur_time_));
 	memset(info_log_name_, 0, sizeof(info_log_name_));

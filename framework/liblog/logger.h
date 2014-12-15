@@ -149,6 +149,7 @@ private:
 	int8 error_log_switch_;               // 1:on 0:off
 	int8 debug_log_switch_;               // 1:on 0:off
 	int8 show_millisecond_switch_;        // 1:on 0:off
+	int8 lock_log_switch_;                // 1:on 0:off
 
 	LogTime cur_time_;
 
