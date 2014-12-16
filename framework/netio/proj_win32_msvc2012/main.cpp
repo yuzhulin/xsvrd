@@ -48,6 +48,8 @@ void ParseCommand(int32 argc, char** argv)
 				<< ")" << 8 * sizeof(long) << "bit" << std::endl;
 		exit(0);
 	}*/
+
+
 }
 
 bool RunOneInstance()
