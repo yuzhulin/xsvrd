@@ -8,6 +8,7 @@
 
 #define MAX_BIN_LEN             (32 * 1024)
 
+
 class CLogFile : public ILogFile
 {
 public:
