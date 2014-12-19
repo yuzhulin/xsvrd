@@ -31,7 +31,8 @@ public:
 	virtual	void SetThreadInfoLogFlag(int nInfoLog);
 	virtual void SetTraceName(int nUinTraceNum, unsigned int pszNames[MAX_TRACENUM]);
 
-	virtual void ThreadLog(int nThreadIndex, int nPriority, const char* msg, ...);  
+	virtual void ThreadLog(int nThreadIndex, int nPriority, const char* msg, ...);
+
 	virtual	void ThreadLogToFile(const char* pszLogFile, int nLogPriorty, const char* msg, ...);
 
 	virtual	void SetBakLogPath(const char *pBakLogPath);   /* 设置日志备份的路径，可选项默认为：日志路径/baklogs/ */
