@@ -23,6 +23,7 @@ public:
 	virtual void BinLog(const char* pszFileName, char *pBuffer,  unsigned int iLength);
 	virtual void DbgBinLog(char *pBuffer,  unsigned int iLength);        /*记录binlog到普通日志*/
 	virtual	void LogToFileByDay(const char* pszLogFile, const char* msg, ...);
+
 	virtual	void TraceLog(unsigned int pszName, const char* msg, ...);
 
 	virtual void SetThreadModuleName(char szThreadModuleName[MAX_PATH]);
