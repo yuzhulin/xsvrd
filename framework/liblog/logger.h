@@ -27,6 +27,7 @@ public:
 	virtual	void TraceLog(unsigned int pszName, const char* msg, ...);
 
 	virtual void SetThreadModuleName(char szThreadModuleName[MAX_PATH]);
+
 	virtual	void SetThreadDbgLogFlag(int nDbgLog);
 
 	virtual	void SetThreadWarnLogFlag(int nWarnLog);
