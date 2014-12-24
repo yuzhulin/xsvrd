@@ -33,6 +33,7 @@ public:
 
 	virtual	void SetThreadWarnLogFlag(int nWarnLog);
 	virtual	void SetThreadInfoLogFlag(int nInfoLog);
+
 	virtual void SetTraceName(int nUinTraceNum, unsigned int pszNames[MAX_TRACENUM]);
 
 	virtual void ThreadLog(int nThreadIndex, int nPriority, const char* msg, ...);
