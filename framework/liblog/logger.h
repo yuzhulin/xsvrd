@@ -16,6 +16,7 @@ public:
 	virtual ~CLogFile();
 	virtual void SetLogPath(const char *pLogPath);
 	virtual void SetLogName(const char* pLogName);
+
 	virtual void SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum);
 	virtual void SetLockFlag(int bLogFlag);
 	virtual void SetShowTimeFormat(int ishowms);
