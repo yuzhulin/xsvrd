@@ -19,6 +19,7 @@ public:
 
 	virtual void SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum);
 	virtual void SetLockFlag(int bLogFlag);
+
 	virtual void SetShowTimeFormat(int ishowms);
 
 	virtual void WriteLogFile(int nPriority, const char* msg, ...);
