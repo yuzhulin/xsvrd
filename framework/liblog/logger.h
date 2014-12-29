@@ -20,6 +20,7 @@ public:
 	virtual void SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum);
 	virtual void SetLockFlag(int bLogFlag);
 	virtual void SetShowTimeFormat(int ishowms);
+
 	virtual void WriteLogFile(int nPriority, const char* msg, ...);
 	virtual void BinLog(const char* pszFileName, char *pBuffer,  unsigned int iLength);
 	virtual void DbgBinLog(char *pBuffer,  unsigned int iLength);        /*记录binlog到普通日志*/
