@@ -15,6 +15,7 @@ public:
 	CLogFile();
 	virtual ~CLogFile();
 	virtual void SetLogPath(const char *pLogPath);
+
 	virtual void SetLogName(const char* pLogName);
 
 	virtual void SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum);
