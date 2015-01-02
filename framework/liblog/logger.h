@@ -14,6 +14,7 @@ class CLogFile : public ILogFile
 public:
 	CLogFile();
 	virtual ~CLogFile();
+
 	virtual void SetLogPath(const char *pLogPath);
 
 	virtual void SetLogName(const char* pLogName);
