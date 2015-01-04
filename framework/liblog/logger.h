@@ -17,13 +17,8 @@ public:
 
 	virtual void SetLogPath(const char *pLogPath);
 
-	virtual void SetLogName(const char* pLogName);
-
 	virtual void SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum);
 
-	virtual void SetLockFlag(int bLogFlag);
-
-	virtual void SetShowTimeFormat(int ishowms);
 
 	virtual void WriteLogFile(int nPriority, const char* msg, ...);
 
@@ -109,6 +104,8 @@ public:
 	virtual~Logger();
 
 	virtual void Init();
+
+	virtual void SetLockSwitch(int8 on_off);
 
 	virtual void SetBinLogSwitch(int8 on_off);
 

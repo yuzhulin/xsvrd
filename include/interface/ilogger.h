@@ -53,11 +53,8 @@ public:
 	};
 	virtual int GetServerVersion(){return 1;};
 	virtual void SetLogPath(const char *pLogPath) = 0;
-	virtual void SetLogName(const char* pLogName) = 0;
 	virtual void SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum) = 0;
-	
-	virtual void SetLockFlag(int bLogFlag) = 0;
-	virtual void SetShowTimeFormat(int ishowms) = 0;
+
 
 	virtual void WriteLogFile(int nPriority, const char* msg, ...) = 0;
 

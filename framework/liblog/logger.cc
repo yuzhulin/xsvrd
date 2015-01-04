@@ -72,8 +72,6 @@ LOGFILE_NAMESPACE_BEGIN
 
 CLogFile::CLogFile()
 {
-	SetLogName("");
-
 	memset(m_szTraceNames, 0, sizeof(m_szTraceNames)); 
 	memset(m_szLogPath, 0, sizeof(m_szLogPath));
 	memset(m_szThreadModuleName, 0, sizeof(m_szThreadModuleName));
@@ -105,11 +103,6 @@ CLogFile::~CLogFile()
 {
 }
 
-void CLogFile::SetShowTimeFormat(int ishowms)
-{
-	m_iShowMs = ishowms;
-}
-
 void CLogFile::SetLogPath(const char *pLogPath)
 {
 	if (!pLogPath)
@@ -135,11 +128,6 @@ void CLogFile::SetLogPath(const char *pLogPath)
 	char szPath[MAX_PATH] = {0};
 	snprintf(szPath, sizeof(szPath) - 1, "%sbaklogs", m_szLogPath);
 	SetBakLogPath(szPath);
-}
-
-void CLogFile::SetLockFlag(int bIsLockLog)
-{
-	m_bIsLockLog = bIsLockLog;
 }
 
 void CLogFile::SetThreadModuleName(char szThreadModuleName[MAX_PATH])
@@ -173,27 +161,6 @@ void CLogFile::SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum)
 	max_file_num_ = nMaxFileNum;
 }
 
-void CLogFile::SetLogName(const char* pLogName)
-{
-	if (!pLogName)
-	{
-		return;
-	}
-
-    memset(m_szLogName, 0, sizeof(m_szLogName));
-	memset(m_szNormalLogName, 0, sizeof(m_szNormalLogName));
-	memset(m_szWarnLogName, 0, sizeof(m_szWarnLogName));
-	memset(m_szErrLogName, 0, sizeof(m_szErrLogName));
-	memset(m_szInfoLogName, 0, sizeof(m_szInfoLogName));
-	memset(m_szLogFileName, 0, sizeof(m_szLogFileName));
-
-	strncpy(m_szLogName, pLogName, sizeof(m_szLogName) - 1);
-	snprintf(m_szNormalLogName, sizeof(m_szNormalLogName) - 1, "%s_normal.log", m_szLogName);
-	snprintf(m_szWarnLogName, sizeof(m_szWarnLogName) - 1, "%s_warn.log", m_szLogName);
-	snprintf(m_szErrLogName, sizeof(m_szErrLogName) - 1, "%s_err.log", m_szLogName);
-	snprintf(m_szInfoLogName, sizeof(m_szInfoLogName) - 1, "%s_info.log", m_szLogName);
-	snprintf(m_szLogFileName, sizeof(m_szLogFileName) - 1, "%s.log", m_szLogName);
-}
 
 void CLogFile::SetTraceName(int nUinTraceNum, unsigned int pszNames[MAX_TRACENUM])
 {
@@ -786,6 +753,11 @@ void Logger::SetLogPath(const char* path)
 			DEFAULT_LOG_PATH,
 				sizeof(default_output_path_) - 1);
 	}
+}
+
+void Logger::SetLockSwitch(int8 on_off)
+{
+	lock_log_switch_ = on_off;
 }
 
 void Logger::SetBinLogSwitch(int8 on_off)
