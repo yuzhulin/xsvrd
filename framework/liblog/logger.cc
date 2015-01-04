@@ -639,6 +639,8 @@ void Logger::Init()
 	// set default log path.
 	strncpy(log_path_,
 		DEFAULT_LOG_PATH, sizeof(log_path_) - 1);
+	strncpy(backup_log_path_,
+		DEFAULT_BACKUP_LOG_PATH, sizeof(backup_log_path_) - 1);
 
 	pthread_mutex_init(&thread_mutex_, NULL);
 }

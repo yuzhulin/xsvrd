@@ -92,6 +92,7 @@ private:
 #define DEFAULT_DEBUG_LOG_FILE_NAME		"debug.log"
 #define DEFAULT_ERROR_LOG_FILE_NAME		"error.log"
 #define DEFAULT_LOG_PATH				"../log"
+#define DEFAULT_BACKUP_LOG_PATH			"../backup_log"
 
 class Logger : public LoggerInterface {
 public:
