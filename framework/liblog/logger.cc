@@ -253,42 +253,6 @@ void CLogFile::BakLogFile(const char* pFileName)
 }
 
 
-
-void CLogFile::WriteToLogFile(const char* pFileName, const char* msg, va_list& args, char *pAddStr)
-{
-	//write之前先考虑备份，备份机制统一考虑。
-	//Lock();
-	char szLogFile[MAX_PATH];
-	sprintf(szLogFile, "%s%s", m_szLogPath, pFileName);
-
-	BakLogFile(pFileName);
-
-	FILE *pFile = fopen(szLogFile, "a+");
-	if (NULL == pFile)
-	{
-		char szTempLogFile[MAX_PATH];
-		strncpy(szTempLogFile, szLogFile, sizeof(szTempLogFile) - 1);
-		char *pTemp = strrchr(szTempLogFile, '/');
-		if( pTemp == NULL )
-		{
-			//Unlock();
-			return;
-		}
-		*pTemp = 0;
-		if ( access(szTempLogFile, 0) != 0)
-		{
-			CreatePath(szTempLogFile);
-		}
-		pFile = fopen(szLogFile, "a+");
-	}
-	if (pFile)
-	{
-		//WriteLog(pFile, msg, args, pAddStr);
-		fclose(pFile);
-	}
-	//Unlock();
-}
-
 void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
 {
 	char* pAddStr = NULL;
@@ -502,7 +466,7 @@ void CLogFile::LogToFileByDay(const char* pszLogFile, const char* msg, ...)
 
 	va_list args;
 	va_start(args, msg);
-	WriteToLogFile(m_szLogToFileName, msg, args);
+	//WriteToLogFile(m_szLogToFileName, msg, args);
 	va_end (args);
 }
 
@@ -532,7 +496,7 @@ void CLogFile::TraceLog(unsigned int pszName, const char* msg, ...)
 	memset(szLogFile, 0, sizeof(szLogFile));
 	snprintf(szLogFile, sizeof(szLogFile) - 1,
 		"player/trace_%02d_%04u_%02u_%02u.log", i + 1, m_curTime.ulYear, m_curTime.ulMonth, m_curTime.ulDay);
-	WriteToLogFile(szLogFile, msg, args);
+	//WriteToLogFile(szLogFile, msg, args);
 	va_end (args);
 }
 
@@ -567,7 +531,7 @@ void CLogFile::ThreadLog(int nThreadIndex, int nLogPriorty, const char* msg, ...
 	}
 	va_list args;
 	va_start(args, msg);
-	WriteToLogFile(szFileName, msg, args);
+	//WriteToLogFile(szFileName, msg, args);
 	va_end (args);
 }
 
@@ -609,7 +573,7 @@ void CLogFile::ThreadLogToFile(const char* pszLogFile, int nLogPriorty, const ch
 
 	va_list args;
 	va_start(args, msg);
-	WriteToLogFile(szFileName, msg, args);
+	//WriteToLogFile(szFileName, msg, args);
 	va_end (args);
 }
 

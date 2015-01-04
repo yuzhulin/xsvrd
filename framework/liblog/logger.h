@@ -46,8 +46,6 @@ public:
 	virtual	void SetBakLogPath(const char *pBakLogPath);   /* 设置日志备份的路径，可选项默认为：日志路径/baklogs/ */
 
 private:
-
-	void  WriteToLogFile(const char* szFileName, const char* msg, va_list& args, char* pStrAdd = NULL);
 	void  BakLogFile(const char* pFileName);
 	void  GetBakFileName(const char* pFileName, char szBakFileName[MAX_PATH]);
 	void  BackupFile(const char* pSrcFile, const char* pDstFile);
@@ -151,13 +149,13 @@ private:
 	void Unlock();
 
 private:
+	int8 lock_log_switch_;                // 1:on 0:off
 	int8 bin_log_switch_;                 // 1:on 0:off
 	int8 info_log_switch_;	              // 1:on 0:off
 	int8 warn_log_switch_;                // 1:on 0:off
 	int8 error_log_switch_;               // 1:on 0:off
 	int8 debug_log_switch_;               // 1:on 0:off
 	int8 show_millisecond_switch_;        // 1:on 0:off
-	int8 lock_log_switch_;                // 1:on 0:off
 
 	LogTime cur_time_;
 	pthread_mutex_t thread_mutex_;
@@ -169,9 +167,6 @@ private:
 	char normal_log_name_[MAX_NAME];
 	char default_output_path_[MAX_PATH];  // logs will be saved in the 'log' directory under this path.
 };
-
-
-////////////////////////////////////////////////////////////////////////////////
 
 //LOGFILE_NAMESPACE_END
 
