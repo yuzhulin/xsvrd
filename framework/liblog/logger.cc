@@ -671,6 +671,15 @@ void Logger::SetLogPath(const char* path)
 			DEFAULT_LOG_PATH,
 				sizeof(default_output_path_) - 1);
 	}
+	uint32 path_str_len = strlen(default_output_path_);
+	for (int32 i = 0; i < path_str_len; i++) {
+		if ('\\' == default_output_path_[i]) {
+			default_output_path_[i] = '/';
+		}
+	}
+	if ('/' == default_output_path_[path_str_len - 1]) {
+		default_output_path_[path_str_len - 1] = 0;
+	}
 }
 
 void Logger::SetLockSwitch(int8 on_off)
