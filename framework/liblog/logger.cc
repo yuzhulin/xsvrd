@@ -176,22 +176,6 @@ void CLogFile::SetTraceName(int nUinTraceNum, unsigned int pszNames[MAX_TRACENUM
 	}
 }
 
-void CLogFile::Lock()
-{
-	if( m_bIsLockLog )
-	{
-		pthread_mutex_lock( &m_stMutex );
-	}
-}
-
-void CLogFile::Unlock()
-{
-	if( m_bIsLockLog )
-	{
-		pthread_mutex_unlock( &m_stMutex );
-	}
-}
-
 void CLogFile::BackupFile(const char* pSrcFile, const char* pDstFile)
 {
 	if( access(pSrcFile, 0) != -1 )
@@ -312,7 +296,7 @@ void CLogFile::WriteNormalLog(const char* msg, va_list& args, char* pStrAdd)
 void CLogFile::WriteToLogFile(const char* pFileName, const char* msg, va_list& args, char *pAddStr)
 {
 	//write之前先考虑备份，备份机制统一考虑。
-	Lock();
+	//Lock();
 	char szLogFile[MAX_PATH];
 	sprintf(szLogFile, "%s%s", m_szLogPath, pFileName);
 
@@ -326,7 +310,7 @@ void CLogFile::WriteToLogFile(const char* pFileName, const char* msg, va_list& a
 		char *pTemp = strrchr(szTempLogFile, '/');
 		if( pTemp == NULL )
 		{
-			Unlock();
+			//Unlock();
 			return;
 		}
 		*pTemp = 0;
@@ -341,7 +325,7 @@ void CLogFile::WriteToLogFile(const char* pFileName, const char* msg, va_list& a
 		WriteLog(pFile, msg, args, pAddStr);
 		fclose(pFile);
 	}
-	Unlock();
+	//Unlock();
 }
 
 void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
@@ -378,7 +362,7 @@ void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
 	//SetCurrentTime();
 
 	//write之前先考虑备份，备份机制统一考虑。
-	Lock();
+	//Lock();
 	char szLogFile[MAX_PATH];
 	snprintf(szLogFile, sizeof(szLogFile) - 1, "%s%s", m_szLogPath, m_szNormalLogName);
 	szLogFile[sizeof(szLogFile) - 1] = 0;
@@ -391,7 +375,7 @@ void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
 		char *pTemp = strrchr(szTempLogFile, '/');
 		if( pTemp == NULL )
 		{
-			Unlock();
+			//Unlock();
 			return;
 		}
 		*pTemp = 0;
@@ -409,7 +393,7 @@ void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
 		va_end(args);
 		fclose(pFile);
 	}
-	Unlock();
+	//Unlock();
 
 }
 
@@ -438,7 +422,7 @@ void CLogFile::BinLog(const char* pszFileName, char *pBuffer, unsigned int iLeng
 		m_szLogPath, m_curTime.ulYear, m_curTime.ulMonth, m_curTime.ulDay
 		, m_curTime.ulHour, pszFileName);
 
-	Lock();
+	//Lock();
 
 	FILE *pFile = fopen(szLogFile, "a+");
 	if( pFile == NULL )
@@ -451,7 +435,7 @@ void CLogFile::BinLog(const char* pszFileName, char *pBuffer, unsigned int iLeng
 		pFile = fopen(szLogFile, "a+");
 		if( pFile == NULL )
 		{
-			Unlock();
+			//Unlock();
 			return;
 		}
 	}
@@ -473,7 +457,7 @@ void CLogFile::BinLog(const char* pszFileName, char *pBuffer, unsigned int iLeng
 	fprintf(pFile,tmpBuffer);
 
 	fclose(pFile);
-	Unlock();
+//	Unlock();
 }
 
 
@@ -502,7 +486,7 @@ void CLogFile::DbgBinLog(char *pBuffer, unsigned int iLength)
 	sprintf(szLogFile, "%s%s", m_szLogPath, m_szNormalLogName);
 
 
-	Lock();
+	//Lock();
 
 	FILE *pFile = fopen(szLogFile, "a+");
 	if( pFile == NULL )
@@ -512,7 +496,7 @@ void CLogFile::DbgBinLog(char *pBuffer, unsigned int iLength)
 		pFile = fopen(szLogFile, "a+");
 		if( pFile == NULL )
 		{
-			Unlock();
+			//Unlock();
 			return;
 		}
 	}
@@ -534,7 +518,7 @@ void CLogFile::DbgBinLog(char *pBuffer, unsigned int iLength)
 	fprintf(pFile,tmpBuffer);
 
 	fclose(pFile);
-	Unlock();
+	//Unlock();
 }
 
 void CLogFile::LogToFileByDay(const char* pszLogFile, const char* msg, ...)

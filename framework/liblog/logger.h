@@ -46,8 +46,7 @@ public:
 	virtual	void SetBakLogPath(const char *pBakLogPath);   /* 设置日志备份的路径，可选项默认为：日志路径/baklogs/ */
 
 private:
-	void  Lock();
-	void  Unlock();
+
 	void  WriteNormalLog(const char* msg, va_list& args, char* pStrAdd = NULL);
 	void  WriteToLogFile(const char* szFileName, const char* msg, va_list& args, char* pStrAdd = NULL);
 	void  WriteLog(FILE* pFile, const char *msg, va_list& args, char* pAddStr = NULL);
