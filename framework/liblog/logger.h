@@ -43,7 +43,6 @@ public:
 
 	virtual	void ThreadLogToFile(const char* pszLogFile, int nLogPriorty, const char* msg, ...);
 
-	virtual	void SetBakLogPath(const char *pBakLogPath);   /* 设置日志备份的路径，可选项默认为：日志路径/baklogs/ */
 
 private:
 	void  BakLogFile(const char* pFileName);

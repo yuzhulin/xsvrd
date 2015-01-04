@@ -67,8 +67,6 @@ public:
 	virtual	void SetThreadInfoLogFlag(int nInfoLog) = 0;
 	virtual void ThreadLog(int nThreadIndex, int nPriority, const char* msg, ...) = 0;        
 	virtual	void ThreadLogToFile(const char* pszLogFile, int nLogPriorty, const char* msg, ...) = 0;
-
-	virtual	void SetBakLogPath(const char *pBakLogPath) = 0;   /* 设置日志备份的路径，可选项，默认为：日志路径/baklogs/ */
 	virtual	void LogToFileByDay(const char* pszLogFile, const char* msg, ...) = 0;
 };
 

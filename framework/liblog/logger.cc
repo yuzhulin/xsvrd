@@ -126,7 +126,7 @@ void CLogFile::SetLogPath(const char *pLogPath)
     
 	char szPath[MAX_PATH] = {0};
 	snprintf(szPath, sizeof(szPath) - 1, "%sbaklogs", m_szLogPath);
-	SetBakLogPath(szPath);
+	//SetBakLogPath(szPath);
 }
 
 void CLogFile::SetThreadModuleName(char szThreadModuleName[MAX_PATH])
@@ -574,28 +574,6 @@ void CLogFile::ThreadLogToFile(const char* pszLogFile, int nLogPriorty, const ch
 	va_start(args, msg);
 	//WriteToLogFile(szFileName, msg, args);
 	va_end (args);
-}
-
-void CLogFile::SetBakLogPath(const char *pBakLogPath)
-{
-	if (!pBakLogPath)
-	{
-		return;
-	}
-	memset(m_szBakLogPath, 0, sizeof(m_szBakLogPath));
-	strncpy(m_szBakLogPath, pBakLogPath, sizeof(m_szBakLogPath) - 2);
-	int nLen = strlen(m_szBakLogPath);
-	for( int i = 0; i < nLen; i++ )
-	{
-		if( m_szBakLogPath[i] == '\\' )
-		{
-			m_szBakLogPath[i] = '/';
-		}
-	}
-	if( m_szBakLogPath[nLen - 1] != '/' )
-	{
-		m_szBakLogPath[nLen] = '/';
-	}
 }
 
 // add by: xushvai@gmail.com
