@@ -103,32 +103,6 @@ CLogFile::~CLogFile()
 {
 }
 
-void CLogFile::SetLogPath(const char *pLogPath)
-{
-	if (!pLogPath)
-	{
-		return;
-	}
-	memset(m_szLogPath, 0, sizeof(m_szLogPath));
-	strncpy(m_szLogPath, pLogPath, sizeof(m_szLogPath) - 2);
-	int nLen = strlen(m_szLogPath);
-	for( int i = 0; i < nLen; i++ )
-	{
-		if( m_szLogPath[i] == '\\' )
-		{
-			m_szLogPath[i] = '/';
-		}
-	}
-	if( m_szLogPath[nLen - 1] != '/' )
-	{
-		m_szLogPath[nLen] = '/';
-	}
-    
-	char szPath[MAX_PATH] = {0};
-	snprintf(szPath, sizeof(szPath) - 1, "%sbaklogs", m_szLogPath);
-	//SetBakLogPath(szPath);
-}
-
 void CLogFile::SetThreadModuleName(char szThreadModuleName[MAX_PATH])
 {
 	memset(m_szThreadModuleName, 0, sizeof(m_szThreadModuleName));

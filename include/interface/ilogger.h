@@ -52,7 +52,6 @@ public:
 	{
 	};
 	virtual int GetServerVersion(){return 1;};
-	virtual void SetLogPath(const char *pLogPath) = 0;
 	virtual void SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum) = 0;
 
 
