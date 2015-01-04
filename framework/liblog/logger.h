@@ -126,6 +126,8 @@ public:
 
 	virtual void SetLogPath(const char* path);
 
+	virtual void SetBackupLogPath(const char* path);
+
 	virtual void WriteContent(FILE* file_ptr, const char* format, va_list& args, char* append_string);
 
 	virtual void WriteInfoLog(const char* format, ...);
@@ -165,7 +167,8 @@ private:
 	char error_log_name_[MAX_NAME];
 	char debug_log_name_[MAX_NAME];
 	char normal_log_name_[MAX_NAME];
-	char default_output_path_[MAX_PATH];  // logs will be saved in the 'log' directory under this path.
+	char log_path_[MAX_PATH];
+	char backup_log_path_[MAX_PATH];
 };
 
 //LOGFILE_NAMESPACE_END

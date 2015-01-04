@@ -72,6 +72,8 @@ public:
 
 	virtual void SetLogPath(const char* log_file_path) = 0;
 
+	virtual void SetBackupLogPath(const char* path) = 0;
+
 	virtual void WriteContent(FILE* file_ptr, const char* msg, va_list& args, char* append_string) = 0;
 
 	virtual void WriteInfoLog(const char* format, ...) = 0;

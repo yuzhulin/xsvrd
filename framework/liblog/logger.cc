@@ -614,7 +614,8 @@ Logger::Logger()
 	memset(warn_log_name_, 0, sizeof(warn_log_name_));
 	memset(debug_log_name_, 0, sizeof(debug_log_name_));
 	memset(error_log_name_, 0, sizeof(error_log_name_));
-	memset(default_output_path_, 0, sizeof(default_output_path_));
+	memset(log_path_, 0, sizeof(log_path_));
+	memset(backup_log_path_, 0, sizeof(backup_log_path_));
 	Init();
 }
 
@@ -636,8 +637,8 @@ void Logger::Init()
 		DEFAULT_DEBUG_LOG_FILE_NAME, sizeof(debug_log_name_) - 1);
 
 	// set default log path.
-	strncpy(default_output_path_,
-		DEFAULT_LOG_PATH, sizeof(default_output_path_) - 1);
+	strncpy(log_path_,
+		DEFAULT_LOG_PATH, sizeof(log_path_) - 1);
 
 	pthread_mutex_init(&thread_mutex_, NULL);
 }
@@ -660,21 +661,42 @@ void Logger::Unlock()
 void Logger::SetLogPath(const char* path)
 {
 	if (path) {
-		strncpy(default_output_path_,
-			path, sizeof(default_output_path_) - 1);
+		strncpy(log_path_,
+			path, sizeof(log_path_) - 1);
 	} else {
-		strncpy(default_output_path_,
+		strncpy(log_path_,
 			DEFAULT_LOG_PATH,
-				sizeof(default_output_path_) - 1);
+			sizeof(log_path_) - 1);
 	}
-	uint32 path_str_len = strlen(default_output_path_);
+	uint32 path_str_len = strlen(log_path_);
 	for (int32 i = 0; i < path_str_len; i++) {
-		if ('\\' == default_output_path_[i]) {
-			default_output_path_[i] = '/';
+		if ('\\' == log_path_[i]) {
+			log_path_[i] = '/';
 		}
 	}
-	if ('/' == default_output_path_[path_str_len - 1]) {
-		default_output_path_[path_str_len - 1] = 0;
+	if ('/' == log_path_[path_str_len - 1]) {
+		log_path_[path_str_len - 1] = 0;
+	}
+}
+
+void Logger::SetBackupLogPath(const char* path)
+{
+	if (path) {
+		strncpy(backup_log_path_,
+			path, sizeof(backup_log_path_) - 1);
+	} else {
+		strncpy(backup_log_path_,
+			DEFAULT_LOG_PATH,
+			sizeof(backup_log_path_) - 1);
+	}
+	uint32 path_str_len = strlen(backup_log_path_);
+	for (int32 i = 0; i < path_str_len; i++) {
+		if ('\\' == backup_log_path_[i]) {
+			backup_log_path_[i] = '/';
+		}
+	}
+	if ('/' == backup_log_path_[path_str_len - 1]) {
+		backup_log_path_[path_str_len - 1] = 0;
 	}
 }
 
@@ -908,7 +930,7 @@ void Logger::WriteToLogFile(const char* file_name,
 	//write之前先考虑备份，备份机制统一考虑。
 	Lock();
 	char log_file[MAX_PATH];
-	sprintf(log_file, "%s/%s", default_output_path_, file_name);
+	sprintf(log_file, "%s/%s", log_path_, file_name);
 
 	//BakLogFile(pFileName);
 
