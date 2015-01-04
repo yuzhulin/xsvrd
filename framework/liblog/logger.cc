@@ -704,6 +704,7 @@ Logger::Logger()
 	lock_log_switch_(SWITCH_ON)
 {
 	memset(&cur_time_, 0, sizeof(cur_time_));
+	memset(&thread_mutex_, 0, sizeof(thread_mutex_));
 	memset(info_log_name_, 0, sizeof(info_log_name_));
 	memset(warn_log_name_, 0, sizeof(warn_log_name_));
 	memset(debug_log_name_, 0, sizeof(debug_log_name_));
@@ -732,15 +733,23 @@ void Logger::Init()
 	// set default log path.
 	strncpy(default_output_path_,
 		DEFAULT_LOG_PATH, sizeof(default_output_path_) - 1);
+
+	pthread_mutex_init(&thread_mutex_, NULL);
 }
 
 void Logger::Lock()
 {
+	if (!lock_log_switch_) {
+		return;
+	}
+	pthread_mutex_lock(&thread_mutex_);
 }
 
 void Logger::Unlock()
 {
-
+	if (!lock_log_switch_) {
+		pthread_mutex_unlock(&thread_mutex_);
+	}
 }
 
 void Logger::SetLogPath(const char* path)

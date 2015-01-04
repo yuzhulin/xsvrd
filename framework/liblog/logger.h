@@ -163,6 +163,7 @@ private:
 	int8 lock_log_switch_;                // 1:on 0:off
 
 	LogTime cur_time_;
+	pthread_mutex_t thread_mutex_;
 
 	char info_log_name_[MAX_NAME];
 	char warn_log_name_[MAX_NAME];
