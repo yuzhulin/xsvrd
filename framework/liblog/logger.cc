@@ -252,46 +252,7 @@ void CLogFile::BakLogFile(const char* pFileName)
 	BackupFile(szLogFile, szBakFileName);
 }
 
-void CLogFile::WriteLog(FILE* pFile, const char *msg, va_list& args, char* pAddStr)
-{
-	if( m_iShowMs )
-	{
-		fprintf(pFile,"[%.4u-%.2u-%.2u,%.2u:%.2u:%.2u:%.3u] ",
-			m_curTime.ulYear ,
-			m_curTime.ulMonth ,
-			m_curTime.ulDay,
-			m_curTime.ulHour,
-			m_curTime.ulMinute,
-			m_curTime.ulSecond,
-			m_curTime.ulMSecond);
-	}
-	else
-	{
-		fprintf(pFile,"[%.4u-%.2u-%.2u,%.2u:%.2u:%.2u] ",
-			m_curTime.ulYear ,
-			m_curTime.ulMonth ,
-			m_curTime.ulDay,
-			m_curTime.ulHour,
-			m_curTime.ulMinute,
-			m_curTime.ulSecond);
-	}
-	if( pAddStr )
-	{
-		fprintf(pFile, " %s ", pAddStr);
-	}
 
-	vfprintf(pFile, msg, args);
-	//fprintf(pFile,"\n");
-}
-
-void CLogFile::WriteNormalLog(const char* msg, va_list& args, char* pStrAdd)
-{
-	if( m_iDbgLogFlag == 0 )
-	{
-		return;
-	}
-	WriteToLogFile(m_szNormalLogName, msg, args, pStrAdd);
-}
 
 void CLogFile::WriteToLogFile(const char* pFileName, const char* msg, va_list& args, char *pAddStr)
 {
@@ -322,7 +283,7 @@ void CLogFile::WriteToLogFile(const char* pFileName, const char* msg, va_list& a
 	}
 	if (pFile)
 	{
-		WriteLog(pFile, msg, args, pAddStr);
+		//WriteLog(pFile, msg, args, pAddStr);
 		fclose(pFile);
 	}
 	//Unlock();
@@ -389,7 +350,7 @@ void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
 	{
 		va_list   args;
 		va_start(args, msg);
-		WriteLog(pFile, msg, args, pAddStr);
+		//WriteLog(pFile, msg, args, pAddStr);
 		va_end(args);
 		fclose(pFile);
 	}

@@ -47,9 +47,7 @@ public:
 
 private:
 
-	void  WriteNormalLog(const char* msg, va_list& args, char* pStrAdd = NULL);
 	void  WriteToLogFile(const char* szFileName, const char* msg, va_list& args, char* pStrAdd = NULL);
-	void  WriteLog(FILE* pFile, const char *msg, va_list& args, char* pAddStr = NULL);
 	void  BakLogFile(const char* pFileName);
 	void  GetBakFileName(const char* pFileName, char szBakFileName[MAX_PATH]);
 	void  BackupFile(const char* pSrcFile, const char* pDstFile);
