@@ -109,7 +109,6 @@ void CLogFile::SetLogPath(const char *pLogPath)
 	{
 		return;
 	}
-
 	memset(m_szLogPath, 0, sizeof(m_szLogPath));
 	strncpy(m_szLogPath, pLogPath, sizeof(m_szLogPath) - 2);
 	int nLen = strlen(m_szLogPath);
@@ -598,9 +597,6 @@ void CLogFile::SetBakLogPath(const char *pBakLogPath)
 		m_szBakLogPath[nLen] = '/';
 	}
 }
-
-
-
 
 // add by: xushvai@gmail.com
 ////////////////////////////////////////////////////////////////////////////////
