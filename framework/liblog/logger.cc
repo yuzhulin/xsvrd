@@ -80,8 +80,6 @@ CLogFile::CLogFile()
 	memset(m_szLogFileName, 0, sizeof(m_szLogFileName));
 	strncpy(m_szLogFileName, "tcpsvrd.log", sizeof(m_szLogFileName) - 1);
 
-	m_bIsLockLog = FALSE;
-
 	m_iDbgLogFlag  = 0;
 	m_iWarnLogFlag = 0;
 	m_iInfoLogFlag = 1;
