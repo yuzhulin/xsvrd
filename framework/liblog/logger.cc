@@ -76,9 +76,6 @@ CLogFile::CLogFile()
 	memset(m_szLogPath, 0, sizeof(m_szLogPath));
 	memset(m_szThreadModuleName, 0, sizeof(m_szThreadModuleName));
 	memset(&m_curTime, 0, sizeof(m_curTime));
-	memset(m_szBakLogPath, 0, sizeof(m_szBakLogPath));
-	memset(m_szLogFileName, 0, sizeof(m_szLogFileName));
-	strncpy(m_szLogFileName, "tcpsvrd.log", sizeof(m_szLogFileName) - 1);
 
 	m_iDbgLogFlag  = 0;
 	m_iWarnLogFlag = 0;
@@ -91,7 +88,7 @@ CLogFile::CLogFile()
 	
 	m_iShowMs = 0;
 	m_nTraceNum = 0;
-	pthread_mutex_init( &m_stMutex, NULL );
+
 
 	max_file_size_ = 16 * 1024 * 1024;
 	max_file_num_ = 10;
@@ -359,26 +356,12 @@ void CLogFile::BinLog(const char* pszFileName, char *pBuffer, unsigned int iLeng
 
 void CLogFile::DbgBinLog(char *pBuffer, unsigned int iLength) 
 {
-	if(0 == m_iBinLogFlag) /*如果BinLog标志没有打开，则返回*/
-	{
-		return;
-	}
-	//SetCurrentTime();
-
-	if( pBuffer == NULL )
-	{
-		return;
-	}
-	if( iLength >= MAX_BIN_LEN )
-	{
-		iLength = MAX_BIN_LEN;
-	}
 	char tmpBuffer[2 * MAX_BIN_LEN + 1];
-	char strTemp[64];
+	
 
 	char szLogFile[MAX_PATH] = {0};
 
-
+	char strTemp[64];
 	sprintf(szLogFile, "%s%s", m_szLogPath, m_szNormalLogName);
 
 
@@ -865,6 +848,56 @@ void Logger::WriteErrorLog(const char* format, ...)
 	va_start(variable_argument_list, format);
 	WriteToLogFile(error_log_name_, format, variable_argument_list);
 	va_end(variable_argument_list);
+}
+
+void Logger::WriteBinLog(char* buffer, uint32 len)
+{
+	if (!bin_log_switch_) {
+		return;
+	}
+	if (!buffer) {
+		return;
+	}
+	if (len > MAX_BIN_LOG_LEN) {
+		len = MAX_BIN_LOG_LEN;
+	}
+	SetCurTime();
+
+
+	char tmpBuffer[2 * MAX_BIN_LEN + 1];
+	char strTemp[64];
+
+
+	char log_file[MAX_PATH];
+	sprintf(log_file, "%s/%s", log_path_, debug_log_name_);
+	Lock();
+	FILE* file_ptr = fopen(log_file, "a+");
+	if (!file_ptr) {
+		CreatePath(log_path_);
+		file_ptr = fopen(log_file, "a+");
+		if (!file_ptr) {
+			Unlock();
+			return;
+		}
+	}
+	tmpBuffer[0] = 0;
+	for (int32 i = 0; i < len; i++) {
+		if (!(i % 16)) {
+			sprintf( strTemp, "\n%04d>    ", i/16+1);
+			strcat(tmpBuffer, strTemp);
+		}
+		sprintf(strTemp, "%02X ", (unsigned char)buffer[i]);
+		strcat(tmpBuffer, strTemp);
+	}
+	strcat(tmpBuffer, "\n");
+	fprintf(file_ptr, "\n***************[time %02u:%02u:%02u] bufferlen %u***************", 
+		cur_time_.hour, cur_time_.minute, cur_time_.second, len);
+
+	
+	fprintf(file_ptr, tmpBuffer);
+
+	fclose(file_ptr);
+	Unlock();
 }
 
 void Logger::WriteLogToFile(const char* file_name, const char* format, ...)

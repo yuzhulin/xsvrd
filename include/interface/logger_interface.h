@@ -21,7 +21,7 @@ struct LogTime {
 // wrap the logger interface.
 /////////////////////////////////////////////////////////////////////////
 #define SET_INTERFACE_INSTANCE_PTR(INSTANCE_PTR) \
-	do {g_interface_instance_ptr = (INSTANCE_PTR);} while (0)
+	do {g_interface_instance_ptr = (INSTANCE_PTR);} while(0)
 
 #define WRITE_DEBUG_LOG(...) \
 	do {g_interface_instance_ptr->WriteDebugLog(__VA_ARGS__);} while(0)
@@ -34,6 +34,9 @@ struct LogTime {
 
 #define WRITE_ERROR_LOG(...) \
 	do {g_interface_instance_ptr->WriteErrorLog(__VA_ARGS__);} while(0)
+
+#define WRITE_BIN_LOG(...) \
+	do {g_interface_instance_ptr->WriteBinLog(__VA_ARGS__);} while(0)
 
 #define WRITE_LOG_TO_FILE(...) \
 	do {g_interface_instance_ptr->WriteLogToFile(__VA_ARGS__);} while(0)
@@ -81,6 +84,8 @@ public:
 	virtual void WriteDebugLog(const char* format, ...) = 0;
 
 	virtual	void WriteWarnLog(const char* format, ...) = 0;
+
+	virtual void WriteBinLog(char* buffer, uint32 len) = 0;
 
 	virtual void WriteLogToFile(const char* file_name, const char* format, ...) = 0;
 

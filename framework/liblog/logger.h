@@ -84,13 +84,15 @@ private:
 // add by: xushvai@gmail.com
 ////////////////////////////////////////////////////////////////////////////////
 
-#define DEFAULT_BIN_LOG_FILE_NAME		"bin.log"
-#define DEFAULT_INFO_LOG_FILE_NAME		"info.log"
-#define DEFAULT_WARN_LOG_FILE_NAME		"warn.log"
-#define DEFAULT_DEBUG_LOG_FILE_NAME		"debug.log"
-#define DEFAULT_ERROR_LOG_FILE_NAME		"error.log"
-#define DEFAULT_LOG_PATH				"../log"
-#define DEFAULT_BACKUP_LOG_PATH			"../backup_log"
+#define DEFAULT_BIN_LOG_FILE_NAME			"bin.log"
+#define DEFAULT_INFO_LOG_FILE_NAME			"info.log"
+#define DEFAULT_WARN_LOG_FILE_NAME			"warn.log"
+#define DEFAULT_DEBUG_LOG_FILE_NAME			"debug.log"
+#define DEFAULT_ERROR_LOG_FILE_NAME			"error.log"
+#define DEFAULT_LOG_PATH					"../log"
+#define DEFAULT_BACKUP_LOG_PATH				"../backup_log"
+
+#define MAX_BIN_LOG_LEN						(32 * 1024)
 
 class Logger : public LoggerInterface {
 public:
@@ -136,6 +138,8 @@ public:
 	virtual	void WriteWarnLog(const char* format, ...);
 
 	virtual void WriteErrorLog(const char* format, ...);
+
+	virtual void WriteBinLog(char* buffer, uint32 len);
 
 	virtual void WriteLogToFile(const char* file_name, const char* format, ...);
 
