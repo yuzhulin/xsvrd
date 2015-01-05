@@ -877,8 +877,8 @@ void Logger::WriteBinLog(char* buffer, uint32 len)
 	char tmpBuffer[2 * MAX_BIN_LOG_LEN + MAX_BIN_LOG_LEN] = {0};
 	char strTemp[64] = {0};
 	for (int32 i = 0; i < len; i++) {
-		if (!(i % 16)) {
-			sprintf(strTemp, "\n%04d>    ", i/16+1);
+		if (!(i % BIN_LOG_BYTE_PER_LINE)) {
+			sprintf(strTemp, "\n%04d>    ", i / BIN_LOG_BYTE_PER_LINE + 1);
 			strcat(tmpBuffer, strTemp);
 		}
 		sprintf(strTemp, "%02X ", (unsigned char)buffer[i]);

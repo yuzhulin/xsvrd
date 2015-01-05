@@ -93,6 +93,7 @@ private:
 #define DEFAULT_BACKUP_LOG_PATH				"../backup_log"
 
 #define MAX_BIN_LOG_LEN						(32 * 1024)
+#define BIN_LOG_BYTE_PER_LINE				16
 
 class Logger : public LoggerInterface {
 public:
