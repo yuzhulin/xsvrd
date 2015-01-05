@@ -354,52 +354,6 @@ void CLogFile::BinLog(const char* pszFileName, char *pBuffer, unsigned int iLeng
 }
 
 
-void CLogFile::DbgBinLog(char *pBuffer, unsigned int iLength) 
-{
-	char tmpBuffer[2 * MAX_BIN_LEN + 1];
-	
-
-	char szLogFile[MAX_PATH] = {0};
-
-	char strTemp[64];
-	sprintf(szLogFile, "%s%s", m_szLogPath, m_szNormalLogName);
-
-
-	//Lock();
-
-	FILE *pFile = fopen(szLogFile, "a+");
-	if( pFile == NULL )
-	{
-		CreatePath(m_szLogPath);
-
-		pFile = fopen(szLogFile, "a+");
-		if( pFile == NULL )
-		{
-			//Unlock();
-			return;
-		}
-	}
-
-	tmpBuffer[0] = 0;
-	for( unsigned int i = 0; i < iLength; i++ )
-	{
-		if(!( i%16 ) )
-		{
-			sprintf( strTemp, "\n%04d>    ", i/16+1);
-			strcat(tmpBuffer, strTemp);
-		}
-		sprintf( strTemp, "%02X ", (unsigned char )pBuffer[i]);
-		strcat(tmpBuffer, strTemp);
-	}
-	strcat(tmpBuffer, "\n");
-	//fprintf(pFile, "\n***************[time %02u:%02u:%02u] bufferlen %u***************", 
-	//	m_curTime.ulHour, m_curTime.ulMinute, m_curTime.ulSecond, iLength);
-	fprintf(pFile,tmpBuffer);
-
-	fclose(pFile);
-	//Unlock();
-}
-
 void CLogFile::LogToFileByDay(const char* pszLogFile, const char* msg, ...)
 {
 	if( msg == NULL || pszLogFile == NULL )
