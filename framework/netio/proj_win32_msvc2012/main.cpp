@@ -36,7 +36,7 @@ int32 InitLoggerInterface()
 	WRITE_DEBUG_LOG("this is a debug.\n");
 	WRITE_LOG_TO_FILE("../sss.log", "%d", 23123);
 
-	char buffer[128] = {"sfdfsfsfsf"};
+	char buffer[120] = {"sfdfsfsfsf"};
 	WRITE_BIN_LOG(buffer, sizeof(buffer));
 	
 	return 0;

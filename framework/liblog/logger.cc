@@ -862,12 +862,6 @@ void Logger::WriteBinLog(char* buffer, uint32 len)
 		len = MAX_BIN_LOG_LEN;
 	}
 	SetCurTime();
-
-
-	char tmpBuffer[2 * MAX_BIN_LEN + 1];
-	char strTemp[64];
-
-
 	char log_file[MAX_PATH];
 	sprintf(log_file, "%s/%s", log_path_, debug_log_name_);
 	Lock();
@@ -880,17 +874,18 @@ void Logger::WriteBinLog(char* buffer, uint32 len)
 			return;
 		}
 	}
-	tmpBuffer[0] = 0;
+	char tmpBuffer[2 * MAX_BIN_LOG_LEN + MAX_BIN_LOG_LEN] = {0};
+	char strTemp[64] = {0};
 	for (int32 i = 0; i < len; i++) {
 		if (!(i % 16)) {
-			sprintf( strTemp, "\n%04d>    ", i/16+1);
+			sprintf(strTemp, "\n%04d>    ", i/16+1);
 			strcat(tmpBuffer, strTemp);
 		}
 		sprintf(strTemp, "%02X ", (unsigned char)buffer[i]);
 		strcat(tmpBuffer, strTemp);
 	}
 	strcat(tmpBuffer, "\n");
-	fprintf(file_ptr, "\n***************[time %02u:%02u:%02u] bufferlen %u***************", 
+	fprintf(file_ptr, "\n---------------- [time %02u:%02u:%02u] len %u ----------------", 
 		cur_time_.hour, cur_time_.minute, cur_time_.second, len);
 
 	
