@@ -1,67 +1,7 @@
 ﻿#ifndef __LOGGER_H__
 #define __LOGGER_H__
 
-#include "../../include/interface/ilogger.h"
 #include "logger_interface.h"
-
-class CLogFile : public ILogFile
-{
-public:
-	CLogFile();
-	virtual ~CLogFile();
-
-
-	virtual void WriteLogFile(int nPriority, const char* msg, ...);
-
-	virtual	void LogToFileByDay(const char* pszLogFile, const char* msg, ...);
-
-	virtual	void TraceLog(unsigned int pszName, const char* msg, ...);
-
-	virtual void SetThreadModuleName(char szThreadModuleName[MAX_PATH]);
-
-	virtual	void SetThreadDbgLogFlag(int nDbgLog);
-
-	virtual	void SetThreadWarnLogFlag(int nWarnLog);
-
-	virtual	void SetThreadInfoLogFlag(int nInfoLog);
-
-	virtual void SetTraceName(int nUinTraceNum, unsigned int pszNames[MAX_TRACENUM]);
-
-	virtual void ThreadLog(int nThreadIndex, int nPriority, const char* msg, ...);
-
-	virtual	void ThreadLogToFile(const char* pszLogFile, int nLogPriorty, const char* msg, ...);
-
-
-private:
-	void  BackupFile(const char* pSrcFile, const char* pDstFile);
-	void  WriteThreadNormalLog(int nThreadIndex, const char* msg, va_list& args, char* pStrAdd = NULL);
-
-private:
-	int             m_iThreadDbgLogFlag;              
-	int             m_iThreadWarnLogFlag;     
-	int             m_iThreadInfoLogFlag;  
-
-	int             m_bIsLockLog;
-	pthread_mutex_t m_stMutex;
-	int             m_nTraceNum;
-
-	char            m_szLogPath[MAX_PATH];        /*日志的路径*/
-	char            m_szBakLogPath[MAX_PATH];        /*日志备份的路径*/
-	char            m_szThreadModuleName[MAX_PATH];     
-	unsigned int    m_szTraceNames[MAX_TRACENUM];
-	char            m_szLogName[MAX_PATH];
-	char            m_szLogFileName[MAX_PATH];
-	char            m_szNormalLogName[MAX_PATH];
-	char            m_szWarnLogName[MAX_PATH];
-	char            m_szErrLogName[MAX_PATH];
-	char            m_szInfoLogName[MAX_PATH];
-	char            m_szLogToFileName[MAX_PATH];
-
-};
-
-
-// add by: xushvai@gmail.com
-////////////////////////////////////////////////////////////////////////////////
 
 #define DEFAULT_BIN_LOG_FILE_NAME			"bin.log"
 #define DEFAULT_INFO_LOG_FILE_NAME			"info.log"

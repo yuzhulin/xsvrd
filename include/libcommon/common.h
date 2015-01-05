@@ -2,7 +2,6 @@
 #define _BASECOMMON_H_
 
 #include "iconfigfile.h"
-#include "ilogger.h"
 #include "icrypt.h"
 #include "imd5hash.h"
 
