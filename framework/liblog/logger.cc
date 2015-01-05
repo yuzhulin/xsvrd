@@ -73,22 +73,13 @@ LOGFILE_NAMESPACE_BEGIN
 CLogFile::CLogFile()
 {
 	memset(m_szTraceNames, 0, sizeof(m_szTraceNames)); 
-	memset(m_szLogPath, 0, sizeof(m_szLogPath));
 	memset(m_szThreadModuleName, 0, sizeof(m_szThreadModuleName));
-	memset(&m_curTime, 0, sizeof(m_curTime));
-
-	m_iDbgLogFlag  = 0;
-	m_iWarnLogFlag = 0;
-	m_iInfoLogFlag = 1;
-	m_iBinLogFlag  = 0;
 
 	m_iThreadDbgLogFlag  = 0;
 	m_iThreadWarnLogFlag = 0;
 	m_iThreadInfoLogFlag = 0;
 	
-	m_iShowMs = 0;
 	m_nTraceNum = 0;
-
 
 	max_file_size_ = 16 * 1024 * 1024;
 	max_file_num_ = 10;
@@ -128,7 +119,6 @@ void CLogFile::SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum)
 	max_file_size_ = nMaxSize;
 	max_file_num_ = nMaxFileNum;
 }
-
 
 void CLogFile::SetTraceName(int nUinTraceNum, unsigned int pszNames[MAX_TRACENUM])
 {
@@ -219,8 +209,6 @@ void CLogFile::BakLogFile(const char* pFileName)
 	GetBakFileName(pFileName, szBakFileName);
 	BackupFile(szLogFile, szBakFileName);
 }
-
-
 void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
 {
 	char* pAddStr = NULL;
