@@ -4,11 +4,6 @@
 #include "../../include/interface/ilogger.h"
 #include "logger_interface.h"
 
-//LOGFILE_NAMESPACE_BEGIN
-
-#define MAX_BIN_LEN             (32 * 1024)
-
-
 class CLogFile : public ILogFile
 {
 public:
@@ -171,7 +166,5 @@ private:
 	char log_path_[MAX_PATH];
 	char backup_log_path_[MAX_PATH];
 };
-
-//LOGFILE_NAMESPACE_END
 
 #endif

@@ -56,8 +56,6 @@ extern "C"
 	}
 };
 
-LOGFILE_NAMESPACE_BEGIN
-
 CLogFile::CLogFile()
 {
 	memset(m_szTraceNames, 0, sizeof(m_szTraceNames)); 
@@ -826,5 +824,3 @@ void Logger::BackupFile(const char* src_file, const char* dst_file)
 		unlink(src_file);
 	}
 }
-
-LOGFILE_NAMESPACE_END
