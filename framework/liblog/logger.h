@@ -53,7 +53,6 @@ private:
 
 	int             m_bIsLockLog;
 	pthread_mutex_t m_stMutex;
-	TTime           m_curTime;
 	int             m_nTraceNum;
 
 	int             m_iShowMs;

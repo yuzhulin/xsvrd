@@ -34,16 +34,7 @@ enum KGLOG_PRIORITY
 	KGLOG_PRIORITY_MAX = 4
 };
 
-typedef struct _TTime/*当前时间*/
-{
-	unsigned int      ulYear;           /*0000-9999*/
-	unsigned int      ulMonth;          /*00-12*/
-	unsigned int      ulDay;            /*01-31*/
-	unsigned int      ulHour;           /*00-23*/
-	unsigned int      ulMinute;         /*00-59*/
-	unsigned int      ulSecond;         /*00-59*/
-	unsigned int      ulMSecond;        /*000-999*/
-}TTime;
+
 
 class ILogFile
 {

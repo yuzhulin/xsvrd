@@ -286,10 +286,11 @@ void CLogFile::LogToFileByDay(const char* pszLogFile, const char* msg, ...)
 	}
 
 	//SetCurrentTime();
-	int nRet = snprintf(
-		m_szLogToFileName, sizeof(m_szLogToFileName) - 1, "%04u-%02u-%02u/%s",
-		m_curTime.ulYear, m_curTime.ulMonth, m_curTime.ulDay, pszLogFile
-	);
+	int nRet = 0;
+	//int nRet = snprintf(
+	//	m_szLogToFileName, sizeof(m_szLogToFileName) - 1, "%04u-%02u-%02u/%s",
+	//	m_curTime.ulYear, m_curTime.ulMonth, m_curTime.ulDay, pszLogFile
+	//);
 	if ( nRet <= 0 )
 	{
 		return;
@@ -326,8 +327,8 @@ void CLogFile::TraceLog(unsigned int pszName, const char* msg, ...)
 	va_start(args, msg);
 	char szLogFile[MAX_PATH];
 	memset(szLogFile, 0, sizeof(szLogFile));
-	snprintf(szLogFile, sizeof(szLogFile) - 1,
-		"player/trace_%02d_%04u_%02u_%02u.log", i + 1, m_curTime.ulYear, m_curTime.ulMonth, m_curTime.ulDay);
+	//snprintf(szLogFile, sizeof(szLogFile) - 1,
+//		"player/trace_%02d_%04u_%02u_%02u.log", i + 1, m_curTime.ulYear, m_curTime.ulMonth, m_curTime.ulDay);
 	//WriteToLogFile(szLogFile, msg, args);
 	va_end (args);
 }
@@ -398,10 +399,10 @@ void CLogFile::ThreadLogToFile(const char* pszLogFile, int nLogPriorty, const ch
 
 	char szFileName[MAX_PATH];
 	memset(szFileName, 0, sizeof(szFileName));
-	snprintf(
-		szFileName, sizeof(szFileName) - 1, "%04u-%02u-%02u/%s",
-		m_curTime.ulYear, m_curTime.ulMonth, m_curTime.ulDay, pszLogFile
-	);
+	//snprintf(
+	//	szFileName, sizeof(szFileName) - 1, "%04u-%02u-%02u/%s",
+	//	m_curTime.ulYear, m_curTime.ulMonth, m_curTime.ulDay, pszLogFile
+	//);
 
 	va_list args;
 	va_start(args, msg);
