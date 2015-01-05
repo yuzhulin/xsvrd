@@ -508,7 +508,6 @@ Logger::Logger()
 
 Logger::~Logger()
 {
-
 }
 
 void Logger::Init()
