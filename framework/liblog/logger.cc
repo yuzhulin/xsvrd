@@ -874,23 +874,20 @@ void Logger::WriteBinLog(char* buffer, uint32 len)
 			return;
 		}
 	}
-	char tmpBuffer[2 * MAX_BIN_LOG_LEN + MAX_BIN_LOG_LEN] = {0};
-	char strTemp[64] = {0};
+	char temp_buffer[2 * MAX_BIN_LOG_LEN + MAX_BIN_LOG_LEN] = {0};
+	char add_str[64] = {0};
 	for (int32 i = 0; i < len; i++) {
 		if (!(i % BIN_LOG_BYTE_PER_LINE)) {
-			sprintf(strTemp, "\n%04d>    ", i / BIN_LOG_BYTE_PER_LINE + 1);
-			strcat(tmpBuffer, strTemp);
+			sprintf(add_str, "\n%04d>    ", i / BIN_LOG_BYTE_PER_LINE + 1);
+			strcat(temp_buffer, add_str);
 		}
-		sprintf(strTemp, "%02X ", (unsigned char)buffer[i]);
-		strcat(tmpBuffer, strTemp);
+		sprintf(add_str, "%02X ", (unsigned char)buffer[i]);
+		strcat(temp_buffer, add_str);
 	}
-	strcat(tmpBuffer, "\n");
+	strcat(temp_buffer, "\n");
 	fprintf(file_ptr, "\n---------------- [time %02u:%02u:%02u] len %u ----------------", 
 		cur_time_.hour, cur_time_.minute, cur_time_.second, len);
-
-	
-	fprintf(file_ptr, tmpBuffer);
-
+	fprintf(file_ptr, temp_buffer);
 	fclose(file_ptr);
 	Unlock();
 }
