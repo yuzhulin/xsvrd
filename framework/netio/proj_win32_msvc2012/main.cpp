@@ -28,16 +28,17 @@ int32 InitLoggerInterface()
 	DynamicLibLoader liblogloader;
 	liblogloader.Init("../lib/liblog", DLF_EXTEND_NAME);
 	g_loggerinterface = (LoggerInterface*)liblogloader.CreateObjByExportFunction();
+	g_loggerinterface->SetMAXLogFileSize(10);
 	if (!g_loggerinterface) {
 		return -1;
 	}
 	SET_INTERFACE_INSTANCE_PTR(g_loggerinterface);
-	WRITE_INFO_LOG("this is a test.\n");
+	//WRITE_INFO_LOG("this is a test.\n");
 	WRITE_DEBUG_LOG("this is a debug.\n");
-	WRITE_LOG_TO_FILE("../sss.log", "%d", 23123);
+	//WRITE_LOG_TO_FILE("../sss.log", "%d", 23123);
 
-	char buffer[120] = {"sfdfsfsfsf"};
-	WRITE_BIN_LOG(buffer, sizeof(buffer));
+	//char buffer[120] = {"sfdfsfsfsf"};
+	//WRITE_BIN_LOG(buffer, sizeof(buffer));
 	
 	return 0;
 }

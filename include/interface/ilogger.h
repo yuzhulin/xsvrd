@@ -43,8 +43,6 @@ public:
 	{
 	};
 	virtual int GetServerVersion(){return 1;};
-	virtual void SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum) = 0;
-
 
 	virtual	void TraceLog(unsigned int pszName, const char* msg, ...) = 0;
 	virtual void SetTraceName(int nUinTraceNum, unsigned int pszNames[MAX_TRACENUM]) = 0;	

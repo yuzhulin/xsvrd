@@ -16,9 +16,6 @@ public:
 	virtual ~CLogFile();
 
 
-	virtual void SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum);
-
-
 	virtual void WriteLogFile(int nPriority, const char* msg, ...);
 
 	virtual	void LogToFileByDay(const char* pszLogFile, const char* msg, ...);
@@ -41,8 +38,6 @@ public:
 
 
 private:
-	void  BakLogFile(const char* pFileName);
-	void  GetBakFileName(const char* pFileName, char szBakFileName[MAX_PATH]);
 	void  BackupFile(const char* pSrcFile, const char* pDstFile);
 	void  WriteThreadNormalLog(int nThreadIndex, const char* msg, va_list& args, char* pStrAdd = NULL);
 
@@ -55,11 +50,6 @@ private:
 	pthread_mutex_t m_stMutex;
 	int             m_nTraceNum;
 
-	int             m_iShowMs;
-	int             m_iDbgLogFlag;              /*普通日志的打印标志*/
-	int             m_iWarnLogFlag;             /*错误日志的打印标志*/
-	int             m_iInfoLogFlag;             /*信息日志的打印标志*/
-	int             m_iBinLogFlag;              /*缓冲区日志的打印标志*/
 	char            m_szLogPath[MAX_PATH];        /*日志的路径*/
 	char            m_szBakLogPath[MAX_PATH];        /*日志备份的路径*/
 	char            m_szThreadModuleName[MAX_PATH];     
@@ -72,8 +62,6 @@ private:
 	char            m_szInfoLogName[MAX_PATH];
 	char            m_szLogToFileName[MAX_PATH];
 
-	unsigned int max_file_size_;
-	unsigned int max_file_num_;
 };
 
 
@@ -97,6 +85,10 @@ public:
 	virtual~Logger();
 
 	virtual void Init();
+
+	virtual void SetMAXLogFileNum(uint32 num);
+
+	virtual void SetMAXLogFileSize(uint32 size);
 
 	virtual void SetLockSwitch(int8 on_off);
 
@@ -150,6 +142,12 @@ private:
 
 	void Unlock();
 
+	void BakupLogFile(const char* file_name);
+
+	void BackupFile(const char* src_file, const char* dst_file);
+
+	void GetBackupFileName(const char* file_name, char backup_file_name[MAX_PATH]);
+
 private:
 	int8 lock_log_switch_;                // 1:on 0:off
 	int8 bin_log_switch_;                 // 1:on 0:off
@@ -158,6 +156,9 @@ private:
 	int8 error_log_switch_;               // 1:on 0:off
 	int8 debug_log_switch_;               // 1:on 0:off
 	int8 show_millisecond_switch_;        // 1:on 0:off
+
+	uint32 max_log_file_size_;
+	uint32 max_log_file_num_;
 
 	LogTime cur_time_;
 	pthread_mutex_t thread_mutex_;

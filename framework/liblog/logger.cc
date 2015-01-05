@@ -4,9 +4,6 @@
 #ifdef _WIN32
 #include "base.h"
 #else
-
-
-
 static void CreatePath(char szLogPath[MAX_PATH])
 {
 	if (0 == szLogPath[0])
@@ -53,15 +50,6 @@ static void CreatePath(char szLogPath[MAX_PATH])
 
 extern "C"
 {
-	ILogFile* CreateLogFile()
-	{
-	#ifndef WIN32
-		return new mylogfile::CLogFile;
-	#else
-		return new CLogFile;
-	#endif
-	}
-
 	void* CreateObj()
 	{
 		return new Logger;
@@ -81,8 +69,7 @@ CLogFile::CLogFile()
 	
 	m_nTraceNum = 0;
 
-	max_file_size_ = 16 * 1024 * 1024;
-	max_file_num_ = 10;
+
 }
 
 CLogFile::~CLogFile()
@@ -108,16 +95,6 @@ void CLogFile::SetThreadWarnLogFlag(int nWarnLog)
 void CLogFile::SetThreadInfoLogFlag(int nInfoLog)
 {
 	m_iThreadInfoLogFlag = nInfoLog;
-}
-
-void CLogFile::SetMaxLogFile(unsigned int nMaxSize, unsigned int nMaxFileNum)
-{
-    if (0 == nMaxSize || 0 == nMaxFileNum)
-    {
-        return;
-    }
-	max_file_size_ = nMaxSize;
-	max_file_num_ = nMaxFileNum;
 }
 
 void CLogFile::SetTraceName(int nUinTraceNum, unsigned int pszNames[MAX_TRACENUM])
@@ -156,62 +133,9 @@ void CLogFile::BackupFile(const char* pSrcFile, const char* pDstFile)
 	}
 }
 
-void CLogFile::GetBakFileName(const char* pFileName, char szBakFileName[MAX_PATH])
-{
-	time_t tmOld = 0xFFFFFFFF;
-	memset(szBakFileName, 0, MAX_PATH);
-	for( unsigned int i = 0; i < max_file_num_; i++ )
-	{
-		time_t tmTemp = 0;
-		char szTempName[MAX_PATH];
-		memset(szTempName, 0, sizeof(szTempName));
-		snprintf(
-			szTempName, sizeof(szTempName) - 1, 
-			"%s%s_%d.bak", 
-			m_szBakLogPath, pFileName, i + 1
-		);
-		struct stat buf;
-		if( stat(szTempName, &buf) != 0 )
-		{
-			tmTemp = 0;
-			strncpy(szBakFileName, szTempName, MAX_PATH - 1);
-			return;
-		}
-		else
-		{
-			tmTemp = buf.st_mtime;
-		}
-		if( tmTemp < tmOld )
-		{
-			tmOld = tmTemp;
-			strncpy(szBakFileName, szTempName, MAX_PATH - 1);
-		}
-	}
-}
-
-void CLogFile::BakLogFile(const char* pFileName)
-{
-	char szLogFile[MAX_PATH];
-	sprintf(szLogFile, "%s%s", m_szLogPath, pFileName);
-
-	time_t tmNow = time(NULL);
-	unsigned int unFileSize = 0;
-	struct stat buf;
-	if( stat(szLogFile, &buf) != 0 )
-	{
-		return;
-	}
-	if( buf.st_size < (int)max_file_size_ )
-	{
-		return;
-	}
-	char szBakFileName[MAX_PATH];
-	GetBakFileName(pFileName, szBakFileName);
-	BackupFile(szLogFile, szBakFileName);
-}
 void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
 {
-	char* pAddStr = NULL;
+	/*char* pAddStr = NULL;
 	switch(nPriority)
 	{
 	case KGLOG_DEBUG:
@@ -239,7 +163,7 @@ void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
 		break;
 	default:
 		return;
-	}
+	}*/
 	//SetCurrentTime();
 
 	//write之前先考虑备份，备份机制统一考虑。
@@ -247,7 +171,7 @@ void CLogFile::WriteLogFile(int nPriority, const char* msg, ...)
 	char szLogFile[MAX_PATH];
 	snprintf(szLogFile, sizeof(szLogFile) - 1, "%s%s", m_szLogPath, m_szNormalLogName);
 	szLogFile[sizeof(szLogFile) - 1] = 0;
-	BakLogFile(m_szLogFileName);
+	//BakLogFile(m_szLogFileName);
 	FILE *pFile = fopen(szLogFile, "a+");
 	if (NULL == pFile)
 	{
@@ -418,7 +342,9 @@ Logger::Logger()
 	error_log_switch_(SWITCH_ON),
 	debug_log_switch_(SWITCH_ON),
 	bin_log_switch_(SWITCH_ON),
-	lock_log_switch_(SWITCH_ON)
+	lock_log_switch_(SWITCH_ON),
+	max_log_file_size_(0),
+	max_log_file_num_(0)
 {
 	memset(&cur_time_, 0, sizeof(cur_time_));
 	memset(&thread_mutex_, 0, sizeof(thread_mutex_));
@@ -437,6 +363,9 @@ Logger::~Logger()
 
 void Logger::Init()
 {
+	max_log_file_num_ = 10;
+	max_log_file_size_ = 16 * 1024 * 1024;
+
 	// set default log file name.
 	strncpy(info_log_name_,
 		DEFAULT_INFO_LOG_FILE_NAME, sizeof(info_log_name_) - 1);
@@ -606,6 +535,22 @@ void Logger::SetDebugLogName(const char* name)
 			DEFAULT_DEBUG_LOG_FILE_NAME,
 				sizeof(debug_log_name_) - 1);
 	}
+}
+
+void Logger::SetMAXLogFileSize(uint32 size)
+{
+	if (0 == size) {
+		return;
+	}
+	max_log_file_size_ = size;
+}
+
+void Logger::SetMAXLogFileNum(uint32 num)
+{
+	if (0 == num) {
+		return;
+	}
+	max_log_file_num_ = num;
 }
 
 void Logger::SetCurTime()
@@ -782,13 +727,11 @@ void Logger::WriteLogToFile(const char* file_name, const char* format, ...)
 void Logger::WriteToLogFile(const char* file_name,
 	const char* format, va_list& variable_argument_list, char* append_string)
 {
-	//write之前先考虑备份，备份机制统一考虑。
 	Lock();
 	char log_file[MAX_PATH];
 	sprintf(log_file, "%s/%s", log_path_, file_name);
-
-	//BakLogFile(pFileName);
-
+	// write after backup.
+	BakupLogFile(file_name);
 	FILE* file_ptr = fopen(log_file, "a+");
 	if (!file_ptr) {
 		// open file failed
@@ -815,5 +758,73 @@ void Logger::WriteToLogFile(const char* file_name,
 	Unlock();
 }
 
-////////////////////////////////////////////////////////////////////////////////
+void Logger::BakupLogFile(const char* file_name)
+{
+	char log_file[MAX_PATH];
+	sprintf(log_file, "%s/%s", log_path_, file_name);
+
+	std::clog << log_file << std::endl;
+
+	time_t cur_time = time(NULL);
+	uint32 file_size = 0;
+	struct stat buf;
+	if (stat(log_file, &buf) != 0) {
+		return;
+	}
+	if (buf.st_size < (int32)(max_log_file_size_)) {
+		return;
+	}
+	char backup_file[MAX_PATH];
+	GetBackupFileName(file_name, backup_file);
+	BackupFile(log_file, backup_file);
+}
+
+void Logger::GetBackupFileName(const char* file_name, char backup_file_name[MAX_PATH])
+{
+	time_t tmOld = 0xFFFFFFFF;
+	memset(backup_file_name, 0, MAX_PATH);
+	for (int32 i = 0; i < max_log_file_num_; i++) {
+		time_t tmTemp = 0;
+		char szTempName[MAX_PATH];
+		memset(szTempName, 0, sizeof(szTempName));
+		snprintf(
+			szTempName, sizeof(szTempName) - 1, 
+			"%s/%s_%d.bak", 
+			backup_log_path_, file_name, i + 1
+		);
+		struct stat buf;
+		if (stat(szTempName, &buf) != 0) {
+			tmTemp = 0;
+			strncpy(backup_file_name, szTempName, MAX_PATH - 1);
+			return;
+		} else {
+			tmTemp = buf.st_mtime;
+		}
+		if (tmTemp < tmOld) {
+			tmOld = tmTemp;
+			strncpy(backup_file_name, szTempName, MAX_PATH - 1);
+		}
+	}
+}
+
+void Logger::BackupFile(const char* src_file, const char* dst_file)
+{
+	if (access(src_file, 0) != -1 ) {
+		char backup_log_path[MAX_PATH] = {0};
+		strncpy(backup_log_path, dst_file, MAX_PATH - 1);
+		char* end_ptr = strrchr(backup_log_path, '/');
+		if (end_ptr) {
+			*end_ptr = 0;
+		}
+		if (access(backup_log_path, 0) != 0) {
+			CreatePath(backup_log_path);
+		}
+		unlink(dst_file);
+		// if dst and src specify different paths, the file
+		// is moved to the dst location.
+		rename(src_file, dst_file);
+		unlink(src_file);
+	}
+}
+
 LOGFILE_NAMESPACE_END
