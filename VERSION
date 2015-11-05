@@ -1,1 +1,39 @@
-1.0.0
+./configure CC="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" CPP="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -E" CPPFLAGS="-target arm64-apple-darwin -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/ -miphoneos-version-min=7.0" --host=aarch64-apple-darwin --disable-assembly --enable-static --disable-shared --prefix=/your-path/
+
+
+
+./configure CC="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" CPP="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -E" CPPFLAGS="-target arm64-apple-darwin -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/ -miphoneos-version-min=8.0" --host=aarch64-apple-darwin --disable-assembly --enable-static --disable-shared --prefix=/Users/xushuai/Projects/quick-cocos2d-x/lib/cocos2d-x/cocos2dx/platform/third_party/ios/libraries/
+
+
+
+./configure --enable-cxx CC=llvm-gcc CXX=llvm-g++ --disable-assemby
+
+
+
+
+./configure CC="$IOS/usr/bin/gcc-4.2" CXX="$IOS/usr/bin/g++-4.2" CPP="$IOS/usr/bin/gcc-4.2 -E" LD="$IOS/usr/bin/ld" CPPFLAGS="-arch i386 -isysroot $IOS/SDKs/iPhoneSimulator4.2.sdk -miphoneos-version-min=4.2" AR="$IOS/usr/bin/ar" NM="$IOS/usr/bin/nm" NMEDIT="$IOS/usr/bin/nmedit" LIBTOOL="$IOS/usr/bin/libtool" LIPO="$IOS/usr/bin/lipo" OTOOL="$IOS/usr/bin/otool" RANLIB="$IOS/usr/bin/ranlib" STRIP="$IOS/usr/bin/strip" --disable-shared --enable-static --prefix=$IOS/usr/local --host=none-apple-darwin10
+
+
+
+
+
+需要对每一种架构都进行一次编译（"i386" "armv7" "arm64"）：
+
+1. i386
+
+./configure --prefix=./ --host=i386-apple-darwin --disable-assembly
+make
+make install
+
+2. arm64
+
+./configure --prefix=/Users/xushuai/Downloads/gmp-6.0.0-20150809/ --host=aarch64-apple-darwin --disable-assembly
+make
+make install
+
+
+
+
+
+
+
