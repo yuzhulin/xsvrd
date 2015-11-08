@@ -2,7 +2,9 @@
 
 using namespace std;
 
-int main() {
-    cout << "Hello, World!" << endl;
-    return 0;
+int main()
+{
+	std::clog << "sfd" << std::endl;
+	cout << "Hello, World!" << endl;
+    	return 0;
 }
