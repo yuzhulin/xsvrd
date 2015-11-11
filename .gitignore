@@ -1,3 +1,5 @@
+# common
+# -----------------------------
 tags
 *.bin
 *.pyc
@@ -19,6 +21,7 @@ tags
 *.exp
 *.lib
 *DS_Store
+bin/*
 
 # for visual studio
 # -----------------------------

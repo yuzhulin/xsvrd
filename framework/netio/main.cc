@@ -12,11 +12,15 @@ int32 InitLoggerInterface();
 
 int32 main(int32 argc, char** argv)
 {
+	argc = 1;
+	argv = NULL;
 	// ParseCommand(argc, argv);
 
 	InitLoggerInterface();
 
 	// RunOneInstance();
+
+	std::clog << "Hello netio !" << std::endl;
 
 	std::cin.get();
     return 0;
@@ -43,6 +47,8 @@ int32 InitLoggerInterface()
 
 void ParseCommand(int32 argc, char** argv)
 {
+	argc = 1;
+	argv = NULL;
 	// you can use option "-v" to check the build version
 	////////////////////////////////////////////////////////////////
 	/*if ((argc > 1) && (!strcasecmp(argv[1], "-v"))) {
