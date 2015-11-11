@@ -7,8 +7,8 @@ all:$(BIN)
 $(BIN):$(OBJ)
 	$(CPP) $(OBJ) -o $(BIN) 
 
-main.o:main.cpp
-	$(CPP) -c main.cpp
+main.o:main.cc
+	$(CPP) -c main.cc
 
 clean:
 	rm -f $(BIN) $(OBJ)

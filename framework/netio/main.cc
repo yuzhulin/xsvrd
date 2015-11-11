@@ -1,15 +1,14 @@
-#include "os_refactor.h"
-#include "dynamiclibloader.h"
-#include "logger_interface.h"
+#include "../../include/os_refactor.h"
 
 // all global variables.
-int32 g_nRunOneInstance = 1;
-LoggerInterface* g_loggerinterface = NULL;
+// int32 g_nRunOneInstance = 1;
+// LoggerInterface* g_loggerinterface = NULL;
 
 void ParseCommand(int32 argc, char** argv);
 bool RunOneInstance();
 
 int32 InitLoggerInterface();
+
 
 int32 main(int32 argc, char** argv)
 {
@@ -25,19 +24,19 @@ int32 main(int32 argc, char** argv)
 
 int32 InitLoggerInterface()
 {
-	DynamicLibLoader liblogloader;
-	liblogloader.Init("../lib/liblog", DLF_EXTEND_NAME);
-	g_loggerinterface = (LoggerInterface*)liblogloader.CreateObjByExportFunction();
+//	DynamicLibLoader liblogloader;
+//	liblogloader.Init("../lib/liblog", DLF_EXTEND_NAME);
+//	g_loggerinterface = (LoggerInterface*)liblogloader.CreateObjByExportFunction();
 
-	if (!g_loggerinterface) {
-		return -1;
-	}
-	char outputlogpath[MAX_PATH];
-	strncpy(outputlogpath, "../log", sizeof(outputlogpath) - 1);
-	g_loggerinterface->SetLogPath(outputlogpath);
+//	if (!g_loggerinterface) {
+//		return -1;
+//	}
+//	char outputlogpath[MAX_PATH];
+//	strncpy(outputlogpath, "../log", sizeof(outputlogpath) - 1);
+//	g_loggerinterface->SetLogPath(outputlogpath);
 
 
-	g_loggerinterface->WriteWarnLog("%s", 123);
+//	g_loggerinterface->WriteWarnLog("%s", 123);
 
 	return 0;
 }
