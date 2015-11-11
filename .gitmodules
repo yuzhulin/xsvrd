@@ -1,0 +1,6 @@
+[submodule "libs/123"]
+	path = libs/123
+	url = https://github.com/open-source-parsers/jsoncpp.git
+[submodule "libs/jsoncpp"]
+	path = libs/jsoncpp
+	url = https://github.com/open-source-parsers/jsoncpp.git
