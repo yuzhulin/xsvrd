@@ -70,9 +70,22 @@ typedef int32_t					int32;
 typedef uint8_t					uint8;
 typedef int8_t					int8;
 
+#ifndef SOCKET
+#define SOCKET int	
+#endif
+
+#ifndef INVALID_SOCKET
+#define INVALID_SOCKET (-1)
+#endif
+
 #if defined(__gnu_linux__)
 typedef void* HMODULE;
 #endif
+
+enum TCPSocketType {
+	TST_COMMON,
+	TST_LISTEN
+};
 
 // ignore compile warn info
 ///////////////////////////////////////////////////////////

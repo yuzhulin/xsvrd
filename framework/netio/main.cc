@@ -1,4 +1,5 @@
 #include "../../include/os_refactor.h"
+#include "../../include/libcommon/x_socket.h"
 
 // all global variables.
 // int32 g_nRunOneInstance = 1;
@@ -9,9 +10,9 @@ bool RunOneInstance();
 
 int32 InitLoggerInterface();
 
-
 int32 main(int32 argc, char** argv)
 {
+	TCPSocket ts;
 	argc = 1;
 	argv = NULL;
 	// ParseCommand(argc, argv);
@@ -19,7 +20,6 @@ int32 main(int32 argc, char** argv)
 	InitLoggerInterface();
 
 	// RunOneInstance();
-
 	std::clog << "Hello netio !" << std::endl;
 
 	std::cin.get();
