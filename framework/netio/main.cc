@@ -12,7 +12,12 @@ int32 InitLoggerInterface();
 
 int32 main(int32 argc, char** argv)
 {
-	TCPSocket ts;
+	TCPSocket client;
+	const char* local_addr = "127.1";	
+	if (client.CreateClient(local_addr)) {
+		std::clog << "failed!" << std::endl;
+	}
+
 	argc = 1;
 	argv = NULL;
 	// ParseCommand(argc, argv);

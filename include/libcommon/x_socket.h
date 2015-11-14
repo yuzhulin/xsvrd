@@ -8,14 +8,22 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include "../../include/os_refactor.h"
+
+
+#define INVALID_SOCKET	(-1)
+#define SOCKET_ERROR	(-1)
 #endif
+
+#ifndef SUCCESS
+#define SUCCESS		(0)
+#endif
+#include "../../include/os_refactor.h"
 
 #define SEND_BUFFER_SIZE     (260 * 1024 - 2)
 // --------------------------------------------------------
 int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, int optlen)
 {
-	int retval = -1;
+	int retval = SOCKET_ERROR;
 #ifdef _WIN32
 	retval = setsockopt(socket, level, optname,
 			static_cast<const char*>(optval), optlen);
@@ -27,7 +35,7 @@ int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, i
 
 int GetSocketOption(SOCKET socket, int level, int optname, void* optval, int*optlen)
 {
-	int retval = -1;
+	int retval = SOCKET_ERROR;
 #ifdef _WIN32
 	retval = getsockopt(socket, level, optname,
  			static_cast<char*>(optval), optlen);
@@ -39,13 +47,17 @@ int GetSocketOption(SOCKET socket, int level, int optname, void* optval, int*opt
 
 int CloseSocket(SOCKET socket)
 {
-	int retval = -1;
+	int retval = SOCKET_ERROR;
 #ifdef _WIN32
 	retval = closesocket(socket);
 #else
 	retval = close(socket);
 #endif
 	return retval;
+}
+int Bind(SOCKET socket, const sockaddr* addr, int addrlen)
+{
+	return bind(socket, addr, addrlen);
 }
 
 // --------------------------------------------------------
@@ -68,7 +80,7 @@ class TCPSocket {
 public:
 	TCPSocket();
 	virtual ~TCPSocket();
-	int CreateClient(char* local_addr);
+	int CreateClient(const char* local_addr);
 	void Init(unsigned int recv_buf_len);
 	void Close();
 
@@ -111,14 +123,13 @@ void TCPSocket::Init(unsigned int recv_buf_len)
 	memset(&server_ip_str_, 0, sizeof(server_ip_str_));
 }
 
-int TCPSocket::CreateClient(char* local_addr)
+int TCPSocket::CreateClient(const char* local_addr)
 {
 	if (socket_fd_ != INVALID_SOCKET 
 		&& socket_status_ != SS_CLOSED) {
 		Close();
 	}
-	socket_fd_ = socket(AF_INET, SOCK_STREAM, 0);
-	if (INVALID_SOCKET == socket_fd_) {
+	if (INVALID_SOCKET == (socket_fd_ = socket(AF_INET, SOCK_STREAM, 0))) {
 		std::clog << "Create socket failed!" << std::endl;
 		socket_status_ = SS_CLOSED;
 		return -1;
@@ -134,17 +145,19 @@ int TCPSocket::CreateClient(char* local_addr)
 		memset(&addr, 0, sizeof(addr));
 		addr.sin_family = AF_INET; 
 		addr.sin_addr.s_addr = inet_addr(local_addr);
-		bind(socket_fd_, (const struct sockaddr*)&addr, sizeof(addr));
+		if (SOCKET_ERROR == Bind(socket_fd_, (const sockaddr*)&addr, sizeof(addr))) {
+			std::clog << "Bind " << local_addr << " failed!" << std::endl;
+		}
 	}
 	int option_value = SEND_BUFFER_SIZE;
 	int option_len = sizeof(option_value);
-	if (SetSocketOption(socket_fd_, SOL_SOCKET,
+	if (SOCKET_ERROR == SetSocketOption(socket_fd_, SOL_SOCKET,
 		SO_SNDBUF, &option_value, option_len)) {
 		std::clog << "Set socket's send buffer size to " 
-	 		<< option_value << "failed!" << std::endl;
+	 		<< option_value << " failed!" << std::endl;
 		return -1;
 	}
-	if (!GetSocketOption(socket_fd_, SOL_SOCKET,
+	if (SUCCESS == GetSocketOption(socket_fd_, SOL_SOCKET,
 		SO_SNDBUF, &option_value, &option_len)) {
 		std::clog << "Socket's send buffer is "
 			<< option_value << std::endl;
