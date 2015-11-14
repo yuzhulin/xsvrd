@@ -2,10 +2,14 @@
 #define __X_SOCKET__
 
 #include <cstring>
-#include <sys/socket.h>
-#include <netinet/in.h>
+
+
+#ifndef _WIN32
 #include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
 #include "../../include/os_refactor.h"
+#endif
 
 // --------------------------------------------------------
 int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, int optlen)
