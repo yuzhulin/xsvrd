@@ -2,6 +2,9 @@
 #define __X_SOCKET__
 
 #include <cstring>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 #include "../../include/os_refactor.h"
 
 // --------------------------------------------------------
@@ -15,11 +18,15 @@ int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, i
 
 	return retval;
 }
-
-
-
-
-
+int CloseSocket(SOCKET socket)
+{
+	int retval = -1;
+#ifdef _WIN32
+	retval = closesocket(socket);
+#endif
+	retval = close(socket);
+	return retval;
+}
 
 // --------------------------------------------------------
 
@@ -41,6 +48,7 @@ class TCPSocket {
 public:
 	TCPSocket();
 	virtual ~TCPSocket();
+	int CreateClient(char* local_addr);
 	void Init(unsigned int recv_buf_len);
 	void Close();
 
@@ -99,18 +107,19 @@ int TCPSocket::CreateClient(char* local_addr)
 	memset(server_ip_str_, 0, sizeof(server_ip_str_));
 	if (local_addr) {
 		sockaddr_in addr;
-		memset(&addr, sizeof(addr);
+		memset(&addr, 0, sizeof(addr));
 		addr.sin_family = AF_INET; 
 		addr.sin_addr.s_addr = inet_addr(local_addr);
 		bind(socket_fd_, (const struct sockaddr*)(&addr), sizeof(addr));
 	}
-	if (setsockopt(socket_fd_, SOL_SOCKET, SO_SNDBUF, 
+	//if (setsockopt(socket_fd_, SOL_SOCKET, SO_SNDBUF, 
+	return 0;
 }
 
 void TCPSocket::Close()
 {
 	if (socket_fd_ != INVALID_SOCKET) {
-		closesocket(socket_fd_);
+		CloseSocket(socket_fd_);
 		socket_fd_ = INVALID_SOCKET;
 	}
 	socket_status_ = SS_CLOSED;
