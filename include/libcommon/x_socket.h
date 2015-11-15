@@ -21,6 +21,7 @@
 #include "../../include/os_refactor.h"
 
 #define SEND_BUFFER_SIZE     (260 * 1024 - 2)
+#define RECV_BUFFER_SIZE     (512 * 1024)
 // --------------------------------------------------------
 int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, unsigned int optlen)
 {
@@ -112,7 +113,7 @@ private:
 
 TCPSocket::TCPSocket() 
 {
-	Init(1024);
+	Init(RECV_BUFFER_SIZE);
 }
 
 TCPSocket::~TCPSocket() 
