@@ -50,14 +50,22 @@ int CloseSocket(SOCKET socket)
 	int retval = SOCKET_ERROR;
 #ifdef _WIN32
 	retval = closesocket(socket);
-#else
+#elif __linux__
 	retval = close(socket);
 #endif
 	return retval;
 }
+
 int Bind(SOCKET socket, const sockaddr* addr, int addrlen)
 {
-	return bind(socket, addr, addrlen);
+	int retval = SOCKET_ERROR;
+#ifdef _WIN32
+	retval = bind(socket, addr, addrlen);
+#elif __linux__
+	retval = bind(socket, addr, 
+		static_cast<socklen_t>(addrlen));
+#endif
+	return retval;
 }
 
 // --------------------------------------------------------
