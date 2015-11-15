@@ -54,7 +54,7 @@ int GetSocketOption(SOCKET socket, int level, int optname, void* optval, SocketO
 	retval = getsockopt(socket, level, optname,
  			static_cast<char*>(optval), optlen);
 #elif __linux__
-	retval = getsockopt(socket, level, optname, optval, socklenoptlen); 
+	retval = getsockopt(socket, level, optname, optval, optlen); 
 #endif
 	return retval;
 }
