@@ -28,7 +28,8 @@ int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, i
 	retval = setsockopt(socket, level, optname,
 			static_cast<const char*>(optval), optlen);
 #elif __linux__
-	retval = setsockopt(socket, level, optname, optval, optlen);
+	retval = setsockopt(socket, level, optname, 
+		optval, static_cast<socklen_t>(optlen));
 #endif
 	return retval;
 }
@@ -40,7 +41,8 @@ int GetSocketOption(SOCKET socket, int level, int optname, void* optval, int*opt
 	retval = getsockopt(socket, level, optname,
  			static_cast<char*>(optval), optlen);
 #elif __linux__
-	retval = getsockopt(socket, level, optname, optval, optlen); 
+	retval = getsockopt(socket, level, optname, 
+		optval, static_cast<socklen_t*>(optlen)); 
 #endif
 	return retval;
 }
