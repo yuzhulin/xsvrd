@@ -161,7 +161,7 @@ int TCPSocket::CreateClient(const char* local_addr)
 		}
 	}
 	int option_value = SEND_BUFFER_SIZE;
-	int option_len = sizeof(option_value);
+	unsigned int option_len = sizeof(option_value);
 	if (SOCKET_ERROR == SetSocketOption(socket_fd_, SOL_SOCKET,
 		SO_SNDBUF, &option_value, option_len)) {
 		std::clog << "Set socket's send buffer size to " 
