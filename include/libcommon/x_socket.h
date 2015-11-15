@@ -112,6 +112,7 @@ private:
 
 TCPSocket::TCPSocket() 
 {
+	Init(1024);
 }
 
 TCPSocket::~TCPSocket() 

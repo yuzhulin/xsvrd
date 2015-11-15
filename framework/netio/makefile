@@ -5,10 +5,10 @@ OBJ=main.o
 all:$(BIN)
 
 $(BIN):$(OBJ)
-	$(CPP) -g $(OBJ) -o $(BIN) 
+	$(CPP) $(OBJ) -o $(BIN) 
 
 main.o:main.cc
-	$(CPP) -c main.cc
+	$(CPP) -g -c main.cc
 
 clean:
 	rm -f $(BIN) $(OBJ)
