@@ -10,41 +10,51 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 
-
 #define INVALID_SOCKET	(-1)
 #define SOCKET_ERROR	(-1)
+
 #endif
 
 #ifndef SUCCESS
 #define SUCCESS		(0)
 #endif
+
+
 #include "../../include/os_refactor.h"
 
 #define SEND_BUFFER_SIZE     (260 * 1024 - 2)
 #define RECV_BUFFER_SIZE     (512 * 1024)
+
+#ifdef _WIN32
+typedef int SocketLength;
+#elif __linux__
+typedef socklen_t SocketLength;
+#endif
+
+typedef SocketLength SocketOptionLength;
+typedef SocketLength SocketAddressLength;
+
 // --------------------------------------------------------
-int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, unsigned int optlen)
+int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, SocketOptionLength optlen)
 {
 	int retval = SOCKET_ERROR;
 #ifdef _WIN32
 	retval = setsockopt(socket, level, optname,
 			static_cast<const char*>(optval), optlen);
 #elif __linux__
-	retval = setsockopt(socket, level, optname, 
-		optval, static_cast<socklen_t>(optlen));
+	retval = setsockopt(socket, level, optname, optval, optlen);
 #endif
 	return retval;
 }
 
-int GetSocketOption(SOCKET socket, int level, int optname, void* optval, unsigned int* optlen)
+int GetSocketOption(SOCKET socket, int level, int optname, void* optval, SocketOptionLength* optlen)
 {
 	int retval = SOCKET_ERROR;
 #ifdef _WIN32
 	retval = getsockopt(socket, level, optname,
  			static_cast<char*>(optval), optlen);
 #elif __linux__
-	retval = getsockopt(socket, level, optname, 
-		optval, static_cast<socklen_t*>(optlen)); 
+	retval = getsockopt(socket, level, optname, optval, socklenoptlen); 
 #endif
 	return retval;
 }
@@ -60,16 +70,9 @@ int CloseSocket(SOCKET socket)
 	return retval;
 }
 
-int Bind(SOCKET socket, const sockaddr* addr, unsigned int addrlen)
+int Bind(SOCKET socket, const sockaddr* addr, SocketAddressLength addrlen)
 {
-	int retval = SOCKET_ERROR;
-#ifdef _WIN32
-	retval = bind(socket, addr, addrlen);
-#elif __linux__
-	retval = bind(socket, addr, 
-		static_cast<socklen_t>(addrlen));
-#endif
-	return retval;
+	return bind(socket, addr, addrlen);
 }
 
 // --------------------------------------------------------
@@ -163,7 +166,7 @@ int TCPSocket::CreateClient(const char* local_addr)
 		}
 	}
 	int option_value = SEND_BUFFER_SIZE;
-	unsigned int option_len = sizeof(option_value);
+	SocketOptionLength option_len = sizeof(option_value);
 	if (SOCKET_ERROR == SetSocketOption(socket_fd_, SOL_SOCKET,
 		SO_SNDBUF, &option_value, option_len)) {
 		std::clog << "Set socket's send buffer size to " 
