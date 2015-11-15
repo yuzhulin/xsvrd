@@ -22,7 +22,7 @@
 
 #define SEND_BUFFER_SIZE     (260 * 1024 - 2)
 // --------------------------------------------------------
-int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, int optlen)
+int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, unsigned int optlen)
 {
 	int retval = SOCKET_ERROR;
 #ifdef _WIN32
@@ -35,7 +35,7 @@ int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, i
 	return retval;
 }
 
-int GetSocketOption(SOCKET socket, int level, int optname, void* optval, int*optlen)
+int GetSocketOption(SOCKET socket, int level, int optname, void* optval, unsigned int* optlen)
 {
 	int retval = SOCKET_ERROR;
 #ifdef _WIN32
@@ -59,7 +59,7 @@ int CloseSocket(SOCKET socket)
 	return retval;
 }
 
-int Bind(SOCKET socket, const sockaddr* addr, int addrlen)
+int Bind(SOCKET socket, const sockaddr* addr, unsigned int addrlen)
 {
 	int retval = SOCKET_ERROR;
 #ifdef _WIN32
