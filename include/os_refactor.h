@@ -104,17 +104,21 @@ enum TCPSocketType {
 #endif
 
 
+#ifdef _WIN32
 
-#ifndef _WIN32
+#elif __linux__
 #include <unistd.h>
 #include <arpa/inet.h>
-#include <netinet/in.h>
 #include <sys/socket.h>
+#include <netinet/in.h>
+
+#include <thread.h>
 
 #define INVALID_SOCKET	(-1)
 #define SOCKET_ERROR	(-1)
 
 #endif
+
 
 #ifndef SUCCESS
 #define SUCCESS		(0)

@@ -10,5 +10,15 @@ Thread::~Thread()
 {
 }
 
+int Thread::Create()
+{
+#ifdef _WIN32
+
+#elif __linux__
+	
+
+#endif
+}
+
 }
 
