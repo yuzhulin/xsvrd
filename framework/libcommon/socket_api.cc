@@ -11,7 +11,7 @@ int CloseSocket(SOCKET socket)
 	return retval;
 }
 
-Bind(SOCKET socket, const sockaddr* addr, SocketAddressLength addrlen)
+int Bind(SOCKET socket, const sockaddr* addr, SocketAddressLength addrlen)
 {
 	return bind(socket, addr, addrlen);
 }
