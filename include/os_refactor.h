@@ -112,7 +112,7 @@ enum TCPSocketType {
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#include <thread.h>
+#include <pthread.h>
 
 #define INVALID_SOCKET	(-1)
 #define SOCKET_ERROR	(-1)
