@@ -1,6 +1,6 @@
 CPP=g++
 BIN=../../run/netio/bin/netio
-OBJ=main.o
+OBJ=main.o socket_api.o
 
 all:$(BIN)
 
@@ -11,7 +11,7 @@ main.o:main.cc
 	$(CPP) -g -c main.cc
 
 socket_api.o:socket_api.cc ../../include/libcommon/socket_api.h
-	$(CPP) -g -c main.cc
+	$(CPP) -g -c socket_api.cc
 
 clean:
 	rm -f $(BIN) $(OBJ)
