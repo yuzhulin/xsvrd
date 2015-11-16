@@ -10,7 +10,7 @@ $(BIN):$(OBJ)
 main.o:main.cc
 	$(CPP) -g -c main.cc
 
-socket_api.o:socket_api.cc ../../include/libcommon/socket_api.h
+socket_api.o:../libcommon/socket_api.cc ../../include/libcommon/socket_api.h
 	$(CPP) -g -c socket_api.cc
 
 clean:
