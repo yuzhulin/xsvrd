@@ -1,6 +1,13 @@
 #ifndef __OS_REFACTOR__
 #define __OS_REFACTOR__
 
+
+
+
+
+
+
+
 // header file
 ///////////////////////////////////////////////////////////
 #include <stdint.h>
@@ -95,6 +102,45 @@ enum TCPSocketType {
 #pragma warning(disable: 4311)
 #pragma warning(disable: 4312)
 #endif
+
+
+
+#ifndef _WIN32
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+
+#define INVALID_SOCKET	(-1)
+#define SOCKET_ERROR	(-1)
+
+#endif
+
+#ifndef SUCCESS
+#define SUCCESS		(0)
+#endif
+
+
+#ifdef _WIN32
+typedef int SocketLength;
+#elif __linux__
+typedef socklen_t SocketLength;
+#endif
+
+typedef SocketLength SocketOptionLength;
+typedef SocketLength SocketAddressLength;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #endif
