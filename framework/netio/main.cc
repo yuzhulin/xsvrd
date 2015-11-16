@@ -1,5 +1,6 @@
 #include "../../include/os_refactor.h"
 #include "../../include/libcommon/x_tcpsocket.h"
+#include "../../include/libcommon/x_thread.h"
 
 // all global variables.
 // int32 g_nRunOneInstance = 1;
@@ -17,6 +18,7 @@ int32 main(int32 argc, char** argv)
 	if (client.CreateClient(local_addr)) {
 		std::clog << "failed!" << std::endl;
 	}
+	xsvrd::Thread thread;
 
 	argc = 1;
 	argv = NULL;
