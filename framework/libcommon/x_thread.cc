@@ -20,5 +20,15 @@ int Thread::Create()
 #endif
 }
 
+int Thread::PrepareToRun()
+{
+	return 0;
+}
+
+int Thread::Run()
+{
+	return 0;
+}
+
 }
 

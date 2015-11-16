@@ -10,8 +10,8 @@ public:
 	Thread();
 	virtual ~Thread();
 
-	virtual int Run() = 0;
-	virtual int PrepareToRun() = 0;
+	virtual int Run();
+	virtual int PrepareToRun();
 
 	int Create();
 
