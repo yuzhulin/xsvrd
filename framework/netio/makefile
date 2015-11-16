@@ -1,6 +1,6 @@
 CPP=g++
 BIN=../../run/netio/bin/netio
-OBJ=main.o socket_api.o
+OBJ=main.o socket_api.o x_thread.o
 INC=../../include/libcommon
 
 all:$(BIN)
