@@ -96,9 +96,7 @@ public:
 
 	void SetThreadIndex(int nThreadIndex)
 	{
-		m_nThreadIndex = nThreadIndex;
-	}
-
+		m_nThreadIndex = nThreadIndex; } 
     void NotifyThreadReloadCfg()
     {
         m_nNotifyStatus = thread_reloadcfg;

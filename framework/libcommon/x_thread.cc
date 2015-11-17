@@ -2,11 +2,27 @@
 
 namespace xsvrd { 
 
+#if defined(_WIN32)
+unsigned int Routine(void* para)
+#elif defined(__linux__) || defined(TARGET_OS_MAC)
+void* Routine(void* para)
+#endif
+{
+	if (!para) return NULL;
+	Thread* thread = static_cast<Thread*>(para);
+	thread->Init();
+	return NULL;
+}
+
 Thread::Thread()
 {
 }
 
 Thread::~Thread()
+{
+}
+
+void Thread::Init()
 {
 }
 
@@ -46,6 +62,7 @@ int Thread::Create()
 			<< "errno: " << retval << std::endl;
 		return retval;
 	}
+	retval = pthread_create(&thread_, &attribute_, Routine, this); 
 #endif
 	return retval;
 }
