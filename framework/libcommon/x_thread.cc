@@ -12,11 +12,11 @@ Thread::~Thread()
 
 int Thread::Create()
 {
-#ifdef _WIN32
+#if defined(_WIN32)
 
-#elif __linux__
-	
-
+#elif defined(__linux__) || defined(TARGET_OS_MAC) 
+	pthread_attr_init(&attribute_);
+	//pthread_attr_setscope
 #endif
 }
 

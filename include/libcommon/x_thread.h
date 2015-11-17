@@ -10,10 +10,14 @@ public:
 	Thread();
 	virtual ~Thread();
 
+	int Create();
 	virtual int Run();
 	virtual int PrepareToRun();
 
-	int Create();
+protected:
+#if defined(__linux__) || defined(TARGET_OS_MAC)
+	pthread_attr_t attribute_; 
+#endif
 
 };
 

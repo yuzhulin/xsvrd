@@ -1,8 +1,9 @@
 #ifndef __OS_REFACTOR__
 #define __OS_REFACTOR__
 
-
-
+#if defined(__APPLE__)
+#include "TargetConditionals.h"
+#endif
 
 
 
@@ -39,28 +40,6 @@
 
 #ifndef MAX_NAME				
 #define MAX_NAME				260
-#endif
-
-#ifndef SWITCH_ON
-#define SWITCH_ON				1
-#endif
-
-#ifndef SWITCH_OFF
-#define SWITCH_OFF				0
-#endif
-
-// F_OK,X_OK,W_OK,R_OK is defined in unistd.h, used for access function.
-#ifndef F_OK
-#define F_OK					0
-#endif
-#ifndef X_OK
-#define X_OK					1
-#endif
-#ifndef W_OK
-#define W_OK					2
-#endif
-#ifndef R_OK
-#define R_OK					4
 #endif
 
 // dynamic linking file suffix
@@ -104,15 +83,14 @@ enum TCPSocketType {
 #endif
 
 
-#ifdef _WIN32
+#if defined(_WIN32)
 
-#elif __linux__
+#elif defined(__linux__) || defined(TARGET_OS_MAC)
 #include <unistd.h>
+#include <pthread.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-
-#include <pthread.h>
 
 #define INVALID_SOCKET	(-1)
 #define SOCKET_ERROR	(-1)
@@ -125,26 +103,13 @@ enum TCPSocketType {
 #endif
 
 
-#ifdef _WIN32
+#if defined(_WIN32)
 typedef int SocketLength;
-#elif __linux__
+#elif defined(__linux__) || defined(TARGET_OS_MAC) 
 typedef socklen_t SocketLength;
 #endif
 
 typedef SocketLength SocketOptionLength;
 typedef SocketLength SocketAddressLength;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif
