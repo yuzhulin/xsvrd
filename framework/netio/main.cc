@@ -18,7 +18,8 @@ int32 main(int32 argc, char** argv)
 	if (client.CreateClient(local_addr)) {
 		std::clog << "failed!" << std::endl;
 	}
-	xsvrd::Thread thread;
+	xsvrd::Thread thread1;
+	thread1.Create();
 
 	argc = 1;
 	argv = NULL;

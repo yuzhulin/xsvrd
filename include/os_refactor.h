@@ -94,12 +94,8 @@ enum TCPSocketType {
 
 #define INVALID_SOCKET	(-1)
 #define SOCKET_ERROR	(-1)
-
-#endif
-
-
-#ifndef SUCCESS
 #define SUCCESS		(0)
+
 #endif
 
 

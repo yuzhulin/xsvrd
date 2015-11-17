@@ -12,12 +12,42 @@ Thread::~Thread()
 
 int Thread::Create()
 {
+	int retval = SUCCESS;
 #if defined(_WIN32)
 
 #elif defined(__linux__) || defined(TARGET_OS_MAC) 
-	pthread_attr_init(&attribute_);
-	//pthread_attr_setscope
+	retval = pthread_attr_init(&attribute_);
+	if (SUCCESS != retval) {
+		std::clog << "pthread_attr_init failed! " 
+			<< "errno: " << retval << std::endl;
+		return retval;
+	}
+	retval = pthread_attr_setscope(&attribute_, PTHREAD_SCOPE_SYSTEM);
+	if (SUCCESS != retval) {
+		std::clog << "pthread_attr_setscope failed! " 
+			<< "errno: " << retval << std::endl;
+		return retval;
+	}
+	retval = pthread_attr_setdetachstate(&attribute_, PTHREAD_CREATE_JOINABLE);
+	if (SUCCESS != retval) {
+		std::clog << "pthread_attr_setdetachstate failed! " 
+			<< "errno: " << retval << std::endl;
+		return retval;
+	}
+	retval = pthread_cond_init(&cond_, NULL);
+	if (SUCCESS != retval) {
+		std::clog << "pthread_cond_init failed! " 
+			<< "errno: " << retval << std::endl;
+		return retval;
+	}
+	retval = pthread_mutex_init(&mutex_, NULL);
+	if (SUCCESS != retval) {
+		std::clog << "pthread_mutex_init failed! " 
+			<< "errno: " << retval << std::endl;
+		return retval;
+	}
 #endif
+	return retval;
 }
 
 int Thread::PrepareToRun()

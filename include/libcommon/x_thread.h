@@ -16,6 +16,8 @@ public:
 
 protected:
 #if defined(__linux__) || defined(TARGET_OS_MAC)
+	pthread_cond_t cond_;
+	pthread_mutex_t mutex_;
 	pthread_attr_t attribute_; 
 #endif
 
