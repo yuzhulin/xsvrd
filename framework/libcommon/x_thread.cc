@@ -3,19 +3,27 @@
 namespace xsvrd { 
 
 #if defined(_WIN32)
-unsigned int Routine(void* para)
+DWORD WINAPI ThreadRoutine(void* para)
 #elif defined(__linux__) || defined(TARGET_OS_MAC)
-void* Routine(void* para)
+void* ThreadRoutine(void* para)
 #endif
 {
 	if (!para) return NULL;
 	Thread* thread = static_cast<Thread*>(para);
 	thread->Init();
+	if (SUCCESS != thread->PrepareToRun()) {
+		thread->SetStatus(TS_STOPPED);
+		return NULL;
+	}
+	thread->SetStatus(TS_RUNNING);
+	thread->Routine();
+	thread->SetStatus(TS_STOPPED);
 	return NULL;
 }
 
 Thread::Thread()
 {
+	status_ = TS_INIT;
 }
 
 Thread::~Thread()
@@ -24,6 +32,7 @@ Thread::~Thread()
 
 void Thread::Init()
 {
+	status_ = TS_INIT;
 }
 
 int Thread::Create()
@@ -62,19 +71,42 @@ int Thread::Create()
 			<< "errno: " << retval << std::endl;
 		return retval;
 	}
-	retval = pthread_create(&thread_, &attribute_, Routine, this); 
+	retval = pthread_create(&thread_, &attribute_, ThreadRoutine, this); 
 #endif
 	return retval;
 }
 
 int Thread::PrepareToRun()
 {
-	return 0;
+	int retval = SUCCESS;
+	return retval; 
 }
 
-int Thread::Run()
+int Thread::Routine()
 {
-	return 0;
+	int retval = SUCCESS;
+	return retval;
+}
+
+bool Thread::IsToBeBlocked()
+{
+	bool retval = true;
+	return retval;
+}
+
+int Thread::Block()
+{
+#if defined(_WIN32)
+
+#elif defined(__linux__) || defined(TARGET_OS_MAC)
+	pthread_mutex_lock(&mutex_);
+	while (IsToBeBlocked()) {
+		status_ = TS_BLOCKED;
+		pthread_cond_wait(&cond_, &mutex_);
+	}
+	pthread_mutex_unlock(&mutex_);
+#endif
+	return 0;	
 }
 
 }

@@ -5,15 +5,27 @@
 
 namespace xsvrd {
 
+enum ThreadStatus {
+	TS_INIT, 
+	TS_BLOCKED, 
+	TS_RUNNING, 
+	TS_STOPPED
+};
+
 class Thread {
 public:
 	Thread();
-	virtual ~Thread();
+	virtual~Thread();
 
 	void Init();
+	int Block();
 	int Create();
-	virtual int Run();
+	void SetStatus(ThreadStatus status) {
+		status_ = status;
+	}
+	virtual int Routine();
 	virtual int PrepareToRun();
+	virtual bool IsToBeBlocked();
 
 protected:
 #if defined(__linux__) || defined(TARGET_OS_MAC)
@@ -22,7 +34,7 @@ protected:
 	pthread_mutex_t mutex_;
 	pthread_attr_t attribute_; 
 #endif
-
+	ThreadStatus status_;
 };
 
 }

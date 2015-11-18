@@ -13,13 +13,11 @@ int32 InitLoggerInterface();
 
 int32 main(int32 argc, char** argv)
 {
-	TCPSocket client;
+	/*TCPSocket client;
 	const char* local_addr = "127.1";	
 	if (client.CreateClient(local_addr)) {
 		std::clog << "failed!" << std::endl;
-	}
-	xsvrd::Thread thread1;
-	thread1.Create();
+	}*/
 
 	argc = 1;
 	argv = NULL;
@@ -28,7 +26,6 @@ int32 main(int32 argc, char** argv)
 	InitLoggerInterface();
 
 	// RunOneInstance();
-	std::clog << "Hello netio !" << std::endl;
 
 	std::cin.get();
     return 0;
