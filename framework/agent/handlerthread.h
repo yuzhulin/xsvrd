@@ -1,3 +1,6 @@
+#ifndef __HANDLERTHREAD_H__
+#define __HANDLERTHREAD_H__
+
 #include "../../include/libcommon/x_thread.h"
 
 namespace xsvrd {
@@ -7,9 +10,11 @@ public:
 	HandlerThread();
 	virtual~HandlerThread();
 
-	virtual Routine();
-	virtual PrepareToRun();
-	virtual IsToBeBlocked();
+	virtual int Routine();
+	virtual int PrepareToRun();
+	virtual bool IsToBeBlocked();
 };
 
 }
+
+#endif

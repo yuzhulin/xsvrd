@@ -1,4 +1,4 @@
-#include "agentthread.h"
+#include "maincontrol.h"
 
 int main()
 {
