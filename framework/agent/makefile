@@ -1,24 +1,24 @@
 CPP=g++
 BIN=../../run/agent/bin/agent
-OBJ=main.o handlerthread.o x_thread.o maincontrol.o
+OBJ=main.o handlerthread.o x_thread.o controller.o
 INC=../../include/libcommon
 
 all:$(BIN)
 
 $(BIN):$(OBJ)
-	$(CPP) $(OBJ) -o $(BIN) 
+	$(CPP) $(OBJ) -o $(BIN) -lpthread 
 
 main.o:main.cc
 	$(CPP) -g -c main.cc
 
 handlerthread.o:handlerthread.cc handlerthread.h
-	$(CPP) -g -c handlerthread.h
+	$(CPP) -g -c handlerthread.cc
 
 x_thread.o:../libcommon/x_thread.cc $(INC)/x_thread.h
 	$(CPP) -g -c ../libcommon/x_thread.cc
 
-maincontrol.o:maincontrol.cc maincontrol.h
-	$(CPP) -g -c maincontrol.h
+controller.o:controller.cc controller.h
+	$(CPP) -g -c controller.cc
 
 clean:
 	rm -f $(BIN) $(OBJ)
