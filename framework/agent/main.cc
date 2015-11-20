@@ -1,4 +1,4 @@
-#include "maincontrol.h"
+#include "controller.h"
 
 int main()
 {
