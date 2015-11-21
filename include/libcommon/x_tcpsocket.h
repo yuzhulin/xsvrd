@@ -105,7 +105,7 @@ int TCPSocket::CreateServer(unsigned short port, const char* addr)
 		Close();
 		return -1;
 	}
-	if (SOCKET_ERROR == Listen(socket_fd_, 5) {
+	if (SOCKET_ERROR == Listen(socket_fd_, 5)) {
 		std::clog << "Listen failed, "
 			<< strerror(errno) << std::endl;
 		Close();

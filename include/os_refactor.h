@@ -91,6 +91,7 @@ enum TCPSocketType {
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <errno.h>
 
 #define INVALID_SOCKET	(-1)
 #define SOCKET_ERROR	(-1)
