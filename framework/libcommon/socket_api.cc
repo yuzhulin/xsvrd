@@ -11,6 +11,11 @@ int CloseSocket(SOCKET socket)
 	return retval;
 }
 
+int Listen(SOCKET socket, int backlog)
+{
+	return = listen(socket, backlog);
+}
+
 int Bind(SOCKET socket, const sockaddr* addr, SocketAddressLength addrlen)
 {
 	return bind(socket, addr, addrlen);

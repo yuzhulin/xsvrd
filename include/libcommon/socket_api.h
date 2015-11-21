@@ -3,6 +3,7 @@
 #include "../os_refactor.h"
 
 int CloseSocket(SOCKET socket);
+int Listen(SOCKET socket, int backlog); 
 int Bind(SOCKET socket, const sockaddr* addr, SocketAddressLength addrlen);
 int GetSocketOption(SOCKET socket, int level, int optname, void* optval, SocketOptionLength* optlen);
 int SetSocketOption(SOCKET socket, int level, int optname, const void* optval, SocketOptionLength optlen);
