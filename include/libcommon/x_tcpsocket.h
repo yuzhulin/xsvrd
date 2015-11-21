@@ -26,7 +26,8 @@ class TCPSocket {
 public:
 	TCPSocket();
 	virtual ~TCPSocket();
-	int CreateClient(const char* local_addr);
+	int CreateClient(const char* addr = NULL);
+	int CreateServer(unsigned short port, const char* addr = NULL);
 	void Init(unsigned int recv_buf_len);
 	void Close();
 
@@ -70,7 +71,7 @@ void TCPSocket::Init(unsigned int recv_buf_len)
 	memset(&server_ip_str_, 0, sizeof(server_ip_str_));
 }
 
-int TCPSocket::CreateClient(const char* local_addr)
+int TCPSocket::CreateServer(unsigned short port, const char* addr)
 {
 	if (socket_fd_ != INVALID_SOCKET 
 		&& socket_status_ != SS_CLOSED) {
@@ -81,20 +82,52 @@ int TCPSocket::CreateClient(const char* local_addr)
 		socket_status_ = SS_CLOSED;
 		return -1;
 	}
-	server_ip_ = 0;	
-	server_port_ = 0;
-	recv_pack_count_ = 0;
-	socket_type_ = ST_COMMON;
+	int option_value = 1;
+	SocketOptionLength option_len = sizeof(option_value);
+	if (SOCKET_ERROR == SetSocketOption(socket_fd_, SOL_SOCKET, 
+		SO_REUSEADDR, &option_value, option_len)) {
+		std::clog << "Set socket addr reuse failed, " 
+			<< strerror(errno) << std::endl;
+	}
+	sockaddr_in addrinfo;
+	memset(&addrinfo, 0, sizeof(addrinfo));
+	addrinfo.sin_family = AF_INET;
+	addrinfo.sin_port = htons(port);
+	if (addr) {
+		addrinfo.sin_addr.s_addr = inet_addr(addr);
+	} else {
+		addrinfo.sin_addr.s_addr = htonl(INADDR_ANY);
+	}
+	if (SOCKET_ERROR == Bind(socket_fd_,
+		(const sockaddr*)&addrinfo, sizeof(addrinfo))) {
+		std::clog << "Bind addr failed, "
+			<< strerror(errno) << std::endl;
+		Close();
+		return -1;
+	}
+	if (SOCKET_ERROR == Listen(socket_fd_, 5) {
+		std::clog << "Listen failed, "
+			<< strerror(errno) << std::endl;
+		Close();
+		return -1;
+	}
+	socket_type_ = ST_LISTEN;
 	socket_status_ = SS_OPENED;
-	memset(server_ip_str_, 0, sizeof(server_ip_str_));
-	if (local_addr) {
-		sockaddr_in addr;
-		memset(&addr, 0, sizeof(addr));
-		addr.sin_family = AF_INET; 
-		addr.sin_addr.s_addr = inet_addr(local_addr);
-		if (SOCKET_ERROR == Bind(socket_fd_, (const sockaddr*)&addr, sizeof(addr))) {
-			std::clog << "Bind " << local_addr << " failed!" << std::endl;
-		}
+	// TODO: 
+	// SetNonBlock();
+	return 0;
+}
+
+int TCPSocket::CreateClient(const char* addr)
+{
+	if (socket_fd_ != INVALID_SOCKET 
+		&& socket_status_ != SS_CLOSED) {
+		Close();
+	}
+	if (INVALID_SOCKET == (socket_fd_ = socket(AF_INET, SOCK_STREAM, 0))) {
+		std::clog << "Create socket failed!" << std::endl;
+		socket_status_ = SS_CLOSED;
+		return -1;
 	}
 	int option_value = SEND_BUFFER_SIZE;
 	SocketOptionLength option_len = sizeof(option_value);
@@ -109,6 +142,20 @@ int TCPSocket::CreateClient(const char* local_addr)
 		std::clog << "Socket's send buffer is "
 			<< option_value << std::endl;
 	}
+	server_ip_ = 0;	
+	server_port_ = 0;
+	recv_pack_count_ = 0;
+	if (addr) {
+		sockaddr_in addrinfo;
+		memset(&addrinfo, 0, sizeof(addrinfo));
+		addrinfo.sin_family = AF_INET; 
+		addrinfo.sin_addr.s_addr = inet_addr(addr);
+		if (SOCKET_ERROR == Bind(socket_fd_, (const sockaddr*)&addrinfo, sizeof(addrinfo))) {
+			std::clog << "Bind " << addr << " failed!" << std::endl;
+		}
+	}
+	socket_type_ = ST_COMMON;
+	socket_status_ = SS_OPENED;
 	read_begin_ = read_end_ = 0;
 	post_begin_ = post_end_ = 0;
 	return 0;
