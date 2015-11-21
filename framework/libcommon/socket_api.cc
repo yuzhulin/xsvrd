@@ -13,7 +13,7 @@ int CloseSocket(SOCKET socket)
 
 int Listen(SOCKET socket, int backlog)
 {
-	return = listen(socket, backlog);
+	return listen(socket, backlog);
 }
 
 int Bind(SOCKET socket, const sockaddr* addr, SocketAddressLength addrlen)
