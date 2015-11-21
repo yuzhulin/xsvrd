@@ -1,5 +1,5 @@
 CPP=g++
-BIN=../../run/agent/bin/agent
+BIN=../../run/proxy/bin/proxy
 OBJ=main.o handlerthread.o x_thread.o controller.o
 INC=../../include/libcommon
 
