@@ -6,7 +6,7 @@
 
 namespace xsvrd {
 
-class TCPConnectio;
+class TCPConnection;
 
 class HandlerThread : public Thread {
 public:
@@ -23,14 +23,13 @@ public:
 		TCPConnection* othersvrd_connection);
 
 private:
+	TCPConnection* read_connection_; 
 	TCPConnection* dbsvrd_connection_; 
 	TCPConnection* mainsvrd_connection_; 
 	TCPConnection* othersvrd_connection_;
-	ConnectionEntityType conectiont_entity_type_;
+	ConnectionEntityType connection_entity_type_;
 };
 		
-};
-
 }
 
 #endif

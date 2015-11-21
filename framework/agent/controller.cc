@@ -11,6 +11,7 @@ Controller::Controller()
 	dbsvrd_connection_ = NULL;
 	mainsvrd_connection_ = NULL;
 	othersvrd_connection_ = NULL;
+	memset(&configuration_, 0, sizeof(configuration_));
 }
 
 Controller::~Controller()
@@ -53,6 +54,19 @@ int Controller::Run()
 {
 	std::clog << "run ok!" << std::endl;
 	return 0;
+}
+
+int Controller::Init(std::string config_file)
+{
+
+	std::clog << "config file: " << config_file << std::endl;
+	return 0;
+}
+
+int Controller::ReadConfiguration()
+{
+
+	return 0
 }
 
 }

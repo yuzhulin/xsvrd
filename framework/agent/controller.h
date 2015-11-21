@@ -2,8 +2,14 @@
 #define __CONTROLLER_H__
 #include "handlerthread.h"
 #include "../../include/libcommon/tcpconnection.h"
+#include <string>
 
 namespace xsvrd {
+
+struct Configuration {
+	int proxy_id;
+	unsigned short proxy_port;
+};
 
 class Controller {
 public:
@@ -12,8 +18,11 @@ public:
 
 	int Run();
 	int PrepareToRun();
+	int ReadConfiguration();
+	int Init(std::string config_file);
 
 private:
+	Configuration configuration_;
 	HandlerThread* dbsvrd_handler_thread_;
 	HandlerThread* mainsvrd_handler_thread_;
 	HandlerThread* othersvrd_handler_thread_;
