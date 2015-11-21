@@ -18,7 +18,7 @@ public:
 
 	int Run();
 	int PrepareToRun();
-	int ReadConfiguration();
+	int ReadConfiguration(std::string config_file);
 	int Init(std::string config_file);
 
 private:

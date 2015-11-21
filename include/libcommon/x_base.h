@@ -2,10 +2,11 @@
 #define __BASE_H__
 
 enum ConnectionEntityType {
-	CET_PROXY     = 0,
-	CET_MAINSVRD  = 1,
-	CET_DBSVRD    = 2,
-	CET_OTHERSVRD = 3
+	CET_UNKNOWN   = 0,
+	CET_PROXY     = 1,
+	CET_MAINSVRD  = 2,
+	CET_DBSVRD    = 3,
+	CET_OTHERSVRD = 4 
 };
 
 #endif

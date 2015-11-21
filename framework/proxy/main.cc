@@ -5,7 +5,7 @@ xsvrd::Controller g_controller;
 
 int main()
 {
-	if (g_controller.Init()) {
+	if (g_controller.Init("../cnf/proxy.cnf")) {
 		std::clog << "Controller init failed!" << std::endl;
 		exit(-1);
 	}

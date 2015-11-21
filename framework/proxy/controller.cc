@@ -1,5 +1,6 @@
 #include "controller.h"
 #include <iostream>
+#include <fstream>
 
 namespace xsvrd {
 
@@ -58,15 +59,21 @@ int Controller::Run()
 
 int Controller::Init(std::string config_file)
 {
-
-	std::clog << "config file: " << config_file << std::endl;
+	if (ReadConfiguration(config_file)) {
+		return -1;
+	}
 	return 0;
 }
 
-int Controller::ReadConfiguration()
+int Controller::ReadConfiguration(std::string config_file)
 {
-
-	return 0
+	std::ifstream ifs(config_file.c_str());
+	if (!ifs) {
+		return -1;
+	}
+	ifs >> configuration_.proxy_id >> configuration_.proxy_port;
+	ifs.close();
+	return 0;
 }
 
 }

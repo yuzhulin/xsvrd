@@ -8,6 +8,7 @@ HandlerThread::HandlerThread()
 	dbsvrd_connection_ = NULL;
 	mainsvrd_connection_ = NULL;
 	othersvrd_connection_ = NULL;
+	connection_entity_type_ = CET_UNKNOWN;
 }
 
 HandlerThread::~HandlerThread()
@@ -29,7 +30,7 @@ bool HandlerThread::IsToBeBlocked()
 	return true;
 }
 
-int init(ConnectionEntityType entity_type, 
+int HandlerThread::init(ConnectionEntityType entity_type, 
 	TCPConnection* dbsvrd_connection, 
 	TCPConnection* mainsvrd_connection, 
 	TCPConnection* othersvrd_connection)
@@ -56,7 +57,5 @@ int init(ConnectionEntityType entity_type,
 	}
 	return 0;
 }
-
-};
 
 }
