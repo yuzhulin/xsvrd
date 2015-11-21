@@ -39,4 +39,4 @@ workspace.xml
 *.a
 
 run/netio/bin/netio
-run/agent/bin/agent
+run/proxy/bin/proxy
