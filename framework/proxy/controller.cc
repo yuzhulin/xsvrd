@@ -72,7 +72,8 @@ int Controller::PrepareToRun()
 
 int Controller::Run()
 {
-	std::clog << "run ok!" << std::endl;
+
+	
 	return 0;
 }
 
