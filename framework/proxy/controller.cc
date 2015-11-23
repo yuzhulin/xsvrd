@@ -126,13 +126,17 @@ int Controller::CheckConnectRequest()
 		return -1;
 	}
 	ConnectServerInfo connect_server_info;
-	memset(&connect_server_info, 0, sizeof(connect_server_info));
-	char recvbuf[100] = {0};
+	int info_code_len = sizeof(connect_server_info);
+	memset(&connect_server_info, 0, info_code_len);
+	int recv_code_len = recv(client_socket_fd, 
+		&connect_server_info, info_code_len, 0); 
+	if (info_code_len != recv_code_len) {
+		CloseSocket(client_socket_fd);
+		return -1;
+	}
 
-	recv(client_socket_fd, recvbuf, sizeof(recvbuf) -1, 0); 
-
-	std::clog << recvbuf << std::endl;
-
+	std::clog << connect_server_info.entity_type 
+		<< " " << connect_server_info.server_id << std::endl;
 	return 0;
 }
 
