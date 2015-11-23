@@ -134,9 +134,17 @@ int Controller::CheckConnectRequest()
 		CloseSocket(client_socket_fd);
 		return -1;
 	}
-
-	std::clog << connect_server_info.entity_type 
-		<< " " << connect_server_info.server_id << std::endl;
+	connect_server_info.server_id 
+		= ntohl(connect_server_info.server_id);
+	connect_server_info.entity_type 
+		= ntohl(connect_server_info.entity_type);
+#ifdef XDBG
+	unsigned short port = ntohs(addrinfo.sin_port);
+	std::string ip = inet_ntoa(addrinfo.sin_addr);
+	std::clog << "Entity(" << connect_server_info.entity_type
+		<< ", " << connect_server_info.server_id << ") register ok, " 
+			<< "addr is (" << ip << ":" << port << ")" << std::endl; 
+#endif
 	return 0;
 }
 
