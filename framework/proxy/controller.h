@@ -1,16 +1,12 @@
 #ifndef __CONTROLLER_H__
 #define __CONTROLLER_H__
 #include "handlerthread.h"
+#include "common.h"
 #include "../../include/libcommon/tcpconnection.h"
 #include "../../include/libcommon/x_tcpsocket.h"
 #include <string>
 
 namespace xsvrd {
-
-struct Configuration {
-	int proxy_id;
-	unsigned short proxy_port;
-};
 
 class Controller {
 public:

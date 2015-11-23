@@ -7,22 +7,24 @@
 namespace xsvrd {
 
 class TCPConnection;
+class Configuration;
 
 class HandlerThread : public Thread {
 public:
 	HandlerThread();
-	virtual~HandlerThread();
+	virtual ~HandlerThread();
 
 	virtual int Routine();
 	virtual int PrepareToRun();
 	virtual bool IsToBeBlocked();
-
-	int init(ConnectionEntityType entity_type, 
+	int Init(ConnectionEntityType entity_type, 
 		TCPConnection* dbsvrd_connection, 
 		TCPConnection* mainsvrd_connection, 
-		TCPConnection* othersvrd_connection);
+		TCPConnection* othersvrd_connection, 
+		void* para);
 
 private:
+	Configuration* configuration_;
 	TCPConnection* read_connection_; 
 	TCPConnection* dbsvrd_connection_; 
 	TCPConnection* mainsvrd_connection_; 

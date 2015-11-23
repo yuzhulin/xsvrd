@@ -33,6 +33,10 @@ Controller::~Controller()
 
 int Controller::PrepareToRun()
 {
+	if (listen_socket_.CreateServer(configuration_.proxy_port)) {
+		std::clog << "Create server failed!" << std::endl;
+		return -1;
+	}
 	dbsvrd_handler_thread_ = new HandlerThread;	
 	if (!dbsvrd_handler_thread_) {
 		std::clog << "New dbsvrd_handler_thread failed!" << std::endl;
@@ -46,6 +50,21 @@ int Controller::PrepareToRun()
 	othersvrd_handler_thread_ = new HandlerThread;	
 	if (!othersvrd_handler_thread_) {
 		std::clog << "New othersvrd_handler_thread failed!" << std::endl;
+		return -1;
+	}
+	dbsvrd_handler_thread_->Init(CET_DBSVRD, dbsvrd_connection_, 
+		mainsvrd_connection_, othersvrd_connection_, &configuration_);
+	mainsvrd_handler_thread_->Init(CET_MAINSVRD, dbsvrd_connection_, 
+		mainsvrd_connection_, othersvrd_connection_, &configuration_);
+	othersvrd_handler_thread_->Init(CET_OTHERSVRD, dbsvrd_connection_, 
+		mainsvrd_connection_, othersvrd_connection_, &configuration_);
+	if (dbsvrd_handler_thread_->Create()) {
+		return -1;
+	}
+	if (mainsvrd_handler_thread_->Create()) {
+		return -1;
+	}
+	if (othersvrd_handler_thread_->Create()) {
 		return -1;
 	}
 	return 0;

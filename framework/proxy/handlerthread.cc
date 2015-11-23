@@ -1,9 +1,11 @@
 #include "handlerthread.h"
+#include "common.h"
 
 namespace xsvrd {
 
 HandlerThread::HandlerThread()
 {
+	configuration_ = NULL;
 	read_connection_ = NULL;
 	dbsvrd_connection_ = NULL;
 	mainsvrd_connection_ = NULL;
@@ -30,15 +32,19 @@ bool HandlerThread::IsToBeBlocked()
 	return true;
 }
 
-int HandlerThread::init(ConnectionEntityType entity_type, 
+int HandlerThread::Init(ConnectionEntityType entity_type, 
 	TCPConnection* dbsvrd_connection, 
 	TCPConnection* mainsvrd_connection, 
-	TCPConnection* othersvrd_connection)
+	TCPConnection* othersvrd_connection, void* para)
 {	
 	connection_entity_type_ = entity_type;	
 	dbsvrd_connection_ = dbsvrd_connection;
 	mainsvrd_connection_ = mainsvrd_connection;
 	othersvrd_connection_ = othersvrd_connection;
+	if (para) {
+		configuration_ 
+			= static_cast<Configuration*>(para);
+	}
 	switch(entity_type) {
 		case CET_DBSVRD: {
 			read_connection_ = dbsvrd_connection_;
