@@ -32,6 +32,7 @@ public:
 	int CreateServer(unsigned short port, const char* addr = NULL);
 	void Init(unsigned int recv_buf_len);
 	void Close();
+	SOCKET GetSocketFD() { return socket_fd_; }
 
 private:
 	SOCKET socket_fd_;

@@ -11,12 +11,13 @@ namespace xsvrd {
 class Controller {
 public:
 	Controller();
-	virtual~Controller();
+	virtual ~Controller();
 
 	int Run();
 	int PrepareToRun();
 	int ReadConfiguration(std::string config_file);
 	int Init(std::string config_file);
+	int CheckConnectRequest();
 
 private:
 	TCPSocket listen_socket_;

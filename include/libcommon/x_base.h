@@ -9,4 +9,9 @@ enum ConnectionEntityType {
 	CET_OTHERSVRD = 4 
 };
 
+struct ConnectServerInfo {
+	int entity_type;
+	int server_id;
+};
+
 #endif

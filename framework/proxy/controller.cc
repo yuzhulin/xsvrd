@@ -72,8 +72,11 @@ int Controller::PrepareToRun()
 
 int Controller::Run()
 {
+	while (1) {
 
-	
+		CheckConnectRequest();
+
+	}
 	return 0;
 }
 
@@ -82,6 +85,54 @@ int Controller::Init(std::string config_file)
 	if (ReadConfiguration(config_file)) {
 		return -1;
 	}
+	return 0;
+}
+
+int Controller::CheckConnectRequest()
+{
+	int retval = 0;
+	SOCKET listen_socket_fd = listen_socket_.GetSocketFD(); 
+	int fd_max = listen_socket_fd + 1;
+	fd_set fd_reads;
+	FD_ZERO(&fd_reads);
+	FD_SET(listen_socket_fd, &fd_reads);
+	timeval timeout;
+	timeout.tv_sec = 0;
+	timeout.tv_usec = 50 * 1000;
+	retval = select(fd_max, &fd_reads, NULL, NULL, &timeout); 
+	if (retval <= 0) {
+		if (retval < 0) {
+			std::clog << "select error, " 
+				<< strerror(errno) << std::endl;
+		}
+		return -1;
+	}
+	sockaddr_in addrinfo;
+	SocketAddressLength addrlen = 0;
+	memset(&addrinfo, 0, sizeof(addrinfo));
+	SOCKET client_socket_fd 
+		= accept(listen_socket_fd, (sockaddr*)&addrinfo, &addrlen); 
+	if (INVALID_SOCKET == client_socket_fd) {
+		return -1;
+	}
+	timeout.tv_sec = 0;
+	timeout.tv_usec = 500 * 1000;
+	FD_ZERO(&fd_reads);
+	FD_SET(client_socket_fd, &fd_reads);
+	fd_max = client_socket_fd + 1;
+	retval = select(fd_max, &fd_reads, NULL, NULL, &timeout);
+	if (retval < 0) {
+		CloseSocket(client_socket_fd);
+		return -1;
+	}
+	ConnectServerInfo connect_server_info;
+	memset(&connect_server_info, 0, sizeof(connect_server_info));
+	char recvbuf[100] = {0};
+
+	recv(client_socket_fd, recvbuf, sizeof(recvbuf) -1, 0); 
+
+	std::clog << recvbuf << std::endl;
+
 	return 0;
 }
 

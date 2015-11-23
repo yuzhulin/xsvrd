@@ -90,6 +90,7 @@ enum TCPSocketType {
 #include <pthread.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+#include <sys/select.h>
 #include <netinet/in.h>
 #include <errno.h>
 
