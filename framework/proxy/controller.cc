@@ -1,6 +1,8 @@
 #include "controller.h"
 #include <iostream>
+#include <sstream>
 #include <fstream>
+#include <map>
 
 namespace xsvrd {
 
@@ -154,7 +156,29 @@ int Controller::ReadConfiguration(std::string config_file)
 	if (!ifs) {
 		return -1;
 	}
-	ifs >> configuration_.proxy_id >> configuration_.proxy_port;
+	std::map<std::string, int> item_name_value;
+	item_name_value["ProxyID"] = 0;
+	item_name_value["ProxyPort"] = 0;
+	int item_value;
+	std::string item_name;
+	while (ifs >> item_name >> item_value) {
+		item_name_value[item_name] = item_value;	
+	}
+	item_name = "ProxyID";
+	if (0 >= (item_value = item_name_value[item_name])) {
+		std::clog << config_file << " -> \"" 
+			<< item_name << "\" invalid." << std::endl; 
+		return -1;
+	}
+	configuration_.proxy_id = item_value;
+	item_name = "ProxyPort";
+	if (0 >= (item_value = item_name_value[item_name])) {
+		std::clog << config_file << " -> \"" 
+			<< item_name << "\" invalid." << std::endl; 
+		return -1;
+	}
+	configuration_.proxy_port 
+		= static_cast<unsigned short>(item_value); 
 	ifs.close();
 	return 0;
 }
