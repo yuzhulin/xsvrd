@@ -2,7 +2,9 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <vector>
 #include <map>
+#include <cstdlib>
 
 namespace xsvrd {
 
@@ -150,33 +152,114 @@ int Controller::CheckConnectRequest()
 	return 0;
 }
 
+int Controller::ReadEntityList(ConnectionEntityType type, TCPConnection* connection, int num)
+{
+	
+	return 0;
+}
+
 int Controller::ReadConfiguration(std::string config_file)
 {
 	std::ifstream ifs(config_file.c_str());
 	if (!ifs) return -1;
-	std::map<std::string, int> item_name_value;
-	item_name_value["ProxyID"] = 0;
-	item_name_value["ProxyPort"] = 0;
-	int item_value;
+	std::vector<std::string> keys;	
+	keys.push_back("ProxyID");
+	keys.push_back("ProxyPort");
+	keys.push_back("DBSvrdNum");
+	keys.push_back("MainSvrdNum");
+	keys.push_back("OtherSvrdNum");
+	keys.push_back("DBSvrdsList");
+	keys.push_back("MainSvrdsList");
+	keys.push_back("OtherSvrdsList");
+	std::map<std::string, std::string> key_value_map;
+	for (std::vector<std::string>::iterator it = keys.begin();
+		it != keys.end(); ++it) {
+		key_value_map[*it] = "";
+	}
+	std::string key;
+	std::string value;
+	std::string line;
+	while (std::getline(ifs, line)) {
+		std::stringstream ss(line);
+		key.clear();
+		value.clear();
+		ss >> key >> value;
+		key_value_map[key] = value;	
+	}
+	for (std::vector<std::string>::iterator it = keys.begin();
+		it != keys.end(); ++it) {
+		value = key_value_map[*it]; 
+		if (value.empty()) {
+			std::clog << config_file << " --> " << "\"" 
+				<< *it << "\"" << " invalid." << std::endl; 
+			return -1;
+		}
+		int value_int = 0;
+		if ("ProxyID" == *it || "ProxyPort" == *it) {  
+			value_int = atoi(value.c_str());
+			if (value_int <= 0) {
+				std::clog << config_file << " --> " << "\"" 
+					<< *it << "\"" << " invalid." << std::endl; 
+				return -1;
+			}
+		}	
+		if ("DBSvrdNum" == *it || "MainSVrdNum" 
+			== *it || "OtherSvrdNum" == *it) {
+			value_int = atoi(value.c_str());
+			if (value_int < 0) {
+				std::clog << config_file << " --> " << "\"" 
+					<< *it << "\"" << " invalid." << std::endl; 
+				return -1;
+			}
+		}	
+	}
+	/*
 	std::string item_name;
-	while (ifs >> item_name >> item_value) {
-		item_name_value[item_name] = item_value;	
+	std::string item_value_str;
+	int item_value_int = 0;
+	while (ifs >> item_name >> item_value_str) {
+		item_name_value[item_name] = item_value_str;	
 	}
 	item_name = "ProxyID";
-	if (0 >= (item_value = item_name_value[item_name])) {
+	item_value_int = atoi(item_name_value[item_name].c_str());
+	if (0 >= item_value_int) {
 		std::clog << config_file << " -> \"" 
 			<< item_name << "\" invalid." << std::endl; 
 		return -1;
 	}
-	configuration_.proxy_id = item_value;
+	configuration_.proxy_id = item_value_int;
 	item_name = "ProxyPort";
-	if (0 >= (item_value = item_name_value[item_name])) {
+	item_value_int = atoi(item_name_value[item_name].c_str());
+	if (0 >= item_value_int) {
 		std::clog << config_file << " -> \"" 
 			<< item_name << "\" invalid." << std::endl; 
 		return -1;
 	}
 	configuration_.proxy_port 
-		= static_cast<unsigned short>(item_value); 
+		= static_cast<unsigned short>(item_value_int); 
+	item_name = "DBSvrdNum";
+	item_value_int = atoi(item_name_value[item_name].c_str());
+	if (0 > item_value_int) {
+		std::clog << config_file << " -> \"" 
+			<< item_name << "\" invalid." << std::endl; 
+		return -1;
+	}
+	configuration_.SvrdNum[CET_DBSVRD] = item_value;
+	item_name = "MainSvrdNum";
+	if (0 > (item_value = item_name_value[item_name])) {
+		std::clog << config_file << " -> \"" 
+			<< item_name << "\" invalid." << std::endl; 
+		return -1;
+	}
+	configuration_.SvrdNum[CET_MAINSVRD] = item_value;
+	item_name = "OtherSvrdNum";
+	if (0 > (item_value = item_name_value[item_name])) {
+		std::clog << config_file << " -> \"" 
+			<< item_name << "\" invalid." << std::endl; 
+		return -1;
+	}
+	configuration_.SvrdNum[CET_OTHERSVRD] = item_value;
+	*/
 	ifs.close();
 	return 0;
 }

@@ -6,6 +6,7 @@ namespace xsvrd {
 struct Configuration {
 	int proxy_id;
 	unsigned short proxy_port;
+	int SvrdNum[10];
 };
 
 }

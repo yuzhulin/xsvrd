@@ -18,6 +18,7 @@ public:
 	int ReadConfiguration(std::string config_file);
 	int Init(std::string config_file);
 	int CheckConnectRequest();
+	int ReadEntityList(ConnectionEntityType type, TCPConnection* connection, int num);
 
 private:
 	TCPSocket listen_socket_;
