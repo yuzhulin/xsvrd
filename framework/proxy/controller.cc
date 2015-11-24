@@ -222,7 +222,7 @@ int Controller::ReadConfiguration(std::string config_file)
 					<< *it << "\"" << " invalid." << std::endl; 
 				return -1;
 			}
-			configuration_.SvrdNum[CET_DBSVRD] = value_int;
+			configuration_.svrdlist[CET_DBSVRD].svrdnum = value_int;
 		}
 		if ("MainSvrdNum" == *it) {
 			value_int = atoi(value.c_str());
@@ -231,7 +231,7 @@ int Controller::ReadConfiguration(std::string config_file)
 					<< *it << "\"" << " invalid." << std::endl; 
 				return -1;
 			}
-			configuration_.SvrdNum[CET_MAINSVRD] = value_int;
+			configuration_.svrdlist[CET_MAINSVRD].svrdnum = value_int;
 		}	
 		if ("OtherSvrdNum" == *it) {
 			value_int = atoi(value.c_str());
@@ -240,12 +240,28 @@ int Controller::ReadConfiguration(std::string config_file)
 					<< *it << "\"" << " invalid." << std::endl; 
 				return -1;
 			}
-			configuration_.SvrdNum[CET_OTHERSVRD] = value_int;
-		}
+			configuration_.svrdlist[CET_OTHERSVRD].svrdnum = value_int;
+		}	
+		if ("DBSvrdsList" == *it || "MainSvrdsList" == *it 
+			|| "OtherSvrdsList" == *it)
+			;
+
 	}
+#ifdef XDBG
+	std::clog << "proxy config: " << std::endl;
+	std::clog << "--------------------------" << std::endl;
+	std::clog << "ProxyID: " << configuration_.proxy_id << std::endl;
+	std::clog << "ProxyPort: " << configuration_.proxy_port << std::endl;
+	std::clog << "DBSvrdNum: " 
+		<< configuration_.svrdlist[CET_DBSVRD].svrdnum << std::endl;
+	std::clog << "MainSvrdNum: " 
+		<< configuration_.svrdlist[CET_MAINSVRD].svrdnum << std::endl;
+	std::clog << "OtherSvrdNum: " 
+		<< configuration_.svrdlist[CET_OTHERSVRD].svrdnum << std::endl;
+	std::clog << "--------------------------" << std::endl;
+		
 
-
-	
+#endif
 	return 0;
 }
 
