@@ -16,7 +16,8 @@ Controller::Controller()
 	dbsvrd_connection_ = NULL;
 	mainsvrd_connection_ = NULL;
 	othersvrd_connection_ = NULL;
-	memset(&configuration_, 0, sizeof(configuration_));
+	// TODO:
+	// memset(&configuration_, 0, sizeof(configuration_));
 }
 
 Controller::~Controller()
@@ -241,11 +242,13 @@ int Controller::ReadConfiguration(std::string config_file)
 				return -1;
 			}
 			configuration_.svrdlist[CET_OTHERSVRD].svrdnum = value_int;
-		}	
-		if ("DBSvrdsList" == *it || "MainSvrdsList" == *it 
-			|| "OtherSvrdsList" == *it)
-			;
-
+		}
+		if ("DBSvrdsList" == *it)
+			configuration_.svrdlist[CET_DBSVRD].list_file = value;
+		if ("MainSvrdsList" == *it)
+			configuration_.svrdlist[CET_MAINSVRD].list_file = value;
+		if ("OtherSvrdsList" == *it)
+			configuration_.svrdlist[CET_OTHERSVRD].list_file = value;
 	}
 #ifdef XDBG
 	std::clog << "proxy config: " << std::endl;
@@ -258,9 +261,10 @@ int Controller::ReadConfiguration(std::string config_file)
 		<< configuration_.svrdlist[CET_MAINSVRD].svrdnum << std::endl;
 	std::clog << "OtherSvrdNum: " 
 		<< configuration_.svrdlist[CET_OTHERSVRD].svrdnum << std::endl;
+	std::clog << "DBSvrdsList: " << configuration_.svrdlist[CET_DBSVRD].list_file << std::endl;
+	std::clog << "MainSvrdsList: " << configuration_.svrdlist[CET_MAINSVRD].list_file << std::endl;
+	std::clog << "OtherSvrdsList: " << configuration_.svrdlist[CET_OTHERSVRD].list_file << std::endl;
 	std::clog << "--------------------------" << std::endl;
-		
-
 #endif
 	return 0;
 }
