@@ -196,24 +196,55 @@ int Controller::ReadConfiguration(std::string config_file)
 			return -1;
 		}
 		int value_int = 0;
-		if ("ProxyID" == *it || "ProxyPort" == *it) {  
+		if ("ProxyID" == *it) {
 			value_int = atoi(value.c_str());
 			if (value_int <= 0) {
 				std::clog << config_file << " --> " << "\"" 
 					<< *it << "\"" << " invalid." << std::endl; 
 				return -1;
 			}
-		}	
-		if ("DBSvrdNum" == *it || "MainSVrdNum" 
-			== *it || "OtherSvrdNum" == *it) {
+			configuration_.proxy_id = value_int;
+		}
+		if ("ProxyPort" == *it) {
+			value_int = atoi(value.c_str());
+			if (value_int <= 0) {
+				std::clog << config_file << " --> " << "\"" 
+					<< *it << "\"" << " invalid." << std::endl; 
+				return -1;
+			}
+			configuration_.proxy_port 
+				= static_cast<unsigned short>(value_int);
+		}
+		if ("DBSvrdNum" == *it) {
 			value_int = atoi(value.c_str());
 			if (value_int < 0) {
 				std::clog << config_file << " --> " << "\"" 
 					<< *it << "\"" << " invalid." << std::endl; 
 				return -1;
 			}
+			configuration_.SvrdNum[CET_DBSVRD] = value_int;
+		}
+		if ("MainSvrdNum" == *it) {
+			value_int = atoi(value.c_str());
+			if (value_int < 0) {
+				std::clog << config_file << " --> " << "\"" 
+					<< *it << "\"" << " invalid." << std::endl; 
+				return -1;
+			}
+			configuration_.SvrdNum[CET_MAINSVRD] = value_int;
 		}	
+		if ("OtherSvrdNum" == *it) {
+			value_int = atoi(value.c_str());
+			if (value_int < 0) {
+				std::clog << config_file << " --> " << "\"" 
+					<< *it << "\"" << " invalid." << std::endl; 
+				return -1;
+			}
+			configuration_.SvrdNum[CET_OTHERSVRD] = value_int;
+		}
 	}
+
+
 	
 	return 0;
 }
