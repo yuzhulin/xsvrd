@@ -186,6 +186,7 @@ int Controller::ReadConfiguration(std::string config_file)
 		ss >> key >> value;
 		key_value_map[key] = value;	
 	}
+	ifs.close();
 	for (std::vector<std::string>::iterator it = keys.begin();
 		it != keys.end(); ++it) {
 		value = key_value_map[*it]; 
@@ -213,54 +214,7 @@ int Controller::ReadConfiguration(std::string config_file)
 			}
 		}	
 	}
-	/*
-	std::string item_name;
-	std::string item_value_str;
-	int item_value_int = 0;
-	while (ifs >> item_name >> item_value_str) {
-		item_name_value[item_name] = item_value_str;	
-	}
-	item_name = "ProxyID";
-	item_value_int = atoi(item_name_value[item_name].c_str());
-	if (0 >= item_value_int) {
-		std::clog << config_file << " -> \"" 
-			<< item_name << "\" invalid." << std::endl; 
-		return -1;
-	}
-	configuration_.proxy_id = item_value_int;
-	item_name = "ProxyPort";
-	item_value_int = atoi(item_name_value[item_name].c_str());
-	if (0 >= item_value_int) {
-		std::clog << config_file << " -> \"" 
-			<< item_name << "\" invalid." << std::endl; 
-		return -1;
-	}
-	configuration_.proxy_port 
-		= static_cast<unsigned short>(item_value_int); 
-	item_name = "DBSvrdNum";
-	item_value_int = atoi(item_name_value[item_name].c_str());
-	if (0 > item_value_int) {
-		std::clog << config_file << " -> \"" 
-			<< item_name << "\" invalid." << std::endl; 
-		return -1;
-	}
-	configuration_.SvrdNum[CET_DBSVRD] = item_value;
-	item_name = "MainSvrdNum";
-	if (0 > (item_value = item_name_value[item_name])) {
-		std::clog << config_file << " -> \"" 
-			<< item_name << "\" invalid." << std::endl; 
-		return -1;
-	}
-	configuration_.SvrdNum[CET_MAINSVRD] = item_value;
-	item_name = "OtherSvrdNum";
-	if (0 > (item_value = item_name_value[item_name])) {
-		std::clog << config_file << " -> \"" 
-			<< item_name << "\" invalid." << std::endl; 
-		return -1;
-	}
-	configuration_.SvrdNum[CET_OTHERSVRD] = item_value;
-	*/
-	ifs.close();
+	
 	return 0;
 }
 
