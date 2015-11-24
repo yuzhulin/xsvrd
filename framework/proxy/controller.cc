@@ -153,9 +153,7 @@ int Controller::CheckConnectRequest()
 int Controller::ReadConfiguration(std::string config_file)
 {
 	std::ifstream ifs(config_file.c_str());
-	if (!ifs) {
-		return -1;
-	}
+	if (!ifs) return -1;
 	std::map<std::string, int> item_name_value;
 	item_name_value["ProxyID"] = 0;
 	item_name_value["ProxyPort"] = 0;

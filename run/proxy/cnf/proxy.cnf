@@ -1,2 +1,9 @@
-ProxyID    1 
-ProxyPort  19000
+ProxyID      1 
+ProxyPort    19000
+DBSvrdNum    1 
+MainSvrdNum  1
+OtherSvrdNum 1
+
+DBSvrdsList    ./dbsvrds.list
+MainSvrdsList  ./mainsvrds.list
+OtherSvrdsList ./othersvrds.list
