@@ -2,7 +2,7 @@
 #define __COMMON_H__
 #include <string>
 
-#define MAX_CONNECTION 128
+#define MAX_SVRD_NUM 128
 
 namespace xsvrd {
 

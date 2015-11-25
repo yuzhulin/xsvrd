@@ -154,10 +154,9 @@ int Controller::ReadEntityList(ConnectionEntityType type, TCPConnection* connect
 {
 	if (0 == num) return 0;
 	if (0 > num) return -1;
-	if (0 > num) return -1;
 	if (!connection) return -1;
-	if (num > MAX_CONNECTION)
-		num = MAX_CONNECTION;
+	if (num > MAX_SVRD_NUM)
+		num = MAX_SVRD_NUM;
 	switch (type) {
 		case CET_DBSVRD: {
 			std::string list_file = configuration_.svrdlist[type].list_file; 
