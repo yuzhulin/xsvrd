@@ -5,5 +5,5 @@ MainSvrdNum    1
 OtherSvrdNum   1
 
 DBSvrdsList    ../cnf/dbsvrds.list
-MainSvrdsList  ../cnf/insvrds.list
+MainSvrdsList  ../cnf/mainsvrds.list
 OtherSvrdsList ../cnf/othersvrds.list
