@@ -23,7 +23,8 @@ tags
 *.exp
 *.lib
 *DS_Store
-bin/
+bin/proxy
+bin/mainsvrd
 backup_log/
 
 # for visual studio
