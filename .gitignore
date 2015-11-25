@@ -17,6 +17,7 @@ tags
 *.user
 *.exe
 *.o
+*.out
 *.so
 *.dll
 *.exp
