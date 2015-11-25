@@ -1,6 +1,6 @@
 CPP=g++
 BIN=../../run/proxy/bin/proxy
-OBJ=main.o handlerthread.o x_thread.o controller.o x_tcpsocket.o socket_api.o
+OBJ=main.o handlerthread.o x_thread.o controller.o x_tcpsocket.o socket_api.o tcpconnection.o 
 INC=../../include/libcommon
 C_ARGS=-DXDBG
 
@@ -26,6 +26,9 @@ x_tcpsocket.o:../libcommon/x_tcpsocket.cc $(INC)/x_tcpsocket.h
 
 socket_api.o:../libcommon/socket_api.cc $(INC)/socket_api.h
 	$(CPP) $(C_ARGS) -g -c ../libcommon/socket_api.cc
+
+tcpconnection.o:../libcommon/tcpconnection.cc $(INC)/tcpconnection.h
+	$(CPP) $(C_ARGS) -g -c ../libcommon/tcpconnection.cc
 
 clean:
 	rm -f $(BIN) $(OBJ)
