@@ -1,6 +1,7 @@
 #ifndef __TCPCONNECTION_H__
 #define __TCPCONNECTION_H__
 #include <string>
+#include "x_base.h"
 
 namespace xsvrd {
 

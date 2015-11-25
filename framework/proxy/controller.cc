@@ -205,15 +205,12 @@ int Controller::ReadEntityList(ConnectionEntityType type, TCPConnection* connect
 	}
 	std::clog << "--------------------------" << std::endl << std::endl;
 #endif
-	switch (type) {
-		case CET_DBSVRD: {
-			for (int i = 0; i < expect_num; i++) {
-
-			}
-			break;
-		}
-		default:
-			break;
+	int entity_id = 0;
+	std::string entity_addr;
+	for (int i = 0; i < expect_num; i++) {
+		entity_id = atoi(list_order[i].c_str());
+		entity_addr = key_value_map[list_order[i]];
+		connection[entity_id].Init(type, entity_id, entity_addr, 0);
 	}
 	return 0;
 }
