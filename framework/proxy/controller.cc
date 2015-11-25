@@ -150,31 +150,65 @@ int Controller::CheckConnectRequest()
 	return 0;
 }
 
-int Controller::ReadEntityList(ConnectionEntityType type, TCPConnection* connection, int num)
+int Controller::ReadEntityList(ConnectionEntityType type, TCPConnection* connection)
 {
-	if (0 == num) return 0;
-	if (0 > num) return -1;
 	if (!connection) return -1;
-	if (num > MAX_SVRD_NUM)
-		num = MAX_SVRD_NUM;
+	std::string list_file = configuration_.svrdlist[type].list_file; 
+	std::ifstream ifs(list_file.c_str());
+	if (!ifs) {
+		std::clog << "Open " 
+			<< list_file << " failed!" << std::endl;
+		return -1;
+	}
+	std::string id;
+	std::string ip;
+	std::string line;
+	std::vector<std::string> list_order;
+	std::map<std::string, std::string> key_value_map;
+	while (std::getline(ifs, line)) {
+		std::stringstream ss(line);
+		line.clear();
+		id.clear();
+		ip.clear();
+		ss >> id >> ip; 
+		if (id.empty() || ip.empty()) {
+			std::clog << list_file << " " 
+				<< "there is a record invalid." << std::endl;
+			return -1;
+		}
+		if (atoi(id.c_str()) > MAX_SVRD_NUM) {
+			std::clog << list_file << " " 
+				<< "there is an id > max(" 
+					<< MAX_SVRD_NUM << ")" << std::endl; 
+			return -1;
+		}
+		if (!key_value_map[id].empty()) {
+			std::clog << list_file << " " 
+				<< "id(" << id << ") duplicate." << std::endl;
+			return -1;
+		}
+		list_order.push_back(id);
+		key_value_map[id] = ip;
+	}
+	int expect_num = configuration_.svrdlist[type].svrdnum;
+	if (key_value_map.size() < expect_num) {
+		std::clog << list_file << " " 
+			<< "actual num < expect num." << std::endl;
+		return -1;
+	}
+#ifdef XDBG
+	std::clog << "\"" << list_file << "\"" << std::endl; 	
+	std::clog << "--------------------------" << std::endl;
+	for (int i = 0; i < expect_num; i++) {
+		std::clog << list_order[i] << " " 
+			<< key_value_map[list_order[i]] << std::endl;
+	}
+	std::clog << "--------------------------" << std::endl << std::endl;
+#endif
 	switch (type) {
 		case CET_DBSVRD: {
-			std::string list_file = configuration_.svrdlist[type].list_file; 
-			std::ifstream ifs(list_file.c_str());
-			if (!ifs) {
-				std::clog << "Open " 
-					<< list_file << " failed!" << std::endl;
-				return -1;
-			}
-			std::string id;
-			std::string ip;
-			std::string line;
-			while (std::getline(ifs, line)) {
-				std::stringstream ss(line);
-				line.clear();
-				id.clear();
-				ip.clear();
-				ss >> id >> ip; 
+			for (int i = 0; i < expect_num; i++) {
+
 			}
 			break;
 		}
@@ -248,6 +282,12 @@ int Controller::ReadConfiguration(std::string config_file)
 					<< *it << "\"" << " invalid." << std::endl; 
 				return -1;
 			}
+			if (value_int > MAX_SVRD_NUM) {
+				std::clog << config_file << " --> " << "\"" 
+					<< *it << "\"" << " invalid, max value is " 
+						<< MAX_SVRD_NUM << "." << std::endl; 
+				return -1;
+			}
 			configuration_.svrdlist[CET_DBSVRD].svrdnum = value_int;
 		}
 		if ("MainSvrdNum" == *it) {
@@ -257,6 +297,12 @@ int Controller::ReadConfiguration(std::string config_file)
 					<< *it << "\"" << " invalid." << std::endl; 
 				return -1;
 			}
+			if (value_int > MAX_SVRD_NUM) {
+				std::clog << config_file << " --> " << "\"" 
+					<< *it << "\"" << " invalid, max value is " 
+						<< MAX_SVRD_NUM << "." << std::endl; 
+				return -1;
+			}
 			configuration_.svrdlist[CET_MAINSVRD].svrdnum = value_int;
 		}	
 		if ("OtherSvrdNum" == *it) {
@@ -264,6 +310,12 @@ int Controller::ReadConfiguration(std::string config_file)
 			if (value_int < 0) {
 				std::clog << config_file << " --> " << "\"" 
 					<< *it << "\"" << " invalid." << std::endl; 
+				return -1;
+			}
+			if (value_int > MAX_SVRD_NUM) {
+				std::clog << config_file << " --> " << "\"" 
+					<< *it << "\"" << " invalid, max value is " 
+						<< MAX_SVRD_NUM << "." << std::endl; 
 				return -1;
 			}
 			configuration_.svrdlist[CET_OTHERSVRD].svrdnum = value_int;
@@ -276,16 +328,16 @@ int Controller::ReadConfiguration(std::string config_file)
 			configuration_.svrdlist[CET_OTHERSVRD].list_file = value;
 	}
 	if (configuration_.svrdlist[CET_DBSVRD].svrdnum)
-		ReadEntityList(CET_DBSVRD, dbsvrd_connection_, 
-			configuration_.svrdlist[CET_DBSVRD].svrdnum);
+		if (ReadEntityList(CET_DBSVRD, dbsvrd_connection_)) 
+			return -1;
 	if (configuration_.svrdlist[CET_MAINSVRD].svrdnum)
-		ReadEntityList(CET_MAINSVRD, mainsvrd_connection_, 
-			configuration_.svrdlist[CET_MAINSVRD].svrdnum);
+		if (ReadEntityList(CET_MAINSVRD, mainsvrd_connection_))
+			return -1;
 	if (configuration_.svrdlist[CET_OTHERSVRD].svrdnum)
-		ReadEntityList(CET_OTHERSVRD, othersvrd_connection_, 
-			configuration_.svrdlist[CET_OTHERSVRD].svrdnum);
+		if (ReadEntityList(CET_OTHERSVRD, othersvrd_connection_))
+			return -1;
 #ifdef XDBG
-	std::clog << "proxy config: " << std::endl;
+	std::clog << "\"" << config_file << "\"" << std::endl;
 	std::clog << "--------------------------" << std::endl;
 	std::clog << "ProxyID: " << configuration_.proxy_id << std::endl;
 	std::clog << "ProxyPort: " << configuration_.proxy_port << std::endl;
@@ -298,7 +350,7 @@ int Controller::ReadConfiguration(std::string config_file)
 	std::clog << "DBSvrdsList: " << configuration_.svrdlist[CET_DBSVRD].list_file << std::endl;
 	std::clog << "MainSvrdsList: " << configuration_.svrdlist[CET_MAINSVRD].list_file << std::endl;
 	std::clog << "OtherSvrdsList: " << configuration_.svrdlist[CET_OTHERSVRD].list_file << std::endl;
-	std::clog << "--------------------------" << std::endl;
+	std::clog << "--------------------------" << std::endl << std::endl;
 #endif
 	return 0;
 }

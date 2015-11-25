@@ -1,8 +1,8 @@
 ProxyID        1  
 ProxyPort      19000
-DBSvrdNum      1 
-MainSvrdNum    1 
-OtherSvrdNum   1
+DBSvrdNum      2 
+MainSvrdNum    4 
+OtherSvrdNum   4
 
 DBSvrdsList    ../cnf/dbsvrds.list
 MainSvrdsList  ../cnf/mainsvrds.list
