@@ -6,7 +6,7 @@ namespace xsvrd {
 class TCPConnection {
 public:
 	TCPConnection();
-	virtual~TCPConnection();
+	virtual ~TCPConnection();
 };
 
 }

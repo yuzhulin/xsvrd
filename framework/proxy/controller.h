@@ -26,9 +26,9 @@ private:
 	HandlerThread* dbsvrd_handler_thread_;
 	HandlerThread* mainsvrd_handler_thread_;
 	HandlerThread* othersvrd_handler_thread_;
-	TCPConnection* dbsvrd_connection_; 
-	TCPConnection* mainsvrd_connection_; 
-	TCPConnection* othersvrd_connection_;
+	TCPConnection dbsvrd_connection_[MAX_CONNECTION]; 
+	TCPConnection mainsvrd_connection_[MAX_CONNECTION]; 
+	TCPConnection othersvrd_connection_[MAX_CONNECTION];
 };
 
 }

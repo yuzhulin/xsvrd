@@ -13,9 +13,6 @@ Controller::Controller()
 	dbsvrd_handler_thread_ = NULL;
 	mainsvrd_handler_thread_ = NULL;
 	othersvrd_handler_thread_ = NULL;
-	dbsvrd_connection_ = NULL;
-	mainsvrd_connection_ = NULL;
-	othersvrd_connection_ = NULL;
 	// TODO:
 	// memset(&configuration_, 0, sizeof(configuration_));
 }
@@ -155,7 +152,36 @@ int Controller::CheckConnectRequest()
 
 int Controller::ReadEntityList(ConnectionEntityType type, TCPConnection* connection, int num)
 {
-	
+	if (0 == num) return 0;
+	if (0 > num) return -1;
+	if (0 > num) return -1;
+	if (!connection) return -1;
+	if (num > MAX_CONNECTION)
+		num = MAX_CONNECTION;
+	switch (type) {
+		case CET_DBSVRD: {
+			std::string list_file = configuration_.svrdlist[type].list_file; 
+			std::ifstream ifs(list_file.c_str());
+			if (!ifs) {
+				std::clog << "Open " 
+					<< list_file << " failed!" << std::endl;
+				return -1;
+			}
+			std::string id;
+			std::string ip;
+			std::string line;
+			while (std::getline(ifs, line)) {
+				std::stringstream ss(line);
+				line.clear();
+				id.clear();
+				ip.clear();
+				ss >> id >> ip; 
+			}
+			break;
+		}
+		default:
+			break;
+	}
 	return 0;
 }
 
@@ -250,6 +276,15 @@ int Controller::ReadConfiguration(std::string config_file)
 		if ("OtherSvrdsList" == *it)
 			configuration_.svrdlist[CET_OTHERSVRD].list_file = value;
 	}
+	if (configuration_.svrdlist[CET_DBSVRD].svrdnum)
+		ReadEntityList(CET_DBSVRD, dbsvrd_connection_, 
+			configuration_.svrdlist[CET_DBSVRD].svrdnum);
+	if (configuration_.svrdlist[CET_MAINSVRD].svrdnum)
+		ReadEntityList(CET_MAINSVRD, mainsvrd_connection_, 
+			configuration_.svrdlist[CET_MAINSVRD].svrdnum);
+	if (configuration_.svrdlist[CET_OTHERSVRD].svrdnum)
+		ReadEntityList(CET_OTHERSVRD, othersvrd_connection_, 
+			configuration_.svrdlist[CET_OTHERSVRD].svrdnum);
 #ifdef XDBG
 	std::clog << "proxy config: " << std::endl;
 	std::clog << "--------------------------" << std::endl;
