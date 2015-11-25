@@ -22,7 +22,8 @@ tags
 *.exp
 *.lib
 *DS_Store
-bin/*
+bin/
+backup_log/
 
 # for visual studio
 # -----------------------------
