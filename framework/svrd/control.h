@@ -6,7 +6,7 @@ public:
 	Control() {}
 	virtual~Control() {} 
 
-	virtual int ReadConfigFile() = 0;
+	virtual int ReadConfigFile() { return -1; }
 	virtual int PrepareToRun() = 0;
 	virtual int Init() {
 		return ReadConfigFile();
