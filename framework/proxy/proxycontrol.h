@@ -5,17 +5,18 @@
 #include "common.h"
 #include "../../include/libcommon/tcpconnection.h"
 #include "../../include/libcommon/x_tcpsocket.h"
+#include "../../framework/svrd/control.h"
 #include <string>
 
 namespace xsvrd {
 
-class ProxyControl {
+class ProxyControl : public Control {
 public:
 	ProxyControl();
 	virtual~ProxyControl();
 
-	int Run();
-	int PrepareToRun();
+	virtual int Run();
+	virtual int PrepareToRun();
 	int ReadConfiguration(std::string config_file);
 	int Init(std::string config_file);
 	int CheckConnectRequest();
