@@ -220,8 +220,8 @@ int ProxyControl::ReadConfigFile()
 	std::ifstream ifs(config_file.c_str());
 	if (!ifs) return -1;
 	std::vector<std::string> keys;	
-	keys.push_back("ProxyID");
-	keys.push_back("ProxyPort");
+	keys.push_back("ID");
+	keys.push_back("Port");
 	keys.push_back("DBSvrdNum");
 	keys.push_back("MainSvrdNum");
 	keys.push_back("OtherSvrdNum");
@@ -253,7 +253,7 @@ int ProxyControl::ReadConfigFile()
 			return -1;
 		}
 		int value_int = 0;
-		if ("ProxyID" == *it) {
+		if ("ID" == *it) {
 			value_int = atoi(value.c_str());
 			if (value_int <= 0) {
 				std::clog << config_file << " --> " << "\"" 
@@ -262,7 +262,7 @@ int ProxyControl::ReadConfigFile()
 			}
 			configuration_.proxy_id = value_int;
 		}
-		if ("ProxyPort" == *it) {
+		if ("Port" == *it) {
 			value_int = atoi(value.c_str());
 			if (value_int <= 0) {
 				std::clog << config_file << " --> " << "\"" 
@@ -336,8 +336,8 @@ int ProxyControl::ReadConfigFile()
 #ifdef XDBG
 	std::clog << "\"" << config_file << "\"" << std::endl;
 	std::clog << "--------------------------" << std::endl;
-	std::clog << "ProxyID: " << configuration_.proxy_id << std::endl;
-	std::clog << "ProxyPort: " << configuration_.proxy_port << std::endl;
+	std::clog << "ID: " << configuration_.proxy_id << std::endl;
+	std::clog << "Port: " << configuration_.proxy_port << std::endl;
 	std::clog << "DBSvrdNum: " 
 		<< configuration_.svrdlist[CET_DBSVRD].svrdnum << std::endl;
 	std::clog << "MainSvrdNum: " 

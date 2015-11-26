@@ -1,5 +1,5 @@
-ProxyID        1  
-ProxyPort      19000
+ID             1  
+Port           19000
 DBSvrdNum      2 
 MainSvrdNum    4 
 OtherSvrdNum   4
