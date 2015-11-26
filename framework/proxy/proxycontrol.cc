@@ -320,15 +320,6 @@ int ProxyControl::ReadConfigFile()
 		if ("OtherSvrdsList" == *it)
 			configuration_.svrdlist[CET_OTHERSVRD].list_file = value;
 	}
-	if (configuration_.svrdlist[CET_DBSVRD].svrdnum)
-		if (ReadEntityList(CET_DBSVRD, dbsvrd_connection_)) 
-			return -1;
-	if (configuration_.svrdlist[CET_MAINSVRD].svrdnum)
-		if (ReadEntityList(CET_MAINSVRD, mainsvrd_connection_))
-			return -1;
-	if (configuration_.svrdlist[CET_OTHERSVRD].svrdnum)
-		if (ReadEntityList(CET_OTHERSVRD, othersvrd_connection_))
-			return -1;
 #ifdef XDBG
 	std::clog << "\"" << config_file << "\"" << std::endl;
 	std::clog << "--------------------------" << std::endl;
@@ -345,6 +336,15 @@ int ProxyControl::ReadConfigFile()
 	std::clog << "OtherSvrdsList: " << configuration_.svrdlist[CET_OTHERSVRD].list_file << std::endl;
 	std::clog << "--------------------------" << std::endl << std::endl;
 #endif
+	if (configuration_.svrdlist[CET_DBSVRD].svrdnum)
+		if (ReadEntityList(CET_DBSVRD, dbsvrd_connection_)) 
+			return -1;
+	if (configuration_.svrdlist[CET_MAINSVRD].svrdnum)
+		if (ReadEntityList(CET_MAINSVRD, mainsvrd_connection_))
+			return -1;
+	if (configuration_.svrdlist[CET_OTHERSVRD].svrdnum)
+		if (ReadEntityList(CET_OTHERSVRD, othersvrd_connection_))
+			return -1;
 	return 0;
 }
 
