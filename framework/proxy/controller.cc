@@ -39,17 +39,17 @@ int Controller::PrepareToRun()
 		std::clog << "Create server failed!" << std::endl;
 		return -1;
 	}
-	dbsvrd_handler_thread_ = new HandlerThread;	
+	dbsvrd_handler_thread_ = new Handler;	
 	if (!dbsvrd_handler_thread_) {
 		std::clog << "New dbsvrd_handler_thread failed!" << std::endl;
 		return -1;
 	}
-	mainsvrd_handler_thread_ = new HandlerThread;	
+	mainsvrd_handler_thread_ = new Handler;	
 	if (!mainsvrd_handler_thread_) {
 		std::clog << "New mainsvrd_handler_thread failed!" << std::endl;
 		return -1;
 	}
-	othersvrd_handler_thread_ = new HandlerThread;	
+	othersvrd_handler_thread_ = new Handler;	
 	if (!othersvrd_handler_thread_) {
 		std::clog << "New othersvrd_handler_thread failed!" << std::endl;
 		return -1;

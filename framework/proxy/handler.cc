@@ -1,9 +1,9 @@
-#include "handlerthread.h"
+#include "handler.h"
 #include "common.h"
 
 namespace xsvrd {
 
-HandlerThread::HandlerThread()
+Handler::Handler()
 {
 	configuration_ = NULL;
 	read_connection_ = NULL;
@@ -13,26 +13,26 @@ HandlerThread::HandlerThread()
 	connection_entity_type_ = CET_UNKNOWN;
 }
 
-HandlerThread::~HandlerThread()
+Handler::~Handler()
 {
 }
 
-int HandlerThread::PrepareToRun()
-{
-	return 0;
-}
-
-int HandlerThread::Routine()
+int Handler::PrepareToRun()
 {
 	return 0;
 }
 
-bool HandlerThread::IsToBeBlocked()
+int Handler::Routine()
+{
+	return 0;
+}
+
+bool Handler::IsToBeBlocked()
 {
 	return true;
 }
 
-int HandlerThread::Init(ConnectionEntityType entity_type, 
+int Handler::Init(ConnectionEntityType entity_type, 
 	TCPConnection* dbsvrd_connection, 
 	TCPConnection* mainsvrd_connection, 
 	TCPConnection* othersvrd_connection, void* para)

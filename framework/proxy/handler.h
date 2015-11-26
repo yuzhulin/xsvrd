@@ -1,5 +1,5 @@
-#ifndef __HANDLERTHREAD_H__
-#define __HANDLERTHREAD_H__
+#ifndef __HANDLER_H__
+#define __HANDLER_H__
 
 #include "../../include/libcommon/x_thread.h"
 #include "../../include/libcommon/x_base.h"
@@ -9,10 +9,10 @@ namespace xsvrd {
 class TCPConnection;
 class Configuration;
 
-class HandlerThread : public Thread {
+class Handler : public Thread {
 public:
-	HandlerThread();
-	virtual ~HandlerThread();
+	Handler();
+	virtual ~Handler();
 
 	virtual int Routine();
 	virtual int PrepareToRun();
