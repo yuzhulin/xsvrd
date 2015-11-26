@@ -1,5 +1,5 @@
 CPP=g++
-BIN=../../run/proxy/bin/proxy
+BIN=../../run/mainsvrd/bin/mainsvrd
 OBJ=main.o handlerthread.o x_thread.o controller.o x_tcpsocket.o socket_api.o tcpconnection.o 
 INC=../../include/libcommon
 C_ARGS=-DXDBG
