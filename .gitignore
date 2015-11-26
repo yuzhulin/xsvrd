@@ -43,3 +43,4 @@ workspace.xml
 
 run/netio/bin/netio
 run/proxy/bin/proxy
+run/mainsvrd/bin/mainsvrd
