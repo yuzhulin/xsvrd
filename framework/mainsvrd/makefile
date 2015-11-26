@@ -1,6 +1,6 @@
 CPP=g++
 BIN=../../run/mainsvrd/bin/mainsvrd
-OBJ=main.o handlerthread.o x_thread.o controller.o x_tcpsocket.o socket_api.o tcpconnection.o 
+OBJ=main.o mainsvrd_control.o 
 INC=../../include/libcommon
 C_ARGS=-DXDBG
 
@@ -12,23 +12,8 @@ $(BIN):$(OBJ)
 main.o:main.cc
 	$(CPP) $(C_ARGS) -g -c main.cc
 
-handlerthread.o:handlerthread.cc handlerthread.h
-	$(CPP) $(C_ARGS) -g -c handlerthread.cc
-
-x_thread.o:../libcommon/x_thread.cc $(INC)/x_thread.h
-	$(CPP) $(C_ARGS) -g -c ../libcommon/x_thread.cc
-
-controller.o:controller.cc controller.h
-	$(CPP) $(C_ARGS) -g -c controller.cc
-
-x_tcpsocket.o:../libcommon/x_tcpsocket.cc $(INC)/x_tcpsocket.h
-	$(CPP) $(C_ARGS) -g -c ../libcommon/x_tcpsocket.cc
-
-socket_api.o:../libcommon/socket_api.cc $(INC)/socket_api.h
-	$(CPP) $(C_ARGS) -g -c ../libcommon/socket_api.cc
-
-tcpconnection.o:../libcommon/tcpconnection.cc $(INC)/tcpconnection.h
-	$(CPP) $(C_ARGS) -g -c ../libcommon/tcpconnection.cc
+mainsvrd_control.o:mainsvrd_control.cc mainsvrd_control.h
+	$(CPP) $(C_ARGS) -g -c mainsvrd_control.cc
 
 clean:
 	rm -f $(BIN) $(OBJ)
