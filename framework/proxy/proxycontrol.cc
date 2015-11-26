@@ -229,10 +229,6 @@ int ProxyControl::ReadConfigFile()
 	keys.push_back("MainSvrdsList");
 	keys.push_back("OtherSvrdsList");
 	std::map<std::string, std::string> key_value_map;
-	for (std::vector<std::string>::iterator it = keys.begin();
-		it != keys.end(); ++it) {
-		key_value_map[*it] = "";
-	}
 	std::string key;
 	std::string value;
 	std::string line;
