@@ -87,8 +87,7 @@ int ProxyControl::Init()
 	std::string config_file = "../cnf/proxy.cnf";
 	set_config_file(config_file);
 
-	if (Control::Init()) return -1;
-	return 0;
+	return Control::Init();
 }
 
 int ProxyControl::CheckConnectRequest()
