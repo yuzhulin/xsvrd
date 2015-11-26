@@ -1,19 +1,19 @@
-#include "controller.h"
+#include "proxycontrol.h"
 #include <stdlib.h>
 
-xsvrd::Controller g_controller;
+xsvrd::ProxyControl g_proxy_control;
 
 int main()
 {
-	if (g_controller.Init("../cnf/proxy.cnf")) {
+	if (g_proxy_control.Init("../cnf/proxy.cnf")) {
 		std::clog << "Controller init failed!" << std::endl;
 		exit(-1);
 	}
 
-	if (g_controller.PrepareToRun()) {
+	if (g_proxy_control.PrepareToRun()) {
 		std::clog << "Controller prepare to run failed!" << std::endl;
 		exit(-1);
 	}
-	g_controller.Run();
+	g_proxy_control.Run();
 	return 0;
 }

@@ -1,4 +1,4 @@
-#include "controller.h"
+#include "proxycontrol.h"
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -8,7 +8,7 @@
 
 namespace xsvrd {
 
-Controller::Controller()
+ProxyControl::ProxyControl()
 {
 	dbsvrd_handler_thread_ = NULL;
 	mainsvrd_handler_thread_ = NULL;
@@ -17,7 +17,7 @@ Controller::Controller()
 	// memset(&configuration_, 0, sizeof(configuration_));
 }
 
-Controller::~Controller()
+ProxyControl::~ProxyControl()
 {
 	if (dbsvrd_handler_thread_) {
 		delete dbsvrd_handler_thread_;
@@ -33,7 +33,7 @@ Controller::~Controller()
 	}
 }
 
-int Controller::PrepareToRun()
+int ProxyControl::PrepareToRun()
 {
 	if (listen_socket_.CreateServer(configuration_.proxy_port)) {
 		std::clog << "Create server failed!" << std::endl;
@@ -72,7 +72,7 @@ int Controller::PrepareToRun()
 	return 0;
 }
 
-int Controller::Run()
+int ProxyControl::Run()
 {
 	while (1) {
 
@@ -82,7 +82,7 @@ int Controller::Run()
 	return 0;
 }
 
-int Controller::Init(std::string config_file)
+int ProxyControl::Init(std::string config_file)
 {
 	if (ReadConfiguration(config_file)) {
 		return -1;
@@ -90,7 +90,7 @@ int Controller::Init(std::string config_file)
 	return 0;
 }
 
-int Controller::CheckConnectRequest()
+int ProxyControl::CheckConnectRequest()
 {
 	int retval = 0;
 	SOCKET listen_socket_fd = listen_socket_.GetSocketFD(); 
@@ -150,7 +150,7 @@ int Controller::CheckConnectRequest()
 	return 0;
 }
 
-int Controller::ReadEntityList(ConnectionEntityType type, TCPConnection* connection)
+int ProxyControl::ReadEntityList(ConnectionEntityType type, TCPConnection* connection)
 {
 	if (!connection) return -1;
 	std::string list_file = configuration_.svrdlist[type].list_file; 
@@ -215,7 +215,7 @@ int Controller::ReadEntityList(ConnectionEntityType type, TCPConnection* connect
 	return 0;
 }
 
-int Controller::ReadConfiguration(std::string config_file)
+int ProxyControl::ReadConfiguration(std::string config_file)
 {
 	std::ifstream ifs(config_file.c_str());
 	if (!ifs) return -1;

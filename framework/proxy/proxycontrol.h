@@ -1,5 +1,6 @@
-#ifndef __CONTROLLER_H__
-#define __CONTROLLER_H__
+#ifndef __PROXY_CONTROL_H__
+#define __PROXY_CONTROL_H__
+
 #include "handler.h"
 #include "common.h"
 #include "../../include/libcommon/tcpconnection.h"
@@ -8,10 +9,10 @@
 
 namespace xsvrd {
 
-class Controller {
+class ProxyControl {
 public:
-	Controller();
-	virtual ~Controller();
+	ProxyControl();
+	virtual~ProxyControl();
 
 	int Run();
 	int PrepareToRun();
