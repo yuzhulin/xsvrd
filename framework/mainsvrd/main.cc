@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include "mainsvrd_control.h"
 
 MainsvrdControl g_mainsvrd_control;
