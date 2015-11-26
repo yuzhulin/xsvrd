@@ -1,4 +1,4 @@
-## v1.0.0 / 2014-11-15
+## v0.0.1 / 2014-11-15
 
 ### Overview
 This is the first version, just add some directories and files.  
