@@ -1,4 +1,4 @@
-#include "proxycontrol.h"
+#include "proxy_control.h"
 #include <iostream>
 #include <sstream>
 #include <fstream>

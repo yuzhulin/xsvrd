@@ -1,4 +1,4 @@
-#include "proxycontrol.h"
+#include "proxy_control.h"
 #include <stdlib.h>
 
 xsvrd::ProxyControl g_proxy_control;

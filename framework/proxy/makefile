@@ -1,6 +1,6 @@
 CPP=g++
 BIN=../../run/proxy/bin/proxy
-OBJ=main.o handler.o x_thread.o proxycontrol.o x_tcpsocket.o socket_api.o tcpconnection.o 
+OBJ=main.o handler.o x_thread.o proxy_control.o x_tcpsocket.o socket_api.o tcpconnection.o 
 INC=../../include/libcommon
 C_ARGS=-DXDBG
 
@@ -18,8 +18,8 @@ handler.o:handler.cc handler.h
 x_thread.o:../libcommon/x_thread.cc $(INC)/x_thread.h
 	$(CPP) $(C_ARGS) -g -c ../libcommon/x_thread.cc
 
-proxycontrol.o:proxycontrol.cc proxycontrol.h
-	$(CPP) $(C_ARGS) -g -c proxycontrol.cc
+proxy_control.o:proxy_control.cc proxy_control.h
+	$(CPP) $(C_ARGS) -g -c proxy_control.cc
 
 x_tcpsocket.o:../libcommon/x_tcpsocket.cc $(INC)/x_tcpsocket.h
 	$(CPP) $(C_ARGS) -g -c ../libcommon/x_tcpsocket.cc
