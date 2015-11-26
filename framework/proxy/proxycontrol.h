@@ -18,7 +18,8 @@ public:
 	virtual int Run();
 	virtual int PrepareToRun();
 	int ReadConfiguration(std::string config_file);
-	int Init(std::string config_file);
+	virtual int Init();
+	virtual int ReadConfigFile();
 	int CheckConnectRequest();
 	int ReadEntityList(ConnectionEntityType type, TCPConnection* connection);
 

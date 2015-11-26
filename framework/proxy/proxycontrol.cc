@@ -82,11 +82,12 @@ int ProxyControl::Run()
 	return 0;
 }
 
-int ProxyControl::Init(std::string config_file)
+int ProxyControl::Init()
 {
-	if (ReadConfiguration(config_file)) {
-		return -1;
-	}
+	std::string config_file = "../cnf/proxy.cnf";
+	set_config_file(config_file);
+
+	if (Control::Init()) return -1;
 	return 0;
 }
 
@@ -215,8 +216,9 @@ int ProxyControl::ReadEntityList(ConnectionEntityType type, TCPConnection* conne
 	return 0;
 }
 
-int ProxyControl::ReadConfiguration(std::string config_file)
+int ProxyControl::ReadConfigFile()
 {
+	std::string config_file = get_config_file();
 	std::ifstream ifs(config_file.c_str());
 	if (!ifs) return -1;
 	std::vector<std::string> keys;	
