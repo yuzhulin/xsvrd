@@ -86,7 +86,6 @@ int ProxyControl::Init()
 {
 	std::string config_file = "../cnf/core.cnf";
 	set_config_file(config_file);
-
 	return Control::Init();
 }
 
